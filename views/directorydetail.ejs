@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
+  <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/imagehover.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+
+  <style>
+    /* Custom styles for the fixed div */
+    .fixed-div {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background-color: #5FCF80;
+      padding: 20px;
+      border: 1px solid #ccc;
+      /* Customize width and height as per your requirements */
+      width: 50px;
+      height: 240px;
+      border-radius:  15px  0 0 15px;
+    }
+
+    /* Custom styles for the vertically written text */
+    .vertical-text {
+      writing-mode: vertical-lr;
+      text-orientation: upright;
+      text-align: center;
+      /* Adjust font-size and color as per your requirements */
+      font-size: 16px;
+      color: white;
+    }
+  </style>
+        <style>
+          *{
+  box-sizing: border-box;
+}
+
+.search-box{
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+.input-search{
+  height: 50px;
+  width: 50px;
+  border-style: none;
+  padding: 10px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  outline: none;
+  border-radius: 25px;
+  transition: all .5s ease-in-out;
+  background-color: #5FCF80;
+  padding-right: 40px;
+  color:#198564;
+}
+.input-search::placeholder{
+  color:rgba(14, 13, 13, 0.5);
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+.btn-search{
+  width: 50px;
+  height: 50px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  right: 0px;
+  color:#12663c ;
+  background-color:transparent;
+  pointer-events: painted;  
+}
+.btn-search:focus ~ .input-search{
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom:1px solid rgba(255,255,255,.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+.input-search:focus{
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom:1px solid rgba(255,255,255,.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+        </style>
+        <style>
+          /*search box css start here*/
+.search-sec{
+    padding: 5px;
+    margin-top: 200px;
+}
+.search-slt{
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+}
+.wrn-btn{
+    width: 100%;
+    font-size: 12px;
+    font-weight: 400;
+    color:white;
+    text-transform: capitalize;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+    background-color: #5FCF80;
+}
+@media (min-width: 992px){
+    .search-sec{
+        position: relative;
+        top: -114px;
+        background: rgba(26, 70, 104, 0.51);
+    }
+}
+
+@media (max-width: 992px){
+    .search-sec{
+        background: #1A4668;
+    }
+}
+        </style>
+</head>
+
+<body  style="background-color: whitesmoke;">
+  <!--Navigation bar-->
+ 
+  <!--/ Navigation bar-->
+  <!--Modal box-->
+
+
+<%- include ('./partials/header') %>
+<div class="top-head left pb-2" >
+    <div class="container">
+            <div class="row">
+        <div class="col-md-12">
+             <small><br>Get information about government agencies that specially related to TVET sector</small></h4>
+              </div>
+      
+      </div>
+          </div>
+  </div>
+<section style="background-color: #88a390;">
+  <div class="container py-2">
+    <form action="#" method="post" novalidate="novalidate">
+        <div class="row">
+            <div class="col-lg-12 pb-5">
+                <div class="row">
+                   
+                    <div class="col-lg-4 col-md-3 col-sm-12 p-0">
+                        <input type="text" class="form-control search-slt" placeholder="Enter Agency Name">
+                    </div>
+                    <div class="col-lg-4 col-md-3 col-sm-12 p-0">
+                        <select class="form-control search-slt" id="exampleFormControlSelect1">
+                            <option>Select Location</option>
+                            <option>Example one</option>
+                            <option>Example one</option>
+                            <option>Example one</option>
+                            <option>Example one</option>
+                            <option>Example one</option>
+                            <option>Example one</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4 col-md-3 col-sm-12 p-0">
+                        <button type="button" class="btn btn-search wrn-btn ">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+  </div>
+</section>
+  <section id="" class="mt-5 py-5" style="background-color: white;">
+    <div class="container ">
+     
+        <div class="row"  style="background-color: white;">
+            <div class="col-md-2">
+                <div class="module-inner"><h3 class="module-title "><span>Featured Company</span></h3><div class="module-ct"><a href="/directory/39116-samrawit-and-mekdelawit-general-construction" class="">Samrawit and Mekdelawit General...</a><a href="/directory/39116-samrawit-and-mekdelawit-general-construction"><img style="vertical-align: text-bottom;border:none;" src="https://www.2merkato.com/images/mtree/listings/s/25856.png" alt="Samrawit and Mekdelawit General Construction | ሳምራዊት እና መቅደላዊት ጠቅላላ ስራ ተቋራጭ"></a><br><small>Category: <a href="/directory/463/">General Construction</a></small></div></div>
+            </div>
+            <div class="col-md-8">
+                <div id="t3-content" class="t3-content span12">
+		
+                    <div id="system-message-container">
+                    </div>		
+                                        <div class="row-fluid">
+                        <div class="span12">
+                                    <h2>Zawa Printing And Advertising</h2><hr>
+                    
+                                    <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="span8">
+                                                            <table class="table table-condensed">						
+                                            <tbody><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr><td><b>Mobile</b></td> <td>+251 911 83 90 71</td></tr><tr><td><b>Mobile 2</b></td> <td>+251 940 15 55 04</td></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>	
+                                            <tr><td width="130px;"><b>Location</b></td><td>Bole Medehanialem Helzer Tower Office # 101A</td></tr>
+                                            <tr><td><b>Primary Category</b></td><td><a href="/directory/1063/">Printing and Advertising</a> </td></tr>				
+                                        </tbody></table>
+                                    </div>				
+                                    <div class="span4">
+                                        <div class="thumbnail">
+                                        <img border="0" src="https://www.2merkato.com/images/mtree/listings/m/33152.jpg" width="600" height="600" alt="Zawa Printing And Advertising">	
+                                        </div>				
+                                    </div>
+                                </div>
+                            </div>
+                                                
+                                            <div class="form-actions" style="text-align:center">
+                                <div class="btn-group pull-left">
+                                <a href="/directory/40785-zawa-printing-advertisements/recommend" rel="nofollow" class="btn btn-small" title="Recommend this company to a friend">Tell a friend</a><a href="/index.php?option=com_mtree&amp;task=print&amp;link_id=40785&amp;tmpl=component&amp;Itemid=31" onclick="javascript:void window.open(this.href, 'win2', 'status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=1000,height=800,directories=no,location=no'); return false;" rel="nofollow" class="btn btn-small" title="Print this company's information"><i class="icon-print"></i> Print</a>	
+                                    <a href="" rel="nofollow" class="btn btn-small" target="_blank">Visit Website <i class="icon-external-link"></i></a>
+                                </div>
+                                
+                                <a href="/directory/40785-zawa-printing-advertisements/contact" rel="nofollow" class="btn btn-small btn-warning pull-right" title="Send email to this company"><i class="icon-envelope"></i> Send Inquiry</a>			
+                                            </div>
+                                
+                            
+                            <div class="listing-desc">
+                                <p style="text-align: justify;"><strong>Zawa Printing And Advertising</strong> is a budding state of the art full service printing company that was established in 2018 based in Addis Ababa and Washington, DC is the premier marketing service. It is focused on the printing and advertising needs of educational institutions, the corporate sector and the general public. It is our intention to provide the best possible printing solutions where attention is given to quality and detail, resulting in satisfied clients with whom we have! asting business relationships.</p>
+                    <p style="text-align: justify;">The foundation of our business is integrity and honesty. We take pride in the client relationships that have developed resulting in interdependency and mutual growth. Zawa Print &amp; Advertising is a place that explores trendy ideas, best solutions for your business printing production with highly professional design concept. We are ready to hear your expectation and we will live it accordingly, because we print your imagination.</p>
+                    <p class="btn-warning"><span style="color: #000000;"><strong>Mission</strong></span></p>
+                    <p style="text-align: justify;">To provide the best printing services to our clientele by demonstrating responsiveness, diligence, judgments and building on our culture of excellence.</p>
+                    <p class="btn-warning"><span style="color: #000000;"><strong>Vision</strong></span></p>
+                    <p style="text-align: justify;">Zawa Print &amp; Advertise strives to be the highest quality printing company in the country and strives to exceed the expectations of those we partner with by.. being the best printing service provider our clients have ever had, being the best company our employees have ever worked for and to continuously improve all aspects of our business while building on our culture of excellence.</p>
+                    <p class="btn-warning"><span style="color: #000000;"><strong>Values</strong></span></p>
+                    <p style="text-align: justify;">Our core values include the following: Quality, Client oriented; Excellence; People; Leadership; Teamwork; Integrity: Diversity.</p>
+                    <p class="btn-warning" style="text-align: justify;"><span style="color: #000000;"><strong>Our Services and Printing Equipment</strong></span></p>
+                    <p style="text-align: justify;">Ranging from handbills, brochures, posters, calendars. annual reports, magazines to books &amp; manuals, we are equipped with extensive capacity to print large quantities and quality prints that resonate with our client's brand and products and which match globally acceptablestandards. Our professional services guarantee our clientele of impeccable precision and timely delivery. Complementing the printing press, we boast of a thoroughly garnished finishing division equipped with an array of the most advanced machinery and equipment.</p>
+                    <p style="text-align: justify;">Zawa Print &amp; Advertising produces its items with superb quality on time and cost effectively. The company is focused on integrated solutions and clients stand to benefit from prepress and post press processes. These include Flyers, Calendars, Magazines, Brochures, Presentation Folders, Corporate Stationery, NCR Books, Banners, Business Cards, Seasonal Cards, etc. Zawa Print &amp; Advertising is integrated platform with highly dedicated &amp; professional team who can provide services for your company.</p>
+                    <div class="btn-warning" style="text-align: center;"><strong><span style="color: #000000;">CONTACT US </span></strong></div>
+                    <div class="btn-warning" style="text-align: center;"><strong><span style="color: #000000;">+251 911 83 90 71</span></strong></div>
+                    <div class="btn-warning" style="text-align: center;"><strong><span style="color: #000000;">+251 940 15 55 04</span></strong></div>
+                    <div class="btn-warning" style="text-align: center;"><strong><span style="color: #000000;"><a href="mailto:zawaprint@gmai.com"><span style="color: #000000;">zawaprint@gmai.com</span></a>&nbsp;</span></strong></div>		</div>
+                        <hr>
+                                </div>
+                    </div>
+                    <div class="row">
+                        <div class="span6">
+                            <legend>
+                                Products and Services<sup><small>(3 Images)</small></sup>		
+                            </legend> 		 
+                            <ul class="thumbnails">
+                                            <li class="span1">
+                                    <a class="thumbnail" href="/index.php?option=com_mtree&amp;Itemid=31&amp;img_id=33153&amp;lang=en&amp;task=viewimage">
+                                        <img src="https://www.2merkato.com/images/mtree/listings/s/33153.jpg" img="">
+                                    </a>
+                                </li>
+                                            <li class="span1">
+                                    <a class="thumbnail" href="/index.php?option=com_mtree&amp;Itemid=31&amp;img_id=33154&amp;lang=en&amp;task=viewimage">
+                                        <img src="https://www.2merkato.com/images/mtree/listings/s/33154.jpg" img="">
+                                    </a>
+                                </li>
+                                            <li class="span1">
+                                    <a class="thumbnail" href="/index.php?option=com_mtree&amp;Itemid=31&amp;img_id=33155&amp;lang=en&amp;task=viewimage">
+                                        <img src="https://www.2merkato.com/images/mtree/listings/s/33155.jpg" img="">
+                                    </a>
+                                </li>
+                                        </ul>
+                        </div>	
+                    </div>
+                    
+                                
+                        </div>
+            </div>
+           <div class="col-md-2">
+            <div class="figmaToReact"><img src="https://www.copycat.dev/blog/wp-content/themes/copyCat/assets/img/figma-react.svg" alt=""><h4>Convert <span>Figma</span> To <span>React</span></h4><p>Convert Figma designs to production-ready React.js code. Build stunning apps and landing pages faster than your peers and competitors.</p><div class="mybut"><a href="https://www.copycat.dev/" class="bt" target="_blank">Learn More</a></div></div>
+            <div class="figmaToReact"><img src="https://www.copycat.dev/blog/wp-content/themes/copyCat/assets/img/figma-react.svg" alt=""><h4>Convert <span>Figma</span> To <span>React</span></h4><p>Convert Figma designs to production-ready React.js code. Build stunning apps and landing pages faster than your peers and competitors.</p><div class="mybut"><a href="https://www.copycat.dev/" class="bt" target="_blank">Learn More</a></div></div>
+     
+           </div>
+        </div>
+    </div>
+
+
+  </section>
+  <div class="container">
+    <div class="row">
+      <div class="col"></div> <!-- Add any content on the left side if needed -->
+      <div class="col fixed-div">
+        <div class="vertical-text">
+          EMPLOYERS 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Footer-->
+  <%- include ('./partials/footer') %>
+ 
+  <!--/ Footer-->
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.easing.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+  <script>
+      $(document).ready(function() {
+          $('#data-table').DataTable();
+      });
+  </script>
+</body>
+
+</html>

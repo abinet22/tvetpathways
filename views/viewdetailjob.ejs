@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
+  <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/imagehover.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+
+  <style>
+    /* Custom styles for the fixed div */
+    .fixed-div {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background-color: #5FCF80;
+      padding: 20px;
+      border: 1px solid #ccc;
+      /* Customize width and height as per your requirements */
+      width: 50px;
+      height: 240px;
+      border-radius:  15px  0 0 15px;
+    }
+
+    /* Custom styles for the vertically written text */
+    .vertical-text {
+      writing-mode: vertical-lr;
+      text-orientation: upright;
+      text-align: center;
+      /* Adjust font-size and color as per your requirements */
+      font-size: 16px;
+      color: white;
+    }
+  </style>
+        <style>
+          *{
+  box-sizing: border-box;
+}
+
+.search-box{
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+.input-search{
+  height: 50px;
+  width: 50px;
+  border-style: none;
+  padding: 10px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  outline: none;
+  border-radius: 25px;
+  transition: all .5s ease-in-out;
+  background-color: #5FCF80;
+  padding-right: 40px;
+  color:#198564;
+}
+.input-search::placeholder{
+  color:rgba(14, 13, 13, 0.5);
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+.btn-search{
+  width: 50px;
+  height: 50px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  right: 0px;
+  color:#12663c ;
+  background-color:transparent;
+  pointer-events: painted;  
+}
+.btn-search:focus ~ .input-search{
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom:1px solid rgba(255,255,255,.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+.input-search:focus{
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom:1px solid rgba(255,255,255,.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+        </style>
+        <style>
+          /*search box css start here*/
+.search-sec{
+    padding: 5px;
+    margin-top: 200px;
+}
+.search-slt{
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+}
+.wrn-btn{
+    width: 100%;
+    font-size: 12px;
+    font-weight: 400;
+    color:white;
+    text-transform: capitalize;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+    background-color: #5FCF80;
+}
+@media (min-width: 992px){
+    .search-sec{
+        position: relative;
+        top: -114px;
+        background: rgba(26, 70, 104, 0.51);
+    }
+}
+
+@media (max-width: 992px){
+    .search-sec{
+        background: #1A4668;
+    }
+}
+        </style>
+</head>
+
+<body  style="background-color: whitesmoke;">
+  <!--Navigation bar-->
+ 
+  <!--/ Navigation bar-->
+  <!--Modal box-->
+
+
+<%- include ('./partials/header') %>
+<section class="py-5 mb-2" style="background-color: #88a390;">
+  <div class="container">
+      <form action="#" method="post" novalidate="novalidate">
+          <div class="row">
+              <div class="col-lg-12">
+                <div class="row">
+                      
+                  <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                      <input type="text" class="form-control search-slt" placeholder="Enter Profession">
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                    <select class="form-control search-slt" id="exampleFormControlSelect1">
+                        <option>Select Expertise level</option>
+                        <option>Example one</option>
+                        <option>Example one</option>
+                        <option>Example one</option>
+                        <option>Example one</option>
+                        <option>Example one</option>
+                        <option>Example one</option>
+                    </select>
+                </div>
+                  <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                      <select class="form-control search-slt" id="exampleFormControlSelect1">
+                          <option>Select Location</option>
+                          <option>Example one</option>
+                          <option>Example one</option>
+                          <option>Example one</option>
+                          <option>Example one</option>
+                          <option>Example one</option>
+                          <option>Example one</option>
+                      </select>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                      <button type="button" class="btn btn-search wrn-btn">Search</button>
+                  </div>
+              </div>
+              </div>
+          </div>
+      </form>
+  </div>
+
+</section>
+  <section id="" class="mt-5 py-5" style="background-color: white;">
+    <div class="container ">
+     
+        <div class="row"  style="background-color: white;">
+            <div class="col-md-3">
+                <div class="">
+                    <p class="lead no-margin">Related Jobs</p>
+                                                
+                    <a class="company-name" href="/searchjobwithinselectedcategory">Accounting and Finance Jobs</a>
+                <a class="company-name" href="/searchjobwithinthiscampany">Ripple Effect Jobs</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="col-md-12">
+                    <div class="well well-sm row JobTaskMenu no-margin-hor">
+                        <div class="col-xs-6 no-padding">
+                                            <a rel="nofollow" href="/appliywiththisjobidgotolohin" class="btn btn-orange col-md-5" style="font-size: 16px;border: none;">Apply Now</a>
+                                                            <span class="post_deadline">Deadline<br>Jul 31, 2023</span>				<span class="pad-left-1 jv-fa-icns">
+                                                    <span id="saveJob">
+                                                        </span>
+                                <span id="progress" style="display: none;"><i class="fa fa-spinner fa-spin"></i></span>
+                                <span id="addNote" style="display: none" class="company_orange">Saved</span>
+                                                                                            <a rel="nofollow" class="tooltips" data-original-title="Print This Job" data-placement="top" target="_blank" href="/printthisjob"><i class="fa fa-print"></i></a>
+                                                </span>
+                        </div>
+                                    <div class="col-xs-6 " style="text-align:right;">
+                            <span class="inline">Share:</span>
+                            <!-- Buttons end here -->
+                            <a rel="nofollow" class="tooltips recomendButton popup btn btn-default" style="display: inline-block;" data-original-title="Recommend to a friend" data-placement="top" data-toggle="modal" data-target="#recomendModal" href="/mailtocompany"><i class="fa fa-envelope"></i></a>			                    
+                         
+                            <!-- Buttons end here -->
+                        </div>
+                                </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="page-header" style="margin-top: -10px;">
+                        <h1 style="font-size: 26px;">Finance and Administration Officer (One)
+                        </h1>
+                            
+                        <h2 class="jobs_by strong">Job by Ripple Effect</h2>
+                        <span class="jobs_by">(Job Id: <span class="num">490068</span> | 367 Views)</span>
+                                        <span class="pull-right ej-postdate text-center">
+                            <span class="ej-top">Posted</span>
+                            <span class="ej-date" id="ej_date">21</span>
+                            <span class="ej-month" id="ej_month">Jul</span>
+                        </span>
+                        <script>
+                            
+                            var t = "2023-07-21 16:06:59".split(/[- :]/);
+                            var monthNames = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
+                            var curr_date = t[2];
+                            var curr_month = monthNames[t[1]-1];
+                            $("#ej_date").html(curr_date);
+                            $("#ej_month").html(curr_month);
+                            
+                        </script>			
+                                    </div>
+                </div>
+                <div class="col-md-9 col-xs-8 no-padding">
+		    
+		    
+                        		    
+		    
+			
+				
+                    <div class="col-md-12">
+                    <div id="col-wide" class="active-fields sortable-column">
+                                        <div class="displayFieldBlock">
+                            <div class="displaFieldHeader">Category:</div>
+                            <div class="displayField">Accounting and Finance</div>
+                        </div>
+                    
+                                    <div class="displayFieldBlock">
+                        <div class="displaFieldHeader">Location:</div>
+                        <div class="displayField">
+                                                                            Wolaita Sodo Town, Wolaita Zone&nbsp;
+                        </div>
+                    </div>
+                    
+                                
+                                
+                                        <div class="displayFieldBlock">
+                            <div class="displaFieldHeader">Salary:</div>
+                            <div class="displayField">As per the Organization Scale</div>
+                        </div>
+                    
+                    </div>		
+                    </div>
+                
+                
+                            
+                        </div>
+                        <div class="col-md-3 col-xs-4 text-right no-padding-left">
+                            <a rel="image_src" href="/searchjobbythiscompany/">
+                                                
+                                                            <div class="img-thumbnail text-center" style="height: 90px; width: 150px; background: url(&quot;https://www.ethiojobs.net/files/pictures/ripple-effect-strapline.png&quot;) no-repeat scroll 50% 50% / contain rgb(255, 255, 255);"></div>
+                                                                </a>
+                            <div class="no-margin-top clearfix"></div>
+                                                    <span class="list"><a href="/searchjobbythiscompany">View Jobs by this company</a></span>
+                                                                                    
+                        </div>
+                        <div class="clearfix no-margin"></div>
+                        <div class="listingInfo col-md-12 marg-top-1">
+                            <p class="listingInfoHeader">Job Description</p>
+                <div class="listingInfoContent"><p><span style="font-weight: bold;">Ripple Effect (RE) </span>is registered and licensed Foreign Charity. RE Ethiopia was established in March 2006 and works to see a rural Ethiopia that is confident, thriving, and sustainable, with a growing economy and higher living standards for all. RE focuses on three thematic areas; Farm Systems, Gender and Social Inclusion and Enterprise Development to help to combat poverty and works to create a rejuvenated and abundant African environment for both current and future generations.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>We are recruiting a Finance and Administration officer for Ripple Effect (RE) projects planned to be implemented in Wolaita Zone. For this vacant position we will consider applicants who have BA degree or Advanced Diploma in Accounting, Management, Secretarial Science, or other related fields; minimum of 3 years’ experience in accounting, Finance, and office administration. Desirable Accounting, finance and office administration in a non-for-profit and/or international development setting. Providing administrative HR support; ability to Strong interpersonal, communication and listening skills with the ability to work across different cultures. Ability to establish credibility quickly and maintain supportive relationships with staff, donors and other stakeholders. Strong level of computer literacy, in particular Microsoft Office applications. Good written and spoken English communication. Excellent organisational skills, with ability to plan and priories own workload; accurate attention to detail; ability to handle sensitive data and information with discretion and confidentiality; good team player; able and willing to travel to the field.</p><p>Job description with person specification, application instructions and application form are found at <a href="https://rippleeffect.org/careers/africa/finance-and-administration-officer-ethiopia/">Ripple Effect | Finance and Administration Officer, Ethiopia</a></p><p><b>Job type: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>Four years Fixed Term Contract<b> </b>and renewable yearly<b></b></p><p><b>Job category:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/jobslistbycategory">Accounting Jobs in Ethiopia</a></p></div>
+                <div class="clearfix"></div>
+                                                                
+                <p class="listingInfoHeader">How to Apply</p>
+                <p style="text-align: center; "><span style="font-weight: bold;">Deadline for application is seven working days from first date of announcement. </span></p><p>hrethiopia@rippleeffect.org</a></span><a href="mailto:hrethiopia@rippleeffect.org" target="_blank"></a></p>						
+                <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix no-margin"></div>
+                        <div class="col-md-12">
+                            <div class="well well-sm row JobTaskMenu no-margin">
+                                <div class="col-xs-6 no-padding">
+                                                    <a rel="nofollow" href="/logintoappliywiththisjobid" class="btn btn-orange col-md-5" style="font-size: 16px;border: none;">Apply Now</a>
+                                                                    <span class="post_deadline">Deadline<br>Jul 31, 2023</span>				<span class="pad-left-1 jv-fa-icns">
+                                                            <span id="saveJob">
+                                                                </span>
+                                        <span id="progress" style="display: none;"><i class="fa fa-spinner fa-spin"></i></span>
+                                        <span id="addNote" style="display: none" class="company_orange">Saved</span>
+                                                                                                    <a rel="nofollow" class="tooltips" data-original-title="Print This Job" data-placement="top" target="_blank" href="/printdoc"><i class="fa fa-print"></i></a>
+                                                        </span>
+                                </div>
+                                            <div class="col-xs-6 " style="text-align:right;">
+                                                    <div class="Pagging pull-right">
+                                        <ul class="pager">
+                                                                                            
+                                        </ul>
+                                    </div>
+                                                </div>
+                                        </div>
+                        </div>
+            </div>
+          
+        </div>
+    </div>
+
+
+  </section>
+  <div class="container">
+    <div class="row">
+      <div class="col"></div> <!-- Add any content on the left side if needed -->
+      <div class="col fixed-div">
+        <div class="vertical-text">
+          EMPLOYERS 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Footer-->
+  <%- include ('./partials/footer') %>
+ 
+  <!--/ Footer-->
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.easing.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+  <script>
+      $(document).ready(function() {
+          $('#data-table').DataTable();
+      });
+  </script>
+</body>
+
+</html>
