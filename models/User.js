@@ -14,9 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     allowNull: false,
     unique: true
   },
-  photo: {
-    type: DataTypes.BLOB("long"),
-  },
+
   phone_number: {
     type: DataTypes.STRING,
   

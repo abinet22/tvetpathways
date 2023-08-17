@@ -1,423 +1,456 @@
-<!DOCTYPE html>
+
 <html lang="en">
 
+<!-- search-new41:42-->
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
-  <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
-  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/imagehover.min.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+	<!-- CSS
+	================================================== -->
+	<link rel="stylesheet" href="../../../../assets/plugins/css/plugins.css">
+    
+    <!-- Custom style -->
+    <link href="../../../../assets/css/style.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" id="jssDefault" href="../../../../assets/css/colors/green-style.css">
+    
+	</head>
+	<body>
+		<div class="Loader"></div>
+		<div class="wrapper">  
+			<%- include ('./partials/header') %>
+			<!-- Start Navigation -->
+			
+			<!-- End Navigation -->
+			<div class="clearfix"></div>
+			
+			<!-- Title Header Start -->
+			<section class="inner-header-title no-br advance-header-title" style="background-image:url(../../../../assets/img/banner-14.jpg);">
+				<div class="container">
+					<h2><span>Work There.</span> Find the dream job</h2>
+					<p><span><%= noofjobslastsevendaya %></span> new job in the last <span>7</span> days.</p>
+				</div>
+			</section>
+			<div class="clearfix"></div>
+			<!-- Title Header End -->
+			
+			<!-- bottom form section start -->
+			<section class="bottom-search-form">
+				<div class="container">
+					<form class="bt-form" action="/searchjob" method="post">
+						<div class="col-md-3 col-sm-6">
+							<input type="text" class="form-control" placeholder="Skills, Designations, Keyword" name="skill">
+						</div>
+						<div class="col-md-3 col-sm-6">
+							<select class="form-control" placeholder="Searc By location" name="region" id="region">
+								<option>Search By Location</option>
+							</select>
+						</div>
+						<script>
+							// List of Ethiopian regions
+const ethiopianRegions = [
+'Addis Ababa',
+'Afar',
+'Amhara',
+'Benishangul-Gumuz',
+'Dire Dawa',
+'Gambela',
+'Harari',
+'Oromia',
+'Sidama',
+'SNNPR',
+'Somali',
+'Tigray'
+];
 
-  <style>
-    /* Custom styles for the fixed div */
-    .fixed-div {
-      position: fixed;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      background-color: #5FCF80;
-      padding: 20px;
-      border: 1px solid #ccc;
-      /* Customize width and height as per your requirements */
-      width: 50px;
-      height: 240px;
-      border-radius:  15px  0 0 15px;
-    }
+// Get the select element by its ID
+const select = document.getElementById('region');
 
-    /* Custom styles for the vertically written text */
-    .vertical-text {
-      writing-mode: vertical-lr;
-      text-orientation: upright;
-      text-align: center;
-      /* Adjust font-size and color as per your requirements */
-      font-size: 16px;
-      color: white;
-    }
-  </style>
-        <style>
-          *{
-  box-sizing: border-box;
-}
+// Populate the select element with options
+ethiopianRegions.forEach(region => {
+const option = document.createElement('option');
+option.value = region;
+option.textContent = region;
+select.appendChild(option);
+});
 
-.search-box{
-  width: fit-content;
-  height: fit-content;
-  position: relative;
-}
-.input-search{
-  height: 50px;
-  width: 50px;
-  border-style: none;
-  padding: 10px;
-  font-size: 18px;
-  letter-spacing: 2px;
-  outline: none;
-  border-radius: 25px;
-  transition: all .5s ease-in-out;
-  background-color: #5FCF80;
-  padding-right: 40px;
-  color:#198564;
-}
-.input-search::placeholder{
-  color:rgba(14, 13, 13, 0.5);
-  font-size: 18px;
-  letter-spacing: 2px;
-  font-weight: 100;
-}
-.btn-search{
-  width: 50px;
-  height: 50px;
-  border-style: none;
-  font-size: 20px;
-  font-weight: bold;
-  outline: none;
-  cursor: pointer;
-  border-radius: 50%;
-  position: absolute;
-  right: 0px;
-  color:#12663c ;
-  background-color:transparent;
-  pointer-events: painted;  
-}
-.btn-search:focus ~ .input-search{
-  width: 300px;
-  border-radius: 0px;
-  background-color: transparent;
-  border-bottom:1px solid rgba(255,255,255,.5);
-  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-}
-.input-search:focus{
-  width: 300px;
-  border-radius: 0px;
-  background-color: transparent;
-  border-bottom:1px solid rgba(255,255,255,.5);
-  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-}
+						</script>
+						<div class="col-md-3 col-sm-6">
+							<select class="form-control" name="category">
+							  <option>By Category</option>
+							 <% if(subjobcat.length >0){%>
+								<% subjobcat.forEach(function(row){%>
+									<option value="<%= row.subcatid %>"><%= row.subcatname %></option>
+								<%})%>
+							 <%}else{}%>
+							</select>
+						</div>
+						<div class="col-md-3 col-sm-6">
+							<button type="submit" class="btn btn-primary">Search Job</button>
+						</div>
+					</form>
+				</div>
+			</section>
+			<!-- Bottom Search Form Section End -->
+			
+			<!-- ========== Begin: Brows job Category ===============  -->
+			<section class="brows-job-category gray-bg">
+				<div class="container">
+					<div class="col-md-9 col-sm-12">
+						<div class="full-card">
+						
+							<div class="card-header">
+								<div class="row mrg-0">
+									<div class="col-md-4 col-sm-4">
+										<select class="selectpicker form-control" multiple title="Job Type" name="jobtype">
+										  <option>Full Time</option>
+										  <option>Part Time</option>
+										  <option>Freelancer</option>
+										  <option>Internship</option>
+										</select>
+									</div>
+									<div class="col-md-4 col-sm-4 small-padd">
+										<select class="selectpicker form-control" multiple title="All Categories" name="jobcategory">
+										  <option>Teacher Jobs</option>
+										  <option>Consultant Jobs</option>
+										  <option>IT Jobs</option>
+										  <option>Sales Jobs</option>
+										  <option>Graphic Designer Jobs</option>
+										</select>
+									</div>
+									<div class="col-md-4 col-sm-4">
+										<ol class="breadcrumb pull-right">
+											<li><a href="#"><i class="fa fa-home"></i></a></li>
+											<li><a href="#">Full Time</a></li>
+											<li class="active">IT Jobs</li>
+										</ol>
+									</div>
+								</div>
+							</div>
+							
+							<div class="card-body">
+							
+								<% if(joblist.length >0 ){%>
+									<% joblist.forEach(function(row){%>
+										<article>
+											<div class="brows-job-list">
+												<% var  comimg = 	'data:image/png;base64,' + new Buffer(row.companylogo, 'binary').toString('base64')
+												%>
+												<div class="col-md-1 col-sm-2 small-padding">
+													<div class="brows-job-company-img"><a href="/viewdetailjob/<%= row.jobid %>"><img src="<%= comimg %>" class="img-responsive" alt=""></a></div>
+												</div>
+												<div class="col-md-6 col-sm-5">
+													<div class="brows-job-position">
+														<a href="/viewdetailjob/<%= row.jobid %>">
+															<h3><%= row.jobtitle %></h3>
+														</a>
+					
+														<p><span><%= row.jobdetail %><br><%= row.experience %></span><span class="brows-job-sallery"><i class="fa fa-money"></i><%= row.salary %></span><span class="job-type cl-success bg-trans-success"><%= row.jobtime %>/<%= row.jobtype %></span></p>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-3">
+													<div class="brows-job-location">
+														<p><%= row.jobby %></p>
+														<p><i class="fa fa-map-marker"></i><%= row.region %>/<%= row.placeofwork %></p>
+													</div>
+												</div>
+												<div class="col-md-2 col-sm-2">
+													<div class="brows-job-link"><a href="/viewdetailjob/<%= row.jobid %>" class="btn btn-default">Apply
+														Job</a></div>
+													   Deadline <span style="color: red;"><%= new Date(row.deadline).toLocaleDateString() %></span>
+												</div>
+											</div>
+										</article>
+									<% })%>
+								  
+								 <%}else{}%>
+							
+								
+							</div>
+						</div>
+						
+						<div class="row">
+							<ul class="pagination">
+								<% for (let i = 0; i < totalPages; i++) { %>
+									<li class="<%= i === currentPage ? 'active' : '' %>">
+										<a href="?page=<%= i %>"><%= i + 1 %></a>
+									</li>
+								<% } %>
+							</ul>
+						</div>
+						
+						<!-- Ad banner -->
+						<div class="row">
+							<div class="ad-banner">
+								<img src="http://via.placeholder.com/728x90" class="img-responsive" alt="">
+							</div>
+						</div>
+					</div>
+					
+					<!-- Sidebar Start -->
+					<div class="col-md-3 col-sm-12">
+						<div class="sidebar right-sidebar">
+						
+							<div class="side-widget">
+								<h2 class="side-widget-title">Job Alert</h2>
+								<div class="job-alert">
+									<div class="widget-text">
+										<form action="/sendmemessagejobsnotification" method="post">
+											<input type="text" name="keyword" class="form-control" placeholder="Job Keyword">
+											<input type="text" name="phonenumber" class="form-control" placeholder="Phone Number">
+											<input type="text" name="location" class="form-control" placeholder="location">
+											<button type="submit" class="btn btn-alrt">Add Alert</button>
+										</form>
+									</div>
+								</div>
+							</div>
+							
+							<div class="side-widget">
+								<h2 class="side-widget-title">Advertisment</h2>
+								<div class="widget-text padd-0">
+									<div class="ad-banner">
+										<img src="http://via.placeholder.com/320x285" class="img-responsive" alt="">
+									</div>
+								</div>
+							</div>
+					
+							<div class="side-widget">
+								<h2 class="side-widget-title"><a href="#designation" data-toggle="collapse">Designation<i class="pull-right fa fa-angle-double-down" aria-hidden="true"></i></a></h2>
+								<div class="widget-text padd-0 collapse" id="designation">
+									<ul>
+								
+<% if(subcatjoblist.length >0){%>
+	<% subcatjoblist.forEach(function(row){%>
+		<li>
+			<span class="custom-checkbox">
+				<input type="checkbox" id="1">
+				<label for="1"></label>
+			</span>
+			<%= row.subcatname %>
+			<span class="pull-right"><%=row. count %></span>
+		</li>
+	<%})%>
+ <%}else{}%>
+										
+										
+									
+									</ul>
+								</div>
+							</div>
+							
+							<div class="side-widget">
+								<h2 class="side-widget-title"><a href="#job-location" data-toggle="collapse">Location<i class="pull-right fa fa-angle-double-down" aria-hidden="true"></i></a></h2>
+								<div class="widget-text padd-0 collapse" id="job-location">
+									<ul>
+										
+										
+										
+										<% if(regionjoblist.length >0){%>
+											<% regionjoblist.forEach(function(row){%>
+												<li>
+													<span class="custom-checkbox">
+														<input type="checkbox" id="1">
+														<label for="1"></label>
+													</span>
+													<%= row.region %>
+													<span class="pull-right"><%=row. count %></span>
+												</li>
+											<%})%>
+										 <%}else{}%>
+										
+									</ul>
+								</div>
+							</div>
+							
+							<div class="side-widget">
+								<h2 class="side-widget-title"><a href="#job-type" data-toggle="collapse">Job type<i class="pull-right fa fa-angle-double-down" aria-hidden="true"></i></a></h2>
+								<div class="widget-text padd-0 collapse" id="job-type">
+									<ul>
+										
+									
+										
+										
+										<% if(jobtypejoblist.length >0){%>
+											<% jobtypejoblist.forEach(function(row){%>
+												<li>
+													<span class="custom-checkbox">
+														<input type="checkbox" id="1">
+														<label for="1"></label>
+													</span>
+													<%= row.jobtype %>
+													<span class="pull-right"><%=row. count %></span>
+												</li>
+											<%})%>
+										 <%}else{}%>
+									
+									</ul>
+								</div>
+							</div>
+							<div class="side-widget">
+								<h2 class="side-widget-title"><a href="#job-time" data-toggle="collapse">Job Time<i class="pull-right fa fa-angle-double-down" aria-hidden="true"></i></a></h2>
+								<div class="widget-text padd-0 collapse" id="job-time">
+									<ul>
+										
+									
+										
+										
+										<% if(jobtimejoblist.length >0){%>
+											<% jobtimejoblist.forEach(function(row){%>
+												<li>
+													<span class="custom-checkbox">
+														<input type="checkbox" id="1">
+														<label for="1"></label>
+													</span>
+													<%= row.jobtime %>
+													<span class="pull-right"><%=row. count %></span>
+												</li>
+											<%})%>
+										 <%}else{}%>
+									
+									</ul>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					<!-- Sidebar End -->
+					
+				</div>
+			</section>
+			<!-- ========== Begin: Brows job Category End ===============  -->
+			
+			<!-- Footer Section Start -->
+		
+      <%- include ('./partials/footer2') %>
+			<div class="clearfix"></div>
+			<!-- Footer Section End -->
+			
+			<!-- Sign Up Window Code -->
+			<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<div class="tab" role="tabpanel">
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Sign In</a></li>
+								<li role="presentation"><a href="#register" role="tab" data-toggle="tab">Sign Up</a></li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content" id="myModalLabel2">
+								<div role="tabpanel" class="tab-pane fade in active" id="login">
+									<img src="assets/img/logo.png" class="img-responsive" alt="" />
+									<div class="subscribe wow fadeInUp">
+										<form class="form-inline" method="post">
+											<div class="col-sm-12">
+												<div class="form-group">
+													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
+													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
+													<div class="center">
+													<button type="submit" id="login-btn" class="submit-btn"> Login </button>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
 
-        </style>
-        <style>
-          /*search box css start here*/
-.search-sec{
-    padding: 5px;
-    margin-top: 200px;
-}
-.search-slt{
-    display: block;
-    width: 100%;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: #55595c;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    height: calc(3rem + 2px) !important;
-    border-radius:0;
-}
-.wrn-btn{
-    width: 100%;
-    font-size: 12px;
-    font-weight: 400;
-    color:white;
-    text-transform: capitalize;
-    height: calc(3rem + 2px) !important;
-    border-radius:0;
-    background-color: #5FCF80;
-}
-@media (min-width: 992px){
-    .search-sec{
-        position: relative;
-        top: -114px;
-        background: rgba(26, 70, 104, 0.51);
-    }
-}
+								<div role="tabpanel" class="tab-pane fade" id="register">
+								<img src="assets/img/logo.png" class="img-responsive" alt="" />
+									<form class="form-inline" method="post">
+											<div class="col-sm-12">
+												<div class="form-group">
+													<input type="text"  name="email" class="form-control" placeholder="Your Name" required="">
+													<input type="email"  name="email" class="form-control" placeholder="Your Email" required="">
+													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
+													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
+													<div class="center">
+													<button type="submit" id="subscribe" class="submit-btn"> Create Account </button>
+													</div>
+												</div>
+											</div>
+										</form>
+								</div>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>   
+			<!-- End Sign Up Window -->
+			
+			<!-- Apply Form Code -->
+			<div class="modal fade" id="apply-job" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<div class="apply-job-box">
+								<img src="assets/img/com-1.jpg" class="img-responsive" alt="">
+								<h4>Product Designer</h4>
+								<p>Google Pvt.</p>
+							</div>
+							<div class="apply-job-form">
+								<form class="form-inline" method="post">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<input type="text"  name="name" class="form-control" placeholder="Your Name" required="">
+											<input type="email"  name="email" class="form-control" placeholder="Your Email" required="">
+											<textarea class="form-control" placeholder="About You / Paste your CV"></textarea>
+											<div class="fileUpload">
+												<span>Upload CV</span>
+												<input type="file" class="upload" />
+											</div>
+											<div class="center">
+											<button type="submit" id="subscribe" class="submit-btn"> Apply Now </button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>   
+			<!-- End Apply Form -->
+		
+			
+			<!-- Scripts
+			================================================== -->
+			<script type="text/javascript" src="../../../../assets/plugins/js/jquery.min.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/viewportchecker.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/bootsnav.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/select2.min.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/wysihtml5-0.3.0.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/bootstrap-wysihtml5.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/datedropper.min.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/dropzone.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/loader.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/owl.carousel.min.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/slick.min.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/gmap3.min.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/jquery.easy-autocomplete.min.js"></script>
+			
+			<!-- Custom Js -->
+			<script src="../../../../assets/js/custom.js"></script>
+			<script src="../../../../assets/js/jQuery.style.switcher.js"></script>
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$('#styleOptions').styleSwitcher();
+				});
+			</script>
+			<script>
+				function openRightMenu() {
+					document.getElementById("rightMenu").style.display = "block";
+				}
 
-@media (max-width: 992px){
-    .search-sec{
-        background: #1A4668;
-    }
-}
-        </style>
-</head>
+				function closeRightMenu() {
+					document.getElementById("rightMenu").style.display = "none";
+				}
+			</script>
+			
+		</div>
+	</body>
 
-<body  style="background-color: whitesmoke;">
-  <!--Navigation bar-->
- <%- include ('./partials/header') %>
-  <!--/ Navigation bar-->
-  <!--Modal box-->
-
- <section class="py-5" style="background-color: #88a390;">
-    <div class="container" >
-        <form action="#" method="post" novalidate="novalidate">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="row">
-                      
-                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                            <input type="text" class="form-control search-slt" placeholder="Enter Profession">
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                          <select class="form-control search-slt" id="exampleFormControlSelect1">
-                              <option>Select Expertise level</option>
-                              <option>Example one</option>
-                              <option>Example one</option>
-                              <option>Example one</option>
-                              <option>Example one</option>
-                              <option>Example one</option>
-                              <option>Example one</option>
-                          </select>
-                      </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                            <select class="form-control search-slt" id="exampleFormControlSelect1">
-                                <option>Select Location</option>
-                                <option>Example one</option>
-                                <option>Example one</option>
-                                <option>Example one</option>
-                                <option>Example one</option>
-                                <option>Example one</option>
-                                <option>Example one</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                            <button type="button" class="btn btn-search wrn-btn">Search</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-
-</section>
-
-  <section id="" class="mt-5 py-5" style="background-color: white;">
-    <div class="container ">
-     
-        <div class="row"  style="background-color: white;">
-            <div class="col-md-3">
-                <table cellpadding="0" cellspacing="0" width="100%">
-                  
-                    <tbody>
-                    <tr>
-                        <td>
-                            <div class="row">
-                                <div class="">
-                                    <form action="/" id="keyword_search_form" method="post">
-                                    
-                                        <div class="search-box">
-     
-    <button class="btn-search"><i class="fas fa-search"></i></button>
-     
-    <input type="text" class="input-search" placeholder="Type to Search...">
-  </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>					
-                            <div class=" mt-4">
-                                <ul class="nav flex-column" style="color: #55595c;">
-                                  <li class="nav-item">
-                                    <a class="nav-link" data-toggle="collapse" style="color: #55595c;" href="#category1" aria-expanded="false" aria-controls="category1">  <i class="fa sp-right fa-list"></i>
-                                        Jobs Category		</a>
-                                    <div class="collapse" id="category1">
-                                      <ul class="nav flex-column ml-3">
-                                        <li class="nav-item">
-                                          <a class="nav-link" href="#" style="color: #55595c;">Subcategory 1-1</a>
-                                        </li>
-                                        <li class="nav-item">
-                                          <a class="nav-link" href="#" style="color: #55595c;">Subcategory 1-2</a>
-                                        </li>
-                                        <!-- Add more subcategories for Category 1 if needed -->
-                                      </ul>
-                                    </div>
-                                  </li>
-                                  
-                                  <li class="nav-item">
-                                    <a class="nav-link" style="color: #55595c;" data-toggle="collapse" href="#category2" aria-expanded="false" aria-controls="category2">
-                                      
-                                            <i class="fa sp-right fa-map-marker"></i>
-                                            Region									
-                                    </a>
-                                    <div class="collapse" id="category2">
-                                      <ul class="nav flex-column ml-3">
-                                        <li class="nav-item">
-                                          <a class="nav-link" style="color: #55595c;" href="#">Subcategory 2-1</a>
-                                        </li>
-                                        <li class="nav-item">
-                                          <a class="nav-link" style="color: #55595c;" href="#">Subcategory 2-2</a>
-                                        </li>
-                                        <!-- Add more subcategories for Category 2 if needed -->
-                                      </ul>
-                                    </div>
-                                  </li>
-                                  <li class="nav-item"> 
-                                    <a class="nav-link" data-toggle="collapse" style="color: #55595c;" href="#category3" aria-expanded="false" aria-controls="category3">
-                                        <span>
-                                            <i class="fa sp-right fa-signal"></i>
-                                            Career Level									</span>							
-                                    </a>
-                                    <div class="collapse" id="category3">
-                                      <ul class="nav flex-column ml-3">
-                                        <li class="nav-item">
-                                          <a class="nav-link" style="color: #55595c;" href="#">Subcategory 2-1</a>
-                                        </li>
-                                        <li class="nav-item">
-                                          <a class="nav-link" style="color: #55595c;" href="#">Subcategory 2-2</a>
-                                        </li>
-                                        <!-- Add more subcategories for Category 2 if needed -->
-                                      </ul>
-                                    </div>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link" style="color: #55595c;" data-toggle="collapse" href="#category4" aria-expanded="false" aria-controls="category4">
-                                        <span>
-                                            <i class="fa sp-right fa-clock-o"></i>
-                                            Employment Type									</span>					
-                                    </a>
-                                    <div class="collapse" id="category4">
-                                      <ul class="nav flex-column ml-3">
-                                        <li class="nav-item">
-                                          <a class="nav-link" style="color: #55595c;" href="#">Subcategory 2-1</a>
-                                        </li>
-                                        <li class="nav-item">
-                                          <a class="nav-link" style="color: #55595c;" href="#">Subcategory 2-2</a>
-                                        </li>
-                                        <!-- Add more subcategories for Category 2 if needed -->
-                                      </ul>
-                                    </div>
-                                  </li>
-                                  <!-- Add more categories with subcategories as needed -->
-                                </ul>
-                              </div>
-                              
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-7">
-                <table id="data-table" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Recent Job List</th>
-                        
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="listing-section">
-                                    <div class="listing-title">
-                                        <a name="listing_490068"></a>
-                                        <h2 style="display: inline;"><a href="/" title="View Job">Finance and Administration Officer (One)</a>	</h2>
-                                        <div class="pull-right"><span class="captions">Posted: </span><span class="captions-field">Today</span></div>
-                                    </div>
-                                    <div class="listing-info pad-top-1">
-                                        <div class="brief_view hidden">
-                                            <div class="pull-left">
-                                                <a class="company-name" href="/companyinfo">Ripple Effect</a>
-                                            </div>
-                                            <div class="pull-right text-danger">
-                                                <span class="captions"></span><span class="captions-field">Jul 31, 2023</span>
-                                            </div>
-                                        </div>
-                                                        <div class="detailed_view">
-                                            <div class="pull-left">
-                                                
-                                                                        <!-- Company Name -->
-                                                <span class="captions-field">
-                                                    <a title="Ripple Effect" class="company-name" href="/companyinfo">Ripple Effect</a>
-                                                </span>
-                                                <br>
-                                                <!-- Location -->
-                                                <span class="captions">Work Place: </span>
-                                                
-                                                <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 350px; display: inline-block; vertical-align: top;" class="work-palce captions-field">
-                                                    Wolaita Sodo Town, Wolaita Zone
-                                                </span>
-                                                <br>
-                                                <!-- Career Level -->
-                                                <span class="captions">Level: </span><span class="captions-field"></span><br>
-                                                <!-- Deadline -->
-                                                <span class="text-danger captions-field">Jul 31, 2023</span><br>
-                                            </div>
-                                            <div class="pull-right text-center search_result_logo">								
-                                                <a title="Ripple Effect" href="/viewjobsbythiscompany">
-                                                                                                            <div class="img-thumbnail text-center" style="height: 75px; width: 150px; background: url(&quot;https://www.ethiojobs.net/files/pictures/ripple-effect-strapline.png&quot;) no-repeat scroll 50% 50% / contain rgb(255, 255, 255);"></div>
-                                                                                                        </a>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                            <div class="show-brief">  Ripple Effect (RE)  is registered and licensed Foreign Charity. RE Ethiopia was established in March 2006 and works to see a rural Ethiopia that is confident, thriving, and sustainable, with a growing economy and higher living standards for all. RE focuses on three thematic areas; Farm Systems, Gender and Social Inclusion and Enterprise Development to help to combat poverty and works to...</div>
-                                        </div>
-                                                    </div>
-                                    <div class="listing-links">
-                                        <ul>
-                                                                                    <span id="progress_490068" style="display: none; padding: 0 25px"><i class="fa fa-spinner fa-spin"></i></span>
-                                                                <li class="viewDetails"><a href="/viewdetailjob" title="View Job"><i class="fy fy-list"></i> View job details</a></li>
-                                                            </ul>
-                                        <div id="formNote_490068" class="form-note">
-                                                            </div>
-                                    </div>
-                                    <div class="clr"></div>
-                                </div>
-                            </td>
-                          
-                        </tr>
-                       
-                     
-                       
-                        <!-- Add more data rows here... -->
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-2">
-              <div class="figmaToReact"><img src="https://www.copycat.dev/blog/wp-content/themes/copyCat/assets/img/figma-react.svg" alt=""><h4>Convert <span>Figma</span> To <span>React</span></h4><p>Convert Figma designs to production-ready React.js code. Build stunning apps and landing pages faster than your peers and competitors.</p><div class="mybut"><a href="https://www.copycat.dev/" class="bt" target="_blank">Learn More</a></div></div>
-              <div class="figmaToReact"><img src="https://www.copycat.dev/blog/wp-content/themes/copyCat/assets/img/figma-react.svg" alt=""><h4>Convert <span>Figma</span> To <span>React</span></h4><p>Convert Figma designs to production-ready React.js code. Build stunning apps and landing pages faster than your peers and competitors.</p><div class="mybut"><a href="https://www.copycat.dev/" class="bt" target="_blank">Learn More</a></div></div>
-            <div class="figmaToReact"><img src="https://www.copycat.dev/blog/wp-content/themes/copyCat/assets/img/figma-react.svg" alt=""><h4>Convert <span>Figma</span> To <span>React</span></h4><p>Convert Figma designs to production-ready React.js code. Build stunning apps and landing pages faster than your peers and competitors.</p><div class="mybut"><a href="https://www.copycat.dev/" class="bt" target="_blank">Learn More</a></div></div>
-            <div class="figmaToReact"><img src="https://www.copycat.dev/blog/wp-content/themes/copyCat/assets/img/figma-react.svg" alt=""><h4>Convert <span>Figma</span> To <span>React</span></h4><p>Convert Figma designs to production-ready React.js code. Build stunning apps and landing pages faster than your peers and competitors.</p><div class="mybut"><a href="https://www.copycat.dev/" class="bt" target="_blank">Learn More</a></div></div>
-         
-            </div>
-        </div>
-    </div>
-
-
-  </section>
-  <div class="container">
-    <div class="row">
-      <div class="col"></div> <!-- Add any content on the left side if needed -->
-      <div class="col fixed-div">
-        <div class="vertical-text">
-          EMPLOYERS 
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--Footer-->
-  <%- include ('./partials/footer') %>
- 
-  <!--/ Footer-->
-
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.easing.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/custom.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-  <script>
-      $(document).ready(function() {
-          $('#data-table').DataTable();
-      });
-  </script>
-</body>
-
+<!-- search-new41:42-->
 </html>

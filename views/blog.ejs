@@ -1,0 +1,255 @@
+
+<html lang="en">
+
+<!-- blog42:00-->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+	================================================== -->
+	<link rel="stylesheet" href="assets/plugins/css/plugins.css">
+    
+    <!-- Custom style -->
+    <link href="assets/css/style.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" id="jssDefault" href="assets/css/colors/green-style.css">
+    
+	</head>
+	<body>
+		<div class="Loader"></div>
+		<div class="wrapper">  
+			
+			<!-- Start Navigation -->
+      <%- include ('./partials/header') %>
+			<!-- End Navigation -->
+			<div class="clearfix"></div>
+			
+			<!-- Title Header Start -->
+			<section class="inner-header-title" style="background-image:url(assets/img/banner-12.jpg);">
+				<div class="container">
+					<h1>BLOG</h1>
+				</div>
+			</section>
+			<div class="clearfix"></div>
+			<!-- Title Header End -->
+			
+			<!-- All blog List Start -->
+			<section class="section">
+				<div class="container">
+					<div class="row .no-mrg">
+						<!-- Start Blogs -->
+						<div class="col-md-8">
+							<% if(mybloglist.length >0 ){%>
+								<% mybloglist.forEach(function(row){%>
+									<%var  comimg %>
+									<% if(row.adsimage) {%>
+										<% comimg = 	'data:image/png;base64,' + new Buffer(row.adsimage, 'binary').toString('base64')
+										%>	
+									<%}else{%>
+										 <% comimg =''%>
+										<%}%>
+									
+							<article class="blog-news">
+								<div class="short-blog">
+									<figure class="img-holder">
+										<a href="/blogdetail/<%= row.adsid %>"><img src="<%= comimg %>" class="img-responsive" alt="News" style="height: 300px; width: 100%;" ></a>
+										<div class="blog-post-date">
+											<%= new Date(row.createdAt).toLocaleDateString() %>
+										</div>
+									</figure>
+									<div class="blog-content">
+										<div class="post-meta">Source: <span class="author"><a href="<%= row.adsurl %>" target="_blank"><%= row.npurl %></a></span> | <%= row.adscount %> </div>
+										<a href="/blogdetail/<%= row.adsid %>"><h2><%= row.adstitle %></h2></a>
+										<div class="blog-text">
+											<p><%= row.adsdetail %></p>
+											<div class="post-meta">By: <span class="category"><a href="#"><%= row.nptag %></a></span></div>
+										</div>
+									</div>
+								</div>
+							</article>
+							<% })%>
+                  
+							<%}else{}%>
+						</div>
+						<!-- End Blogs -->
+						
+						<!-- Sidebar Start -->
+						<div class="col-md-4">
+							<div class="blog-sidebar">
+							
+								<form action="#">
+									<div class="search-form">
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder="Search…">
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-default">Go</button>
+											</span>
+										</div>
+									</div>
+								</form>
+								
+								<div class="sidebar-widget">
+									<h4>Popular BLOG</h4>
+									<ul class="sidebar-list">
+										
+										<% if(mybloglist.length >0 ){%>
+											<% mybloglist.forEach(function(row){%>
+												<% var  comimg %>
+												<% if(row.adsimage) {%>
+													<% comimg = 	'data:image/png;base64,' + new Buffer(row.adsimage, 'binary').toString('base64')
+													%>	
+												<%}else{%>
+													 <% comimg =''%>
+													<%}%>
+												
+													<li><a href="/blogdetail/<%= row.adsid %>"> <%= row.adstitle %><span>(8)</span></a></li>
+										<% })%>
+							  
+										<%}else{}%>
+									</ul>
+								</div>
+								
+								<div class="sidebar-widget">
+									<h4>Featured  </h4>
+									
+									<% if(mybloglist.length >0 ){%>
+										<% mybloglist.forEach(function(row){%>
+											<% var  comimg %>
+											<% if(row.adsimage) {%>
+												<% comimg = 	'data:image/png;base64,' + new Buffer(row.adsimage, 'binary').toString('base64')
+												%>	
+											<%}else{%>
+												 <% comimg =''%>
+												<%}%>
+											
+												<div class="blog-item">
+													<div class="post-thumb"><a href="/blogdetail/<%= row.adsid %>"><img src="<%= comimg %>" class="img-responsive" alt=""></a></div>
+													<div class="blog-detail">
+														<a href="/newsdetail/<%= row.npid %>>"><h4><%= row.adstitle %></h4></a>
+														<small>Source:<a href="<%= row.npurl %>"><%= row.adsurl %></a></small>
+														<div class="post-info"><%= new Date(row.createdAt).toLocaleDateString() %></div>
+													</div>
+												</div>
+									<% })%>
+						  
+									<%}else{}%>
+								</div>
+								
+								
+								
+							</div>
+						</div>
+						<!-- End Sidebar Start -->
+					</div>
+					<div class="row">
+						<ul class="pagination">
+							<% for (let i = 0; i < totalPages; i++) { %>
+								<li class="<%= i === currentPage ? 'active' : '' %>">
+									<a href="?page=<%= i %>"><%= i + 1 %></a>
+								</li>
+							<% } %>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<!-- All Blog List End -->
+			
+			<!-- Footer Section Start -->
+		
+      <%- include ('./partials/footer2') %>
+			<div class="clearfix"></div>
+			<!-- Footer Section End -->
+			
+			<!-- Sign Up Window Code -->
+			<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<div class="tab" role="tabpanel">
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Sign In</a></li>
+								<li role="presentation"><a href="#register" role="tab" data-toggle="tab">Sign Up</a></li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content" id="myModalLabel2">
+								<div role="tabpanel" class="tab-pane fade in active" id="login">
+									<img src="assets/img/logo.png" class="img-responsive" alt="" />
+									<div class="subscribe wow fadeInUp">
+										<form class="form-inline" method="post">
+											<div class="col-sm-12">
+												<div class="form-group">
+													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
+													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
+													<div class="center">
+													<button type="submit" id="login-btn" class="submit-btn"> Login </button>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+
+								<div role="tabpanel" class="tab-pane fade" id="register">
+								<img src="assets/img/logo.png" class="img-responsive" alt="" />
+									<form class="form-inline" method="post">
+											<div class="col-sm-12">
+												<div class="form-group">
+													<input type="text"  name="email" class="form-control" placeholder="Your Name" required="">
+													<input type="email"  name="email" class="form-control" placeholder="Your Email" required="">
+													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
+													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
+													<div class="center">
+													<button type="submit" id="subscribe" class="submit-btn"> Create Account </button>
+													</div>
+												</div>
+											</div>
+										</form>
+								</div>
+							</div>
+							</div>
+						</div>
+						</div>
+				</div>
+			</div>   
+			<!-- End Sign Up Window -->
+		
+			
+			<!-- Scripts
+			================================================== -->
+			<script type="text/javascript" src="assets/plugins/js/jquery.min.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/viewportchecker.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/bootsnav.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/select2.min.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/wysihtml5-0.3.0.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/bootstrap-wysihtml5.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/datedropper.min.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/dropzone.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/loader.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/owl.carousel.min.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/slick.min.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/gmap3.min.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/jquery.easy-autocomplete.min.js"></script>
+			<!-- Custom Js -->
+			<script src="assets/js/custom.js"></script>
+			<script src="assets/js/jQuery.style.switcher.js"></script>
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$('#styleOptions').styleSwitcher();
+				});
+			</script>
+			<script>
+				function openRightMenu() {
+					document.getElementById("rightMenu").style.display = "block";
+				}
+
+				function closeRightMenu() {
+					document.getElementById("rightMenu").style.display = "none";
+				}
+			</script>
+		</div>
+	</body>
+
+<!-- blog42:00-->
+</html>

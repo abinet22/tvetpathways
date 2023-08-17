@@ -1,0 +1,663 @@
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+	================================================== -->
+	<link rel="stylesheet" href="../../../../assets/plugins/css/plugins.css">
+    
+    <!-- Custom style -->
+    <link href="../../../../assets/css/style.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" id="jssDefault" href="../../../../assets/css/colors/green-style.css">
+    <style>
+
+
+        .cards {
+          display: grid;
+          grid-auto-columns: 100%;
+          grid-column-gap: 10px;
+          grid-auto-flow: column;
+          padding: 25px 0px;
+          list-style: none;
+          overflow-x: scroll;
+          font-size: small;
+          scroll-snap-type: x mandatory;
+        }
+        
+        .card {
+          display: flex;
+          flex-direction: column;
+          padding: 20px;
+          background: var(--white);
+          border-radius: 12px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
+          scroll-snap-align: start;
+          transition: all 0.2s;
+        }
+        
+        .card:hover {
+          color: var(--white);
+          background: var(--orange);
+        }
+        
+        .card .card-title {
+          font-size: 20px;
+        }
+        
+        .card .card-content {
+          margin: 20px 0;
+          max-width: 85%;
+        }
+        
+        .card .card-link-wrapper {
+          margin-top: auto;
+        }
+        .card {
+      background: white;
+    }
+    
+    .card:hover {
+      background: #5FCF80;
+      color:white;
+    }
+        .card .card-link {
+          display: inline-block;
+          text-decoration: none;
+     
+          background: var(--orange);
+          padding: 6px 12px;
+          border-radius: 8px;
+          transition: background 0.2s;
+        }
+        
+        .card:hover .card-link {
+          background: var(--darkorange);
+        }
+        
+        .cards::-webkit-scrollbar {
+          height: 12px;
+        }
+        
+        .cards::-webkit-scrollbar-thumb,
+        .cards::-webkit-scrollbar-track {
+          border-radius: 92px;
+        }
+        
+        .cards::-webkit-scrollbar-thumb {
+          background: var(--darkorange);
+        }
+        
+        .cards::-webkit-scrollbar-track {
+          background: var(--thumb);
+        }
+        
+        @media (min-width: 500px) {
+          .cards {
+            grid-auto-columns: calc(50% - 10px);
+            grid-column-gap: 20px;
+          }
+        }
+        
+        @media (min-width: 700px) {
+          .cards {
+            grid-auto-columns: calc(calc(100% / 3) - 20px);
+            grid-column-gap: 30px;
+          }
+        }
+        
+        @media (min-width: 1100px) {
+          .cards {
+            grid-auto-columns: calc(25% - 30px);
+            grid-column-gap: 40px;
+          }
+        }
+        
+        
+        
+            </style>
+             <style>
+              /* CSS styles for the "Manufacturing Jobs" text */
+              .job-text {
+                font-size: 40px;
+                font-weight: bold;
+                color: #009688; /* A nice teal color */
+                position: relative;
+                animation: moveText 2s infinite; /* Adding animation to the text */
+              }
+          
+              /* Keyframes for the animation */
+              @keyframes moveText {
+                0% { transform: translateX(0); }
+                50% { transform: translateX(10px); }
+                100% { transform: translateX(0); }
+              }
+              .ribbon-text {
+          color:#CF5FAB;
+          font-weight: bold;
+          font-size: 16px;
+          transform: rotate(45deg);
+        }
+    
+            </style>
+	</head>
+	<body>
+		<div class="Loader"></div>
+		<div class="wrapper">  
+			<!-- Start Navigation -->
+			
+            <%- include ('./partials/header') %>
+			<!-- End Navigation -->
+	
+            <div class="clearfix"></div>
+            <div class="home-three-banner" style="background-image:url(../../../assets/img/banner-4.jpg);">
+                <div class="container">
+					<div class="row">
+						<div class="col col-md-6 col-sm-8">
+							<div class="content">
+								<h2 style="color: green;">Talent?<br> Meet Opportunity.</h2>
+                             
+                                <p class="small-text"> Your one-stop platform connecting talented TVET graduates with top recruiters. <br> We understand the unique skills and expertise possessed by TVET graduates and aim to bridge the gap between them and potential employers.
+                                </p>
+                                <form class="banner-form" data-animation="animated fadeInUp">
+									<div class="input-group">
+										<span class="input-group-btn">
+											<a type="button" href="/searchjob"  class="btn bg-success btn-block">Search Job</a>
+										</span>
+										<span class="input-group-btn">
+											<a type="button" href="/aboutus/#readmore" class="btn bg-success btn-block">Read More</a>
+										</span>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+            <div class="clearfix"></div>
+
+		
+			<!-- Main Banner Section End -->
+			
+			<!-- Brand -->
+			<div class="company-brand freelancer">
+				<div class="container">
+					<div id="company-brands" class="owl-carousel">
+						<div class="brand-img">
+							<img src="../../../../assets/img/1.png" class="img-responsive" alt="" />
+						</div>
+            <div class="brand-img">
+							<img src="../../../../assets/img/2.png" class="img-responsive" alt="" />
+						</div>
+						<div class="brand-img">
+							<img src="../../../../assets/img/3.png" class="img-responsive" alt="" />
+						</div>
+						<div class="brand-img">
+							<img src="#" class="img-responsive" alt="" />
+						</div>
+						<div class="brand-img">
+							<img src="../../../../assets/img/4.png" class="img-responsive" alt="" />
+						</div>
+						<div class="brand-img">
+							<img src="../../../../assets/img/5.png" class="img-responsive" alt="" />
+						</div>
+						<div class="brand-img">
+							<img src="../../../../assets/img/1.png" class="img-responsive" alt="" />
+						</div>
+						<div class="brand-img">
+							<img src="../../../../assets/img/2.png" class="img-responsive" alt="" />
+						</div>
+						<div class="brand-img">
+							<img src="#" class="img-responsive" alt="" />
+						</div>
+					</div>
+				</div>
+			</div>
+            <div class="clearfix"></div>
+            <section class="pricing" id="readmore">
+                <div class="row" data-aos="fade-up">
+                    <div class="col-md-12">
+                        <div class="main-heading">
+                            <p>About Us</p>
+                          
+                         
+                        </div>
+
+                    </div>
+                   
+                </div>
+                <div class="container">
+                    <div class="row row-bottom">
+						<h2 class="detail-title">Who We Are?</h2>
+					<p>   TVETPathways is the leading web platform dedicated to empowering TVET graduates by connecting them with exciting job opportunities and comprehensive training programs. Our main purpose is to bridge the gap between skillful graduates and prospective employers, fostering a mutually beneficial partnership. Additionally, we collaborate with governmental and NGO stakeholders to offer a wide array of specialized training and development initiatives, ensuring our users stay ahead in their careers. At TVETPathways, we are committed to facilitating a dynamic ecosystem that propels individuals towards fulfilling and successful futures, while also contributing to the growth and progress of industries worldwide. 
+                    </p>	
+                    </div>
+                  
+                </div>
+				<div class="container py-5 mt-5">
+				
+					
+					<div class="col-md-4 col-sm-4">
+						<div class="pr-table">
+							<div class="pr-header">
+								<div class="pr-plan">
+									<h4>Vision</h4>
+								</div>
+								
+							</div>
+							<div class="pr-features">
+								<ul>
+									<li>  <p><small>
+                                        Our vision is to become the premier platform for connecting TVET graduates with top recruiters, unlocking the potential of every individual and fostering economic growth through meaningful employment opportunities.</h4>
+                                  
+                                      </small></p></li>
+								</ul>
+							</div>
+							
+						</div>
+					</div>
+					
+					<div class="col-md-4 col-sm-4">
+						<div class="pr-table">
+							<div class="pr-header active">
+								<div class="pr-plan">
+									<h4>Mission</h4>
+								</div>
+								
+							</div>
+							<div class="pr-features">
+								<ul>
+									<li>  <p><small>
+                                        Our mission is to bridge the gap between TVET graduates and recruiters, providing a reliable and efficient platform that enables seamless connections, fosters career growth, and contributes to the development of skilled workforces in various industries.</h4>
+                                   
+                                      </small></p></li>
+								</ul>
+							</div>
+							
+						</div>
+					</div>
+					
+					<div class="col-md-4 col-sm-4">
+						<div class="pr-table">
+							<div class="pr-header">
+								<div class="pr-plan">
+									<h4>Values</h4>
+								</div>
+								
+							</div>
+							<div class="pr-features">
+								<ul>
+                                    <li> <p>
+                                        <small>
+                                          <input type="checkbox" checked>  Empowerment<br>
+                                          <input type="checkbox" checked> Innovation<br>
+                                          <input type="checkbox" checked>   Diversity and Inclusion<br>
+                                          <input type="checkbox" checked>  Professional Development<br>
+                                        </small>
+                                    </p> 
+                                    </li> 
+								</ul>
+							</div>
+							
+						</div>
+					</div>
+					
+				</div>
+			</section>
+          
+			<section class="call-to-act">
+				<div class="container-fluid">
+				
+					<div class="col-md-4 col-sm-4 no-padd gr-dark">
+						<div class="call-to-act-caption">
+							<h2>We Are Working With NGOs  </h2>
+							<h3>    TVET Pathways collaborates with NGOs to provide additional support and resources to our users.
+                   
+                            </h3>
+						
+						</div>
+					</div>
+                    <div class="col-md-4 col-sm-4 no-padd bl-dark">
+						<div class="call-to-act-caption">
+							<h2>Job Search And Personalized Job Alerts  </h2>
+							<h3>   Never miss out on a relevant opportunity! Our platform notifies you of job openings that match your skills and preferences, ensuring that you are among the first to know about exciting career prospects.
+                   
+                            </h3>
+						
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4 no-padd gr-dark">
+						<div class="call-to-act-caption">
+							<h2>We Are Working With Gov't Offices</h2>
+							<h3>
+                                We offers a comprehensive government offices directory with contact and location information. 
+          
+                            </h3>
+						
+						</div>
+					</div>
+               
+					
+				</div>
+			</section>
+			<!-- ====================== How It Work ================= -->
+	
+			
+			<!-- ========= start Call To Action section =========== -->
+		
+            <section class="py-5 mb-5">
+                <div class="container">
+                    <div class="row" data-aos="fade-up">
+                        <div class="col-md-12">
+                            <div class="main-heading">
+                                <p>Features</p>
+          
+                                <h2>Our Platform <span>Features</span></h2>
+                                Our platform offers a user-friendly job matching algorithm that connects TVET graduates with their ideal career opportunities based on their skills and preferences.
+     
+                            </div>
+                        </div>
+                    </div>
+                         
+                    <div class="row">
+                      <ul class="cards" id="container">
+                      
+                      <li class="card">
+                      <div class="">
+                      <div class="card-content">
+                      <div class="card-body">
+                      <div class="media d-flex">
+                      <div class="media-body text-left">
+                      <div class="align-self-center">
+                      <i class="icon-rocket warning font-large-2 float-left"></i>
+                      </div>
+                      &nbsp; &nbsp;
+                      <h6>   Job Matching Algorithm: </h6> <br>
+                      <span>  
+                      Our platform utilizes advanced algorithms to match TVET graduates with recruiters based on their skills and preferences. We understand that each candidate is unique, and our intelligent system considers factors such as industry-specific requirements and individual career aspirations to ensure the perfect match between job seekers and employers.
+                      </span>
+                      
+                      
+                      </div>
+                      
+                      </div>
+                      
+                      </div>
+                      </div>
+                      </div></li>
+                      <li class="card">
+                      <div class="">
+                      <div class="card-content">
+                      <div class="card-body">
+                      <div class="media d-flex">
+                      <div class="media-body text-left">
+                      <div class="align-self-center">
+                        <i class="icon-rocket warning font-large-2 float-left"></i>
+                      </div>
+                      &nbsp; &nbsp;
+                      <h6>   Industry-Specific Opportunities: </h6> <br>
+                      <span>  
+                        TVET Pathways works closely with recruiters from a wide range of industries who specifically look for TVET graduates to fill their vacancies. Our platform features job listings from sectors such as engineering, healthcare, construction, hospitality, and many more. By connecting with us, TVET graduates gain exclusive access to industry-specific opportunities that are tailored to their skills and expertise.
+                      
+                      
+                      </span>
+                      
+                      
+                      </div>
+                      
+                      </div>
+                      
+                      </div>
+                      </div>
+                      </div></li>
+                      <li class="card">
+                      <div class="">
+                              <div class="card-content">
+                                <div class="card-body">
+                                  <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                      <div class="align-self-center">
+                                        <i class="icon-rocket warning font-large-2 float-left"></i>
+                                      </div>
+                                      &nbsp; &nbsp;
+                                      <h6>   Professional Development Resources: </h6> <br>
+                                      <span>  
+                                        We believe in continuous growth and development. TVET Pathways provides access to a rich pool of resources, including workshops, webinars, and training programs. These resources are designed to enhance your skills, keep you updated with industry trends, and make you more competitive in the job market.
+                                      
+                                      </span>
+                                    
+                      
+                                    </div>
+                                    
+                                  </div>
+                                
+                                </div>
+                              </div>
+                            </div></li>
+                            <li class="card">
+                              <div class="">
+                                              <div class="card-content">
+                                                <div class="card-body">
+                                                  <div class="media d-flex">
+                                                    <div class="media-body text-left">
+                                                      <div class="align-self-center">
+                                                        <i class="icon-rocket warning font-large-2 float-left"></i>
+                                                      </div>
+                                                      &nbsp; &nbsp;
+                                                      <h6>   Networking and Mentorship: </h6> <br>
+                                                      <span>  
+                                                        We understand the importance of networking and mentorship in career advancement. TVET Pathways offers opportunities for TVET graduates to connect with experienced professionals in their respective fields. By joining our networking events and mentorship programs, you can gain valuable insights, guidance, and potentially secure professional references that can boost your career prospects.
+                                                      </span>
+                                                    
+                                    
+                                                    </div>
+                                                    
+                                                  </div>
+                                                
+                                                </div>
+                                              </div>
+                                            </div></li>
+                                            <li class="card">
+                                              <div class="">
+                                                              <div class="card-content">
+                                                                <div class="card-body">
+                                                                  <div class="media d-flex">
+                                                                    <div class="media-body text-left">
+                                                                      <div class="align-self-center">
+                                                                        <i class="icon-rocket warning font-large-2 float-left"></i>
+                                                                      </div>
+                                                                      &nbsp; &nbsp;
+                                                                      <h6>  Application Tracking System: </h6> <br>
+                                                                      <span>  
+                                                                        Managing job applications can be overwhelming. That's why we provide an efficient application tracking system that allows you to stay organized and keep track of your progress. You can easily monitor the status of your applications and receive notifications when there are updates from recruiters.
+                                                                      </span>
+                                                                    
+                                                    
+                                                                    </div>
+                                                                    
+                                                                  </div>
+                                                                
+                                                                </div>
+                                                              </div>
+                                                            </div></li>
+                                                            <li class="card">
+                                                              <div class="">
+                                                                              <div class="card-content">
+                                                                                <div class="card-body">
+                                                                                  <div class="media d-flex">
+                                                                                    <div class="media-body text-left">
+                                                                                      <div class="align-self-center">
+                                                                                        <i class="icon-rocket warning font-large-2 float-left"></i>
+                                                                                      </div>
+                                                                                      &nbsp; &nbsp;
+                                                                                      <h6> Personalized Job Alerts: </h6> <br>
+                                                                                      <span>  
+                                                                                        Never miss out on a relevant opportunity! Our platform notifies you of job openings that match your skills and preferences, ensuring that you are among the first to know about exciting career prospects.       </span>
+                                                                                    
+                                                                    
+                                                                                    </div>
+                                                                                    
+                                                                                  </div>
+                                                                                
+                                                                                </div>
+                                                                              </div>
+                                                                            </div></li>
+                      <!-- more cards here -->
+                      </ul>
+                      
+                            
+                           
+                            </div>
+                              
+                </div>
+            </section>
+		
+            <section class="how-it-works">
+				<div class="container">
+					
+					<div class="row" data-aos="fade-up">
+						<div class="col-md-12">
+							<div class="main-heading">
+								<p>Working Process</p>
+								<h2>How It <span>Works</span></h2>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+					
+						<div class="col-md-4 col-sm-4">
+							<div class="working-process">
+								<span class="process-img">
+									<img src="../../../../assets/img/step-1.png" class="img-responsive" alt="" />
+									<span class="process-num">01</span>
+								</span>
+								<h4>Create An Account</h4>
+								</div>
+						</div>
+						
+						<div class="col-md-4 col-sm-4">
+							<div class="working-process">
+								<span class="process-img">
+									<img src="../../../../assets/img/step-2.png" class="img-responsive" alt="" />
+									<span class="process-num">02</span>
+								</span>
+								<h4>Search Jobs</h4>
+							</div>
+						</div>
+						
+						<div class="col-md-4 col-sm-4">
+							<div class="working-process">
+								<span class="process-img">
+									<img src="../../../../assets/img/step-3.png" class="img-responsive" alt="" />
+									<span class="process-num">03</span>
+								</span>
+								<h4>Save & Apply</h4>
+								<p></p>	</div>
+						</div>
+						
+					</div>
+					
+				</div>
+			</section>
+			<!-- Download app Section Start -->
+			<div class="clearfix"></div>
+            <%- include ('./partials/footer') %>
+			<div class="clearfix"></div>
+			<!-- Footer Section End -->
+			
+			<!-- Sign Up Window Code -->
+			<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<div class="tab" role="tabpanel">
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Sign In</a></li>
+								<li role="presentation"><a href="#register" role="tab" data-toggle="tab">Sign Up</a></li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content" id="myModalLabel2">
+								<div role="tabpanel" class="tab-pane fade in active" id="login">
+									<img src="assets/img/logo.png" class="img-responsive" alt="" />
+									<div class="subscribe wow fadeInUp">
+										<form class="form-inline" method="post">
+											<div class="col-sm-12">
+												<div class="form-group">
+													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
+													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
+													<div class="center">
+													<button type="submit" id="login-btn" class="submit-btn"> Login </button>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+
+								<div role="tabpanel" class="tab-pane fade" id="register">
+								<img src="assets/img/logo.png" class="img-responsive" alt="" />
+									<form class="form-inline" method="post">
+											<div class="col-sm-12">
+												<div class="form-group">
+													<input type="text"  name="email" class="form-control" placeholder="Your Name" required="">
+													<input type="email"  name="email" class="form-control" placeholder="Your Email" required="">
+													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
+													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
+													<div class="center">
+													<button type="submit" id="subscribe" class="submit-btn"> Create Account </button>
+													</div>
+												</div>
+											</div>
+										</form>
+								</div>
+							</div>
+							</div>
+						</div>
+						</div>
+				</div>
+			</div>   
+			<!-- End Sign Up Window -->
+		
+			
+			<!-- Scripts
+			================================================== -->
+			<script type="text/javascript" src="../../../../assets/plugins/js/jquery.min.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/viewportchecker.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/bootsnav.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/select2.min.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/wysihtml5-0.3.0.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/bootstrap-wysihtml5.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/datedropper.min.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/dropzone.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/loader.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/owl.carousel.min.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/slick.min.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/gmap3.min.js"></script>
+			<script type="text/javascript" src="../../../../assets/plugins/js/jquery.easy-autocomplete.min.js"></script>
+			<!-- Custom Js -->
+			<script src="../../../../assets/js/custom.js"></script>
+			<script src="../../../../assets/js/jQuery.style.switcher.js"></script>
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$('#styleOptions').styleSwitcher();
+				});
+			</script>
+			<script>
+				function openRightMenu() {
+					document.getElementById("rightMenu").style.display = "block";
+				}
+
+				function closeRightMenu() {
+					document.getElementById("rightMenu").style.display = "none";
+				}
+			</script>
+		</div>
+	</body>
+
+<!-- freelancing41:11-->
+</html>

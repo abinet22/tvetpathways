@@ -2,7 +2,7 @@
   "development": {
     "username": "admin",
     "password": "R1445o123/",
-    "database": "enteleducation",
+    "database": "tvetpathways",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "pool": {

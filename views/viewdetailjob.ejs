@@ -1,369 +1,570 @@
-<!DOCTYPE html>
+
 <html lang="en">
 
+<!-- new-job-detail41:42-->
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
-  <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
-  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/imagehover.min.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-
-  <style>
-    /* Custom styles for the fixed div */
-    .fixed-div {
-      position: fixed;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      background-color: #5FCF80;
-      padding: 20px;
-      border: 1px solid #ccc;
-      /* Customize width and height as per your requirements */
-      width: 50px;
-      height: 240px;
-      border-radius:  15px  0 0 15px;
-    }
-
-    /* Custom styles for the vertically written text */
-    .vertical-text {
-      writing-mode: vertical-lr;
-      text-orientation: upright;
-      text-align: center;
-      /* Adjust font-size and color as per your requirements */
-      font-size: 16px;
-      color: white;
-    }
-  </style>
-        <style>
-          *{
-  box-sizing: border-box;
-}
-
-.search-box{
-  width: fit-content;
-  height: fit-content;
-  position: relative;
-}
-.input-search{
-  height: 50px;
-  width: 50px;
-  border-style: none;
-  padding: 10px;
-  font-size: 18px;
-  letter-spacing: 2px;
-  outline: none;
-  border-radius: 25px;
-  transition: all .5s ease-in-out;
-  background-color: #5FCF80;
-  padding-right: 40px;
-  color:#198564;
-}
-.input-search::placeholder{
-  color:rgba(14, 13, 13, 0.5);
-  font-size: 18px;
-  letter-spacing: 2px;
-  font-weight: 100;
-}
-.btn-search{
-  width: 50px;
-  height: 50px;
-  border-style: none;
-  font-size: 20px;
-  font-weight: bold;
-  outline: none;
-  cursor: pointer;
-  border-radius: 50%;
-  position: absolute;
-  right: 0px;
-  color:#12663c ;
-  background-color:transparent;
-  pointer-events: painted;  
-}
-.btn-search:focus ~ .input-search{
-  width: 300px;
-  border-radius: 0px;
-  background-color: transparent;
-  border-bottom:1px solid rgba(255,255,255,.5);
-  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-}
-.input-search:focus{
-  width: 300px;
-  border-radius: 0px;
-  background-color: transparent;
-  border-bottom:1px solid rgba(255,255,255,.5);
-  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-}
-
-        </style>
-        <style>
-          /*search box css start here*/
-.search-sec{
-    padding: 5px;
-    margin-top: 200px;
-}
-.search-slt{
-    display: block;
-    width: 100%;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: #55595c;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    height: calc(3rem + 2px) !important;
-    border-radius:0;
-}
-.wrn-btn{
-    width: 100%;
-    font-size: 12px;
-    font-weight: 400;
-    color:white;
-    text-transform: capitalize;
-    height: calc(3rem + 2px) !important;
-    border-radius:0;
-    background-color: #5FCF80;
-}
-@media (min-width: 992px){
-    .search-sec{
-        position: relative;
-        top: -114px;
-        background: rgba(26, 70, 104, 0.51);
-    }
-}
-
-@media (max-width: 992px){
-    .search-sec{
-        background: #1A4668;
-    }
-}
-        </style>
-</head>
-
-<body  style="background-color: whitesmoke;">
-  <!--Navigation bar-->
- 
-  <!--/ Navigation bar-->
-  <!--Modal box-->
-
-
-<%- include ('./partials/header') %>
-<section class="py-5 mb-2" style="background-color: #88a390;">
-  <div class="container">
-      <form action="#" method="post" novalidate="novalidate">
-          <div class="row">
-              <div class="col-lg-12">
-                <div class="row">
-                      
-                  <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                      <input type="text" class="form-control search-slt" placeholder="Enter Profession">
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                    <select class="form-control search-slt" id="exampleFormControlSelect1">
-                        <option>Select Expertise level</option>
-                        <option>Example one</option>
-                        <option>Example one</option>
-                        <option>Example one</option>
-                        <option>Example one</option>
-                        <option>Example one</option>
-                        <option>Example one</option>
-                    </select>
-                </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                      <select class="form-control search-slt" id="exampleFormControlSelect1">
-                          <option>Select Location</option>
-                          <option>Example one</option>
-                          <option>Example one</option>
-                          <option>Example one</option>
-                          <option>Example one</option>
-                          <option>Example one</option>
-                          <option>Example one</option>
-                      </select>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                      <button type="button" class="btn btn-search wrn-btn">Search</button>
-                  </div>
-              </div>
-              </div>
-          </div>
-      </form>
-  </div>
-
-</section>
-  <section id="" class="mt-5 py-5" style="background-color: white;">
-    <div class="container ">
-     
-        <div class="row"  style="background-color: white;">
-            <div class="col-md-3">
-                <div class="">
-                    <p class="lead no-margin">Related Jobs</p>
-                                                
-                    <a class="company-name" href="/searchjobwithinselectedcategory">Accounting and Finance Jobs</a>
-                <a class="company-name" href="/searchjobwithinthiscampany">Ripple Effect Jobs</a>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div class="col-md-12">
-                    <div class="well well-sm row JobTaskMenu no-margin-hor">
-                        <div class="col-xs-6 no-padding">
-                                            <a rel="nofollow" href="/appliywiththisjobidgotolohin" class="btn btn-orange col-md-5" style="font-size: 16px;border: none;">Apply Now</a>
-                                                            <span class="post_deadline">Deadline<br>Jul 31, 2023</span>				<span class="pad-left-1 jv-fa-icns">
-                                                    <span id="saveJob">
-                                                        </span>
-                                <span id="progress" style="display: none;"><i class="fa fa-spinner fa-spin"></i></span>
-                                <span id="addNote" style="display: none" class="company_orange">Saved</span>
-                                                                                            <a rel="nofollow" class="tooltips" data-original-title="Print This Job" data-placement="top" target="_blank" href="/printthisjob"><i class="fa fa-print"></i></a>
-                                                </span>
-                        </div>
-                                    <div class="col-xs-6 " style="text-align:right;">
-                            <span class="inline">Share:</span>
-                            <!-- Buttons end here -->
-                            <a rel="nofollow" class="tooltips recomendButton popup btn btn-default" style="display: inline-block;" data-original-title="Recommend to a friend" data-placement="top" data-toggle="modal" data-target="#recomendModal" href="/mailtocompany"><i class="fa fa-envelope"></i></a>			                    
-                         
-                            <!-- Buttons end here -->
-                        </div>
-                                </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="page-header" style="margin-top: -10px;">
-                        <h1 style="font-size: 26px;">Finance and Administration Officer (One)
-                        </h1>
-                            
-                        <h2 class="jobs_by strong">Job by Ripple Effect</h2>
-                        <span class="jobs_by">(Job Id: <span class="num">490068</span> | 367 Views)</span>
-                                        <span class="pull-right ej-postdate text-center">
-                            <span class="ej-top">Posted</span>
-                            <span class="ej-date" id="ej_date">21</span>
-                            <span class="ej-month" id="ej_month">Jul</span>
-                        </span>
-                        <script>
-                            
-                            var t = "2023-07-21 16:06:59".split(/[- :]/);
-                            var monthNames = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
-                            var curr_date = t[2];
-                            var curr_month = monthNames[t[1]-1];
-                            $("#ej_date").html(curr_date);
-                            $("#ej_month").html(curr_month);
-                            
-                        </script>			
-                                    </div>
-                </div>
-                <div class="col-md-9 col-xs-8 no-padding">
-		    
-		    
-                        		    
-		    
+	<link rel="stylesheet" href="../../../assets/plugins/css/plugins.css">
+    
+    <!-- Custom style -->
+    <link href="../../../assets/css/style.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" id="jssDefault" href="../../../assets/css/colors/green-style.css">
+    
+	<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+	<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+	</head>
+	<body>
+		<div class="Loader"></div>
+		<div class="wrapper">  
 			
+      <%- include ('./partials/header') %>
+			<!-- End Navigation -->
+			<div class="clearfix"></div>
+			
+			<!-- Title Header Start -->
+			<section class="inner-header-title" style="background-image:url(../../../assets/img/banner-14.jpg);">
+				<div class="container">
+					<h1>Job Detail</h1>
+				</div>
+			</section>
+			<div class="clearfix"></div>
+			<!-- Title Header End -->
+			<% if(joblist){%>
+				<% var jobbyis =  joblist.jobby %>
+				<% var jobtitleis = joblist.jobtitle %>
+				<% var jobidis = joblist.jobid %>
+				<% var  comimg = 	'data:image/png;base64,' + new Buffer(joblist.companylogo, 'binary').toString('base64')
+				%>
+				<section class="detail-desc advance-detail-pr gray-bg">
+					<div class="container white-shadow">
+						<div class="row">
+							<div class="detail-pic">
+								<img src="<%= comimg %>" class="img" alt="" />
+								<a href="#" class="detail-edit" title="edit" ><i class="fa fa-pencil"></i></a>
+							</div>
+							<div class="detail-status">
+								<%
+								function getTimeRemaining(createdAt) {
+									const now = new Date();
+									const createdAtDate = new Date(createdAt);
+									const timeRemaining = createdAtDate - now;
+									const daysRemaining = Math.ceil(timeRemaining / (1000 * 60 * 60 * 24));
+									
+									if (daysRemaining > 0) {
+										return `${daysRemaining} ${daysRemaining === 1 ? 'day' : 'days'} left`;
+									} else if (daysRemaining === 0) {
+										return 'Today';
+									} else {
+										return 'Expired';
+									}
+								}%>
+								<span> <%= getTimeRemaining(joblist.deadline) %></span>
+							</div>
+						</div>
 				
-                    <div class="col-md-12">
-                    <div id="col-wide" class="active-fields sortable-column">
-                                        <div class="displayFieldBlock">
-                            <div class="displaFieldHeader">Category:</div>
-                            <div class="displayField">Accounting and Finance</div>
-                        </div>
-                    
-                                    <div class="displayFieldBlock">
-                        <div class="displaFieldHeader">Location:</div>
-                        <div class="displayField">
-                                                                            Wolaita Sodo Town, Wolaita Zone&nbsp;
-                        </div>
-                    </div>
-                    
-                                
-                                
-                                        <div class="displayFieldBlock">
-                            <div class="displaFieldHeader">Salary:</div>
-                            <div class="displayField">As per the Organization Scale</div>
-                        </div>
-                    
-                    </div>		
-                    </div>
-                
-                
-                            
-                        </div>
-                        <div class="col-md-3 col-xs-4 text-right no-padding-left">
-                            <a rel="image_src" href="/searchjobbythiscompany/">
-                                                
-                                                            <div class="img-thumbnail text-center" style="height: 90px; width: 150px; background: url(&quot;https://www.ethiojobs.net/files/pictures/ripple-effect-strapline.png&quot;) no-repeat scroll 50% 50% / contain rgb(255, 255, 255);"></div>
-                                                                </a>
-                            <div class="no-margin-top clearfix"></div>
-                                                    <span class="list"><a href="/searchjobbythiscompany">View Jobs by this company</a></span>
-                                                                                    
-                        </div>
-                        <div class="clearfix no-margin"></div>
-                        <div class="listingInfo col-md-12 marg-top-1">
-                            <p class="listingInfoHeader">Job Description</p>
-                <div class="listingInfoContent"><p><span style="font-weight: bold;">Ripple Effect (RE) </span>is registered and licensed Foreign Charity. RE Ethiopia was established in March 2006 and works to see a rural Ethiopia that is confident, thriving, and sustainable, with a growing economy and higher living standards for all. RE focuses on three thematic areas; Farm Systems, Gender and Social Inclusion and Enterprise Development to help to combat poverty and works to create a rejuvenated and abundant African environment for both current and future generations.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>We are recruiting a Finance and Administration officer for Ripple Effect (RE) projects planned to be implemented in Wolaita Zone. For this vacant position we will consider applicants who have BA degree or Advanced Diploma in Accounting, Management, Secretarial Science, or other related fields; minimum of 3 years’ experience in accounting, Finance, and office administration. Desirable Accounting, finance and office administration in a non-for-profit and/or international development setting. Providing administrative HR support; ability to Strong interpersonal, communication and listening skills with the ability to work across different cultures. Ability to establish credibility quickly and maintain supportive relationships with staff, donors and other stakeholders. Strong level of computer literacy, in particular Microsoft Office applications. Good written and spoken English communication. Excellent organisational skills, with ability to plan and priories own workload; accurate attention to detail; ability to handle sensitive data and information with discretion and confidentiality; good team player; able and willing to travel to the field.</p><p>Job description with person specification, application instructions and application form are found at <a href="https://rippleeffect.org/careers/africa/finance-and-administration-officer-ethiopia/">Ripple Effect | Finance and Administration Officer, Ethiopia</a></p><p><b>Job type: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>Four years Fixed Term Contract<b> </b>and renewable yearly<b></b></p><p><b>Job category:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/jobslistbycategory">Accounting Jobs in Ethiopia</a></p></div>
-                <div class="clearfix"></div>
-                                                                
-                <p class="listingInfoHeader">How to Apply</p>
-                <p style="text-align: center; "><span style="font-weight: bold;">Deadline for application is seven working days from first date of announcement. </span></p><p>hrethiopia@rippleeffect.org</a></span><a href="mailto:hrethiopia@rippleeffect.org" target="_blank"></a></p>						
-                <div class="clearfix"></div>
-                        </div>
-                        <div class="clearfix no-margin"></div>
-                        <div class="col-md-12">
-                            <div class="well well-sm row JobTaskMenu no-margin">
-                                <div class="col-xs-6 no-padding">
-                                                    <a rel="nofollow" href="/logintoappliywiththisjobid" class="btn btn-orange col-md-5" style="font-size: 16px;border: none;">Apply Now</a>
-                                                                    <span class="post_deadline">Deadline<br>Jul 31, 2023</span>				<span class="pad-left-1 jv-fa-icns">
-                                                            <span id="saveJob">
-                                                                </span>
-                                        <span id="progress" style="display: none;"><i class="fa fa-spinner fa-spin"></i></span>
-                                        <span id="addNote" style="display: none" class="company_orange">Saved</span>
-                                                                                                    <a rel="nofollow" class="tooltips" data-original-title="Print This Job" data-placement="top" target="_blank" href="/printdoc"><i class="fa fa-print"></i></a>
-                                                        </span>
-                                </div>
-                                            <div class="col-xs-6 " style="text-align:right;">
-                                                    <div class="Pagging pull-right">
-                                        <ul class="pager">
-                                                                                            
-                                        </ul>
-                                    </div>
-                                                </div>
-                                        </div>
-                        </div>
-            </div>
-          
-        </div>
-    </div>
+						<div class="row bottom-mrg">
+							<div class="col-md-8 col-sm-8">
+								<div class="detail-desc-caption">
+									<h4><%= joblist.jobby %></h4>
+									<span class="designation"><%= joblist.jobtitle %></span>
+									<p><%= joblist.jobtitle %></p>
+									<ul>
+										<li><i class="fa fa-briefcase"></i><span><%= joblist.jobtype %>/<%= joblist.jobtime %></span></li>
+										<li><i class="fa fa-check"></i><span>Experience:-<%= joblist.experience %></span></li>
+									</ul>
+								</div>
+							</div>
+							
+							<div class="col-md-4 col-sm-4">
+								<div class="get-touch">
+									<h4>Get in Touch</h4>
+									<ul>
+										<li><i class="fa fa-map-marker"></i><span><%= joblist.region %>/<%= joblist.placeofwork %></span></li>
+										
+										<li><i class="fa fa-money"></i><span><%= joblist.salary %></span></li>
+									</ul>
+								</div>
+							</div>
+							
+						</div>
+						<div class="row no-padd">
+							<div class="detail pannel-footer">
+								<div class="col-md-5 col-sm-5">
+									<ul class="detail-footer-social">
+										<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+										<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+										<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+									</ul>
+								</div>
+								<div class="col-md-7 col-sm-7">
+									<div class="detail-pannel-footer-btn pull-right">
+										<a  href="javascript:void(0)"  data-toggle="modal" data-target="#apply-job" class="footer-btn grn-btn" title="">Quick Apply</a>
+									
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- Job Detail End -->
+				
+				<!-- Job full detail Start -->
+				<section class="full-detail-description full-detail gray-bg">
+					<div class="container">
+						<!-- Job Description -->
+						<div class="col-md-9 col-sm-12">
+							<div class="full-card">
+							
+								<div class="row row-bottom mrg-0">
+									<h2 class="detail-title">Job Detail</h2>
+									<% var profile =  joblist.readmore  %>
+									<div id="id01" ></div>
+								</div>
+							
+							
+								<script>
+									var xmlString = '<%= profile %>';
+								  var xx=  JSON.parse(JSON.stringify(xmlString))
+									var doc = new DOMParser().parseFromString(xmlString, "text/html");
+									var x = doc.body.innerText;
+									console.log(x);
+									var root = document.getElementById('id01');
+									//root.append(x)
+									const t = document.createElement('template');
+									const d = document.createElement('div');
+									t.innerHTML = x;
+									d.append(t.content);
+									html = $.parseHTML(x);
+									
+									// Append the element in the document
+									$(root).append(html);
+									
+		
+								  </script>
+								 <% var lng = joblist.lon %>;
+								 <% var lat = joblist.lat %>;
+								<div class="row row-bottom mrg-0">
+									<h2 class="detail-title">Map Location</h2>
+									<div id="map" class="full-width" style="height:400px;"></div>
+									
+											
+									<script>
+										const lng = <%= lng %>;
+										const lat = <%= lat %>;
+										
+										mapboxgl.accessToken = 'pk.eyJ1IjoiYWJpbmV0MTIzIiwiYSI6ImNrbWR3d3Y5NzJwbG8ycGp4bGU1bXBtaGsifQ.LIZpH0mev90pUGXewX6lww';
+										
+										const map = new mapboxgl.Map({
+											container: 'map',
+											style: 'mapbox://styles/mapbox/streets-v12',
+											center: [lng, lat],
+											zoom: 18
+										});
+										
+										const marker = new mapboxgl.Marker()
+											.setLngLat([lng, lat])
+											.addTo(map);
+										
+										const popup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false })
+											.setHTML('JOB LOCATION')
+											.addTo(marker); // Attach the popup to the marker
+										
+										map.addControl(new mapboxgl.NavigationControl()); // Add zoom controls
+									</script>
+								</div>
+							</div>
+						</div>
+						<!-- End Job Description -->
+						
+						<!-- Start Sidebar -->
+						<div class="col-md-3 col-sm-12">
+							<div class="sidebar right-sidebar">
+							
+								<div class="side-widget">
+									<h2 class="side-widget-title">Job Alert</h2>
+									<div class="job-alert">
+										<div class="widget-text">
+											<form action="/sendmemessagejobsnotification" method="post">
+												<input type="text" name="keyword" class="form-control" placeholder="Job Keyword">
+												<input type="text" name="phonenumber" class="form-control" placeholder="Phone Number">
+												<input type="text" name="location" class="form-control" placeholder="location">
+												<button type="submit" class="btn btn-alrt">Add Alert</button>
+											</form>
+										</div>
+									</div>
+								</div>
+								
+								<div class="side-widget">
+									<h2 class="side-widget-title">Advertisment</h2>
+									<div class="widget-text padd-0">
+										<div class="ad-banner">
+											<img src="http://via.placeholder.com/320x285" class="img-responsive" alt="">
+										</div>
+									</div>
+								</div>
+						
+								<div class="side-widget">
+									<h2 class="side-widget-title"><a href="#designation" data-toggle="collapse">Designation<i class="pull-right fa fa-angle-double-down" aria-hidden="true"></i></a></h2>
+									<div class="widget-text padd-0 collapse" id="designation">
+										<ul>
+									
+	<% if(subcatjoblist.length >0){%>
+		<% subcatjoblist.forEach(function(row){%>
+			<li>
+				<span class="custom-checkbox">
+					<input type="checkbox" id="1">
+					<label for="1"></label>
+				</span>
+				<%= row.subcatname %>
+				<span class="pull-right"><%=row. count %></span>
+			</li>
+		<%})%>
+	 <%}else{}%>
+											
+											
+										
+										</ul>
+									</div>
+								</div>
+								
+								<div class="side-widget">
+									<h2 class="side-widget-title"><a href="#job-location" data-toggle="collapse">Location<i class="pull-right fa fa-angle-double-down" aria-hidden="true"></i></a></h2>
+									<div class="widget-text padd-0 collapse" id="job-location">
+										<ul>
+											
+											
+											
+											<% if(regionjoblist.length >0){%>
+												<% regionjoblist.forEach(function(row){%>
+													<li>
+														<span class="custom-checkbox">
+															<input type="checkbox" id="1">
+															<label for="1"></label>
+														</span>
+														<%= row.region %>
+														<span class="pull-right"><%=row. count %></span>
+													</li>
+												<%})%>
+											 <%}else{}%>
+											
+										</ul>
+									</div>
+								</div>
+								
+								<div class="side-widget">
+									<h2 class="side-widget-title"><a href="#job-type" data-toggle="collapse">Job type<i class="pull-right fa fa-angle-double-down" aria-hidden="true"></i></a></h2>
+									<div class="widget-text padd-0 collapse" id="job-type">
+										<ul>
+											
+										
+											
+											
+											<% if(jobtypejoblist.length >0){%>
+												<% jobtypejoblist.forEach(function(row){%>
+													<li>
+														<span class="custom-checkbox">
+															<input type="checkbox" id="1">
+															<label for="1"></label>
+														</span>
+														<%= row.jobtype %>
+														<span class="pull-right"><%=row. count %></span>
+													</li>
+												<%})%>
+											 <%}else{}%>
+										
+										</ul>
+									</div>
+								</div>
+								<div class="side-widget">
+									<h2 class="side-widget-title"><a href="#job-time" data-toggle="collapse">Job Time<i class="pull-right fa fa-angle-double-down" aria-hidden="true"></i></a></h2>
+									<div class="widget-text padd-0 collapse" id="job-time">
+										<ul>
+											
+										
+											
+											
+											<% if(jobtimejoblist.length >0){%>
+												<% jobtimejoblist.forEach(function(row){%>
+													<li>
+														<span class="custom-checkbox">
+															<input type="checkbox" id="1">
+															<label for="1"></label>
+														</span>
+														<%= row.jobtime %>
+														<span class="pull-right"><%=row. count %></span>
+													</li>
+												<%})%>
+											 <%}else{}%>
+										
+										</ul>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<!-- End Sidebar -->
+					</div>
+				</section>
+			<%}else{%>
+				<section class="simple-bg-screen big-wrap">
+					<div class="container">
+						<div class="error-page">
+							<h2>4<span>0</span>4</h2>
+							<p>Oops...looks like we got lost</p> 
+							<a class="btn btn-success small-btn" href="/searchjob">Let's Go Home</a>
+						</div>
+					</div>
+				</section>
+				<%}%>
+			<!-- Job Detail Start -->
+			
+			<!-- Job full detail End -->
+			
+			<!-- Footer Section Start -->
+			<section class="brows-job-category">
+				<div class="container">
+					<!-- Company Searrch Filter Start -->
+			
+					<!-- Company Searrch Filter End -->
+					<div class="row row-bottom mrg-0">
+						<h2 class="detail-title">Similar Jobs</h2>
+						
+					</div>
+					<!--Browse Job In Grid-->
+					<div class="row extra-mrg">
+					
+						
+						
+						
+						<% if(simillarjobs.length >0){%>
+							<% simillarjobs.forEach(function(row){%>
+								<div class="col-md-4 col-sm-6">
+									<div class="grid-view brows-job-list">
+										<div class="brows-job-company-img">
+											<% var  comimgaa = 	'data:image/png;base64,' + new Buffer(row.companylogo, 'binary').toString('base64')
+				%>
+											<img src="<%= comimgaa %>" class="img-responsive" alt="">
+										</div>
+										<div class="brows-job-position">
+											<h3><a href="/viewdetail/<%= row.jobid %>"><%= row.jobtitle %></a></h3>
+											<p><span><%= row.jobby %></span></p>
+										</div>
+										<div class="job-position">
+											<span class="job-num"><%= row.noofposition %></span>
+										</div>
+										<div class="brows-job-type">
+											<span class="full-time"><%= row.jobtime %></span>
+										</div>
+										<ul class="grid-view-caption">
+											<li>
+												<div class="brows-job-location">
+													<p><i class="fa fa-map-marker"></i><%= row.region %>/<%= row.placeofwork %></p>
+												</div>
+											</li>
+											<li>
+												<p><span class="brows-job-sallery"><i class="fa fa-money"></i><%= row.salary %></span></p>
+											</li>
+										</ul>
+										<span class="tg-themetag tg-featuretag">Premium</span>
+									</div>
+								</div>
+							<%})%>
+						 <%}else{}%>
+						
+					</div>
+					<!--/.Browse Job In Grid-->
 
+					<div class="row">
+						<ul class="pagination">
+							<% for (let i = 0; i < totalPages; i++) { %>
+								<li class="<%= i === currentPage ? 'active' : '' %>">
+									<a href="?page=<%= i %>"><%= i + 1 %></a>
+								</li>
+							<% } %>
+						</ul>
+					</div>
+					
+				</div>
+			</section>
+      <%- include ('./partials/footer2') %>
+			<div class="clearfix"></div>
+			<!-- Footer Section End -->
+			
+			<!-- Sign Up Window Code -->
+			<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<div class="tab" role="tabpanel">
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Sign In</a></li>
+								<li role="presentation"><a href="#register" role="tab" data-toggle="tab">Sign Up</a></li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content" id="myModalLabel2">
+								<div role="tabpanel" class="tab-pane fade in active" id="login">
+									<img src="#" class="img-responsive" alt="" />
+									<div class="subscribe wow fadeInUp">
+										<form class="form-inline" method="post">
+											<div class="col-sm-12">
+												<div class="form-group">
+													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
+													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
+													<div class="center">
+													<button type="submit" id="login-btn" class="submit-btn"> Login </button>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
 
-  </section>
-  <div class="container">
-    <div class="row">
-      <div class="col"></div> <!-- Add any content on the left side if needed -->
-      <div class="col fixed-div">
-        <div class="vertical-text">
-          EMPLOYERS 
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--Footer-->
-  <%- include ('./partials/footer') %>
- 
-  <!--/ Footer-->
+								<div role="tabpanel" class="tab-pane fade" id="register">
+								<img src="#" class="img-responsive" alt="" />
+									<form class="form-inline" method="post">
+											<div class="col-sm-12">
+												<div class="form-group">
+													<input type="text"  name="email" class="form-control" placeholder="Your Name" required="">
+													<input type="email"  name="email" class="form-control" placeholder="Your Email" required="">
+													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
+													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
+													<div class="center">
+													<button type="submit" id="subscribe" class="submit-btn"> Create Account </button>
+													</div>
+												</div>
+											</div>
+										</form>
+								</div>
+							</div>
+							</div>
+						</div>
+						</div>
+				</div>
+			</div>   
+			<!-- End Sign Up Window -->
+			
+			<!-- Apply Form Code -->
+			<div class="modal fade" id="apply-job" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<div class="apply-job-box">
+							
+								<h4><%= jobtitleis %></h4>
+								<p><%= jobbyis %></p>
+							</div>
+							<div class="apply-job-form">
+								<form class="form-inline" action="/appluforthejob/<%= jobidis %>" method="post">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<input type="text"  name="name" class="form-control" placeholder="Your Name" required="">
+											<input type="email"  name="phonenumber" class="form-control" placeholder="Your Phone Number" required="">
+											<select class="form-control" name="skill">
+												<option>Designation</option>
+												
+												<% if(subjobcat.length >0){%>
+													<% subjobcat.forEach(function(row){%>
+														<option value="<%= row.subcatid %>"><%= row.subcatname %></option>
+													<%})%>
+												 <%}else{}%>
+											</select>
+											<textarea class="form-control" placeholder="About You / Paste your CV"></textarea>
+											<div class="fileUpload">
+												<span>Upload CV</span>
+												<input type="file" class="upload" />
+											</div>
+											<div class="center">
+											<button type="submit" id="subscribe" class="submit-btn"> Apply Now </button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>   
+			<!-- End Apply Form -->
+			
+			
+			<!-- Scripts
+			================================================== -->
+			<script type="text/javascript" src="../../../assets/plugins/js/jquery.min.js"></script>
+			<script type="text/javascript" src="../../../assets/plugins/js/viewportchecker.js"></script>
+			<script type="text/javascript" src="../../../assets/plugins/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="../../../assets/plugins/js/bootsnav.js"></script>
+			<script type="text/javascript" src="../../../assets/plugins/js/select2.min.js"></script>
+			<script type="text/javascript" src="../../../assets/plugins/js/wysihtml5-0.3.0.js"></script>
+			<script type="text/javascript" src="../../../assets/plugins/js/bootstrap-wysihtml5.js"></script>
+			<script type="text/javascript" src="../../../assets/plugins/js/datedropper.min.js"></script>
+			<script type="text/javascript" src="../../../assets/plugins/js/dropzone.js"></script>
+			<script type="text/javascript" src="../../../assets/plugins/js/loader.js"></script>
+			<script type="text/javascript" src="../../../assets/plugins/js/owl.carousel.min.js"></script>
+			<script type="text/javascript" src="../../../assets/plugins/js/slick.min.js"></script>
+			<script type="text/javascript" src="../../../assets/plugins/js/gmap3.min.js"></script>
+			<script type="text/javascript" src="../../../assets/plugins/js/jquery.easy-autocomplete.min.js"></script>
+			
+			<!-- Custom Js -->
+			<script src="../../../assets/js/custom.js"></script>
+			
+			<!-- Google-map -->
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmiJjq5DIg_K9fv6RE72OY__p9jz0YTMI"></script>
+			<script src="#"></script>
+			<script type="text/javascript">
+				$('#map_full_width_one').gmap3({
+					map: {
+						options: {
+							zoom: 5,
+							center: [41.785091, -73.968285],
+							mapTypeControl: true,
+							mapTypeControlOptions: {
+								style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+							},
+							mapTypeId: "style1",
+							mapTypeControlOptions: {
+								mapTypeIds: [google.maps.MapTypeId.ROADMAP, "style1"]
+							},
+							navigationControl: true,
+							scrollwheel: false,
+							streetViewControl: true
+						}
+					},
+					marker: {
+						latLng: [40.785091, -73.968285],
+						options: {animation:google.maps.Animation.BOUNCE, icon: 'assets/img/marker.png' }
+					},
+					styledmaptype: {
+						id: "style1",
+						options: {
+							name: "Style 1"
+						},
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.easing.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/custom.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-  <script>
-      $(document).ready(function() {
-          $('#data-table').DataTable();
-      });
-  </script>
-</body>
+					}
+				});
 
+			</script>
+			<script src="assets/js/jQuery.style.switcher.js"></script>
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$('#styleOptions').styleSwitcher();
+				});
+			</script>
+			<script>
+				function openRightMenu() {
+					document.getElementById("rightMenu").style.display = "block";
+				}
+
+				function closeRightMenu() {
+					document.getElementById("rightMenu").style.display = "none";
+				}
+			</script>
+		</div>
+	</body>
+
+<!-- new-job-detail41:45-->
 </html>

@@ -1,542 +1,255 @@
-<!DOCTYPE html>
+
 <html lang="en">
 
+<!-- blog42:00-->
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
-  <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
-  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/imagehover.min.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-
- <style>
-
-h1,h2,h3,h4,h5{
-    font-family: 'Montserrat', sans-serif;
-}
-a, a:hover, .btn{outline:none!important;}
-.btn-search{background: #FD3A13; border-color: #FD3A13; color: #fff; padding: 7px 10px}
-.btn-search:hover{background: #ca1b1b; border-color: #ca1b1b}
-section{padding: 30px 0; float: left; width: 100%}
-.card{float: left; width:100%}
-
-.title-large {font-size: 20px; margin: 10px 0 5px; line-height: 27px; color: #141517;}
-.title-small { color: #141517; font-size: 16px; font-weight: 400; line-height: 23px; margin: 6px 0 0;}
-.title-x-small {font-size: 18px; margin: 0px;}
-.title-large a, .title-small a, .title-x-small a{color: inherit}
-.banner-sec{float: left; width: 100%; background: #EBEBEB}
-.card-block{padding:0 10px 10px;}
-.card-text{margin: 0}
-.text-time{color: #ff0000; font-weight: 600;}
-.banner-sec .card-img-overlay{padding: 0; top: 3px; left: 7px; height: 20%}
-
-.top-slider .carousel-indicators{bottom: 0}
-.top-slider .carousel-indicators li{border:1px solid #000;}
-.top-slider .carousel-indicators .active{background:#000;}
-
-
-.side-bar .nav-tabs{border-bottom:none;}
-.side-bar .nav-tabs .nav-link {color: #aeaeae; text-transform: uppercase; border: none;}
-.side-bar .nav-tabs .nav-link.active, .side-bar .nav-tabs .nav-link:hover{border-bottom:2px solid #ff0000;  text-transform: uppercase; color: #222}
-.sidebar-tabing .media{margin-top: 20px}
-.sidebar-tabing img{width: 120px;height: 100px;}
-.sidebar-tabing .title-small {line-height: 23px; margin-top: 5px; font-size: 18px}
-
-#search {float: right; margin-top: 9px; width: 250px;}
-.search {padding: 5px 0; width: 230px; height: 30px; position: relative; left: 10px; float: left; line-height: 22px;}
-.search input {background: #d0d0d0; border: medium none; border-radius: 3px 0 0 3px; float: left; height: 36px; line-height: 18px; margin-left: 210px; padding: 0 9px; position: absolute; top: -3px; width: 0; -webkit-transition: all 0.7s ease-in-out; -moz-transition: all 0.7s ease-in-out;
--o-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out;}
-.search:hover input, .search input:focus { width: 200px; margin-left: 0px; background: #d0d0d0;}
-.top-nav .btn {position: absolute;right: 0;top: -3px;border-radius:3px;}
-
-.banner-sec{float: left; width:100%;}
-.banner-sec .news-block{margin-bottom: 20px}
-.banner-sec .news-block:last-child{margin-bottom: 0px}
-.banner-sec .news-des {margin-bottom: 5px;}
-.banner-sec .title-large{margin: 18px 0 0}
-.banner-sec .time{margin-top: 0px; font-size: 13px;}
-.banner-sec .carousel-control.left, .banner-sec .carousel-control.right{background: none;}
-.banner-sec .card{margin-bottom:20px;}
-
-
- </style>
-      <style>
-
-
-        .cards {
-          display: grid;
-          grid-auto-columns: 100%;
-          grid-column-gap: 10px;
-          grid-auto-flow: column;
-          padding: 5px 0px;
-          list-style: none;
-          overflow-x: scroll;
-          font-size: small;
-          scroll-snap-type: x mandatory;
-        }
-        
-        .card {
-          display: flex;
-          flex-direction: column;
-          
-          background: var(--white);
-          border-radius: 12px;
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
-          scroll-snap-align: start;
-          transition: all 0.2s;
-        }
-        
-        .card:hover {
-          color: var(--white);
-          background: var(--orange);
-        }
-        
-        .card .card-title {
-          font-size: 20px;
-        }
-        
-        .card .card-content {
-          margin: 10px 0;
-          max-width: 85%;
-        }
-        
-        .card .card-link-wrapper {
-          margin-top: auto;
-        }
-        .card {
-      background: white;
-    }
+	<!-- CSS
+	================================================== -->
+	<link rel="stylesheet" href="assets/plugins/css/plugins.css">
     
-    .card:hover {
-      background: #5FCF80;
-      color:white;
-    }
-        .card .card-link {
-          display: inline-block;
-          text-decoration: none;
-     
-          background: var(--orange);
-      
-          border-radius: 8px;
-          transition: background 0.2s;
-        }
-        
-        .card:hover .card-link {
-          background: var(--darkorange);
-        }
-        
-        .cards::-webkit-scrollbar {
-          height: 12px;
-        }
-        
-        .cards::-webkit-scrollbar-thumb,
-        .cards::-webkit-scrollbar-track {
-          border-radius: 92px;
-        }
-        
-        .cards::-webkit-scrollbar-thumb {
-          background: var(--darkorange);
-        }
-        
-        .cards::-webkit-scrollbar-track {
-          background: var(--thumb);
-        }
-        
-        @media (min-width: 500px) {
-          .cards {
-            grid-auto-columns: calc(50% - 10px);
-            grid-column-gap: 20px;
-          }
-        }
-        
-        @media (min-width: 700px) {
-          .cards {
-            grid-auto-columns: calc(calc(100% / 3) - 20px);
-            grid-column-gap: 30px;
-          }
-        }
-        
-        @media (min-width: 1100px) {
-          .cards {
-            grid-auto-columns: calc(25% - 30px);
-            grid-column-gap: 40px;
-          }
-        }
-        
-        
-        
-            </style>  
-</head>
-
-<body>
-  <!--Navigation bar-->
- <%- include ('./partials/header') %>
-  <!--/ Navigation bar-->
-  <!--Modal box-->
-
-
-        <div class="top-head left py-2" style="background-color: #9bbda3;">
-    <div class="container">
-            <div class="row">
-        <div class="col-md- 8col-lg-6">
-               <h1 class="text-light">TVETPATHWAYS News</h1> <h4><small><br>Get the latest News and Training Program Opportunities</small></h4>
-              </div>
-      
-      </div>
-          </div>
-  </div>
-      
-<section id="" class="" style="background-color: #fff;">
+    <!-- Custom style -->
+    <link href="assets/css/style.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" id="jssDefault" href="assets/css/colors/green-style.css">
     
-        <div class="container">
-   
-    <div class="py-5">
-        <div class="row">
-            <ul class="cards" id="">
-            
-            <li class="card">
-            <div class="">
-            <div class="card-content">
-            <div class="card-body">
-            <div class="">
-                <h6>    Categories 1: </h6>
-            
-            </div>
-            
-            </div>
-            </div>
-            </div></li>
-            <li class="card">
-                <div class="">
-                <div class="card-content">
-                <div class="card-body">
-                <div class="">
-                    <h6>   Categories 2: </h6>
-                
-                </div>
-                
-                </div>
-                </div>
-                </div></li>
-              
-                        <li class="card">
-                            <div class="">
-                            <div class="card-content">
-                            <div class="card-body">
-                            <div class="">
-                                <h6>   Health: </h6>
-                            
-                            </div>
-                            
-                            </div>
-                            </div>
-                            </div></li>
-                            <li class="card">
-                                <div class="">
-                                <div class="card-content">
-                                <div class="card-body">
-                                <div class="">
-                                    <h6>   ICT: </h6>
-                                
-                                </div>
-                                
-                                </div>
-                                </div>
-                                </div></li>
-                                <li class="card">
-                                    <div class="">
-                                    <div class="card-content">
-                                    <div class="card-body">
-                                    <div class="">
-                                        <h6>   Short Term: </h6>
-                                    
-                                    </div>
-                                    
-                                    </div>
-                                    </div>
-                                    </div></li>
-                                    <li class="card">
-                                        <div class="">
-                                        <div class="card-content">
-                                        <div class="card-body">
-                                        <div class="">
-                                            <h6>   Manufucturing: </h6>
-                                        
-                                        </div>
-                                        
-                                        </div>
-                                        </div>
-                                        </div></li>
-            </ul>
-            </div>
-          </div>
-          
-  </div>
-      
-</section>
-<section class="banner-sec">
-        <div class="container">
-    <div class="row">
-            <div class="col-md-3">
-        <div class="card"> <img class="img-fluid" src="http://grafreez.com/wp-content/temp_demos/river/img/politics.jpg" alt="">
-                <div class="card-img-overlay"> <span class="badge badge-pill badge-danger">News</span> </div>
-                <div class="card-body">
-            <div class="news-title">
-                    <h2 class=" title-small"><a href="#">TVETs to offer post-graduate, PhD programs</a></h2>
-                  </div>
-            <p class="card-text"><small class="text-time"><em>3 mins ago</em></small></p>
-          </div>
-              </div>
-        <div class="card"> <img class="img-fluid" src="http://grafreez.com/wp-content/temp_demos/river/img/travel.jpg" alt="">
-                <div class="card-img-overlay"> <span class="badge badge-pill badge-danger">ILO</span> </div>
-                <div class="card-body">
-            <div class="news-title">
-                    <h2 class=" title-small"><a href="#">Satellite vocational training center brings hope to displaced and local communities in Ethiopia</a></h2>
-                  </div>
-            <p class="card-text"><small class="text-time"><em>3 mins ago</em></small></p>
-          </div>
-              </div>
-      </div>
-            <div class="col-md-3">
-        <div class="card"> <img class="img-fluid" src="http://grafreez.com/wp-content/temp_demos/river/img/business1.jpg" alt="">
-                <div class="card-img-overlay"> <span class="badge badge-pill badge-danger">Travel</span> </div>
-                <div class="card-body">
-            <div class="news-title">
-                    <h2 class=" title-small"><a href="#">Obamacare Appears to Be Making People Healthier</a></h2>
-                  </div>
-            <p class="card-text"><small class="text-time"><em>3 mins ago</em></small></p>
-          </div>
-              </div>
-        <div class="card"> <img class="img-fluid" src="http://grafreez.com/wp-content/temp_demos/river/img/food.jpg" alt="">
-                <div class="card-img-overlay"> <span class="badge badge-pill badge-danger">News</span> </div>
-                <div class="card-body">
-            <div class="news-title">
-                    <h2 class=" title-small"><a href="#">‘S.N.L.’ to Lose Two Longtime Cast Members</a></h2>
-                  </div>
-            <p class="card-text"><small class="text-time"><em>3 mins ago</em></small></p>
-          </div>
-              </div>
-      </div>
-            <div class="col-md-6 top-slider">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> 
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-          </ol>
-                
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-                    <div class="news-block">
-                <div class="news-media"><img class="img-fluid" src="http://grafreez.com/wp-content/temp_demos/river/img/politics1.jpg" alt=""></div>
-                <div class="news-title">
-                        <h2 class=" title-large"><a href="#">TVETs to offer post-graduate, PhD programs</a></h2>
-                      </div>
-                <div class="news-des">The Ministry of Skill and Labor is establishing the frameworks required for institutes of technical and vocational education training (TVET) to offer postgraduate and doctoral programs.
-
-                  For decades, TVETs offered only diploma programs, which were widely regarded as inferior to the academically focused degrees offered by higher education institutions, such as universities.</div>
-                <div class="time-text"><strong>2h ago</strong></div>
-                <div></div>
-              </div>
-                  </div>
-            <div class="carousel-item">
-                    <div class="news-block">
-                <div class="news-media"><img class="img-fluid" src="http://grafreez.com/wp-content/temp_demos/river/img/sport1.jpg" alt=""></div>
-                <div class="news-title">
-                        <h2 class=" title-large"><a href="#">An Alternative Form of Mental Health Care Gains a Foothold</a></h2>
-                      </div>
-                <div class="news-des">Condimentum ultrices mi est a arcu at cum a elementum per cum turpis dui vulputate vestibulum in vehicula montes vel. Mauris nam suspendisse consectetur mus...</div>
-                <div class="time-text"><strong>2h ago</strong></div>
-                <div></div>
-              </div>
-                  </div>
-            <div class="carousel-item">
-                    <div class="news-block">
-                <div class="news-media"><img class="img-fluid" src="http://grafreez.com/wp-content/temp_demos/river/img/health.jpg" alt=""></div>
-                <div class="news-title">
-                        <h2 class=" title-large"><a href="#">Key Republican Senator Says She Will Not Vote for former president!</a></h2>
-                      </div>
-                <div class="news-des">Condimentum ultrices mi est a arcu at cum a elementum per cum turpis dui vulputate vestibulum in vehicula montes vel. Mauris nam suspendisse consectetur mus...</div>
-                <div class="time-text"><strong>2h ago</strong></div>
-                <div></div>
-              </div>
-                  </div>
-          </div>
-              </div>
-      </div>
-          </div>
-  </div>
-      </section>
-<section class="mb-5" id="faculity-member" style="background-color: whitesmoke;" >
-        <div class="container">
-    <div class="row">
-            <div class="col-lg-8 col-md-12">
-        <h3 class="heading-large">Upcoming Training Programs</h3>
-        <div class="mb-5 mt-5">
-                <div class="col-lg-6 card mb-2">
-            <div class=""> <img class="img-fluid" src="http://grafreez.com/wp-content/temp_demos/river/img/war.jpg" alt="">
-                    <div class="card-body">
-                <div class="news-title"><a href="#">
-                  <h2 class=" title-small">TVETs to offer post-graduate, PhD programs</h2>
-                  </a></div>
-                <p class="card-text">In Ethiopia, TVETs provide over 124 different types of training.
-
-                  Tadele believes that the introduction of new graduate and postgraduate programs will enhance TVET education.
+	</head>
+	<body>
+		<div class="Loader"></div>
+		<div class="wrapper">  
+			
+			<!-- Start Navigation -->
+      <%- include ('./partials/header') %>
+			<!-- End Navigation -->
+			<div class="clearfix"></div>
+			
+			<!-- Title Header Start -->
+			<section class="inner-header-title" style="background-image:url(assets/img/banner-11.jpg);">
+				<div class="container">
+					<h1>NEWS</h1>
+				</div>
+			</section>
+			<div class="clearfix"></div>
+			<!-- Title Header End -->
+			
+			<!-- All blog List Start -->
+			<section class="section">
+				<div class="container">
+					<div class="row .no-mrg">
+						<!-- Start Blogs -->
+						<div class="col-md-8">
+							<% if(newsprolist.length >0 ){%>
+								<% newsprolist.forEach(function(row){%>
+									<%var  comimg %>
+									<% if(row.npimage) {%>
+										<% comimg = 	'data:image/png;base64,' + new Buffer(row.npimage, 'binary').toString('base64')
+										%>	
+									<%}else{%>
+										 <% comimg =''%>
+										<%}%>
+									
+							<article class="blog-news">
+								<div class="short-blog">
+									<figure class="img-holder">
+										<a href="/newsdetail/<%= row.npid %>"><img src="<%= comimg %>" class="img-responsive" alt="News" style="height: 300px; width: 100%;" ></a>
+										<div class="blog-post-date">
+											<%= new Date(row.createdAt).toLocaleDateString() %>
+										</div>
+									</figure>
+									<div class="blog-content">
+										<div class="post-meta">By: <span class="author"><a href="<%= row.npurl %>" target="_blank"><%= row.npurl %></a></span> | 10 Comments </div>
+										<a href="/newsdetail/<%= row.npid %>"><h2><%= row.npheadline %></h2></a>
+										<div class="blog-text">
+											<p><%= row.npdetail %></p>
+											<div class="post-meta">Filed Under: <span class="category"><a href="#"><%= row.nptag %></a></span></div>
+										</div>
+									</div>
+								</div>
+							</article>
+							<% })%>
                   
-                  He added, “It helps to improve the quality of education and create more employment opportunities in the sector.”</p>
-                <p class="card-text"><small class="text-time"><em>3 mins ago</em></small></p>
-              </div>
-                  </div>
-          </div>
-        
-          <div class="col-lg-6 card mb-2">
-            <div class=""> <img class="img-fluid" src="http://grafreez.com/wp-content/temp_demos/river/img/war.jpg" alt="">
-                    <div class="card-body">
-                <div class="news-title"><a href="#">
-                  <h2 class=" title-small">TVETs to offer post-graduate, PhD programs</h2>
-                  </a></div>
-                <p class="card-text">In Ethiopia, TVETs provide over 124 different types of training.
+							<%}else{}%>
+						</div>
+						<!-- End Blogs -->
+						
+						<!-- Sidebar Start -->
+						<div class="col-md-4">
+							<div class="blog-sidebar">
+							
+								<form action="#">
+									<div class="search-form">
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder="Search…">
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-default">Go</button>
+											</span>
+										</div>
+									</div>
+								</form>
+								
+								<div class="sidebar-widget">
+									<h4>Popular NEWS</h4>
+									<ul class="sidebar-list">
+										
+										<% if(newsprolist.length >0 ){%>
+											<% newsprolist.forEach(function(row){%>
+												<% var  comimg %>
+												<% if(row.npimage) {%>
+													<% comimg = 	'data:image/png;base64,' + new Buffer(row.npimage, 'binary').toString('base64')
+													%>	
+												<%}else{%>
+													 <% comimg =''%>
+													<%}%>
+												
+													<li><a href="/newsdetail/<%= row.npid %>"> <%= row.npheadline %><span>(8)</span></a></li>
+										<% })%>
+							  
+										<%}else{}%>
+									</ul>
+								</div>
+								
+								<div class="sidebar-widget">
+									<h4>New Training Program </h4>
+									
+									<% if(newsprolist.length >0 ){%>
+										<% newsprolist.forEach(function(row){%>
+											<% var  comimg %>
+											<% if(row.npimage) {%>
+												<% comimg = 	'data:image/png;base64,' + new Buffer(row.npimage, 'binary').toString('base64')
+												%>	
+											<%}else{%>
+												 <% comimg =''%>
+												<%}%>
+											
+												<div class="blog-item">
+													<div class="post-thumb"><a href="/newsdetail/<%= row.npid %>"><img src="<%= comimg %>" class="img-responsive" alt=""></a></div>
+													<div class="blog-detail">
+														<a href="/newsdetail/<%= row.npid %>>"><h4><%= row.npheadline %></h4></a>
+														<small>Source:<a href="<%= row.npurl %>"><%= row.npurl %></a></small>
+														<div class="post-info"><%= new Date(row.createdAt).toLocaleDateString() %></div>
+													</div>
+												</div>
+									<% })%>
+						  
+									<%}else{}%>
+								</div>
+								
+								
+								
+							</div>
+						</div>
+						<!-- End Sidebar Start -->
+					</div>
+					<div class="row">
+						<ul class="pagination">
+							<% for (let i = 0; i < totalPages; i++) { %>
+								<li class="<%= i === currentPage ? 'active' : '' %>">
+									<a href="?page=<%= i %>"><%= i + 1 %></a>
+								</li>
+							<% } %>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<!-- All Blog List End -->
+			
+			<!-- Footer Section Start -->
+		
+      <%- include ('./partials/footer2') %>
+			<div class="clearfix"></div>
+			<!-- Footer Section End -->
+			
+			<!-- Sign Up Window Code -->
+			<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<div class="tab" role="tabpanel">
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Sign In</a></li>
+								<li role="presentation"><a href="#register" role="tab" data-toggle="tab">Sign Up</a></li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content" id="myModalLabel2">
+								<div role="tabpanel" class="tab-pane fade in active" id="login">
+									<img src="assets/img/logo.png" class="img-responsive" alt="" />
+									<div class="subscribe wow fadeInUp">
+										<form class="form-inline" method="post">
+											<div class="col-sm-12">
+												<div class="form-group">
+													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
+													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
+													<div class="center">
+													<button type="submit" id="login-btn" class="submit-btn"> Login </button>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
 
-                  Tadele believes that the introduction of new graduate and postgraduate programs will enhance TVET education.
-                  
-                  He added, “It helps to improve the quality of education and create more employment opportunities in the sector.”</p>
-                <p class="card-text"><small class="text-time"><em>3 mins ago</em></small></p>
-              </div>
-                  </div>
-          </div>
-              </div>
-      </div>
-            <aside class="col-lg-4 side-bar col-md-12">
-        <ul class="nav nav-tabs" role="tablist" id="myTab">
-                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Latest</a> </li>
-                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Top</a> </li>
-                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Featured</a> </li>
-              </ul>
-        
-        <!-- Tab panes -->
-        <div class="tab-content sidebar-tabing" id="nav-tabContent">
-                <div class="tab-pane active" id="home" role="tabpanel">
-                    <div class="media"> <a href="#"> <img class="d-flex mr-3" src="https://demo.keonthemes.com/gutener/demo15/wp-content/uploads/sites/56/2021/05/gutener-education-img-3-128-128.png" alt="Generic placeholder image"></a>
-                    <div class="media-body">
-                        <div class="news-title">
-                            <h2 class="title-small"><a href="#">ADDIS ABABA MEDICAL AND BUSINESS COLLEGE The another role of TVET is providing continuing vocational training to workers.</a></h2>
-                        </div>
-                        <div class="news-auther"><span class="time">1h ago</span></div>
-                    </div>
-                  </div>
-            <div class="media"> <a href="#"> <img class="d-flex mr-3" src="https://www.worldbank.org/content/dam/wbr/logo/logo-wb-header-en.svg" alt="Generic placeholder image"></a>
-                    <div class="media-body">
-                <div class="news-title">
-                        <h2 class="title-small"><a href="#">Improve Technical and Vocational Education and Training (TVET) to meet skills and labour mismatch</a></h2>
-                      </div>
-                <div class="news-auther"><span class="time">1h ago</span></div>
-              </div>
-                  </div>
-            <div class="media"> <a href="#"> <img class="d-flex mr-3" src="https://www.thereporterethiopia.com/wp-content/uploads/2022/03/The-reporter-2.png" alt="Generic placeholder image"></a>
-                    <div class="media-body">
-                <div class="news-title">
-                        <h2 class="title-small"><a href="#">TVETs to offer post-graduate, PhD programs</a></h2>
-                      </div>
-                <div class="news-auther"><span class="time">1h ago</span></div>
-              </div>
-                  </div>
-          </div>
-                <div class="tab-pane" id="profile" role="tabpanel">
-                  <div class="media"> <a href="#"> <img class="d-flex mr-3" src="https://www.worldbank.org/content/dam/wbr/logo/logo-wb-header-en.svg" alt="Generic placeholder image"></a>
-                    <div class="media-body">
-                <div class="news-title">
-                        <h2 class="title-small"><a href="#">Improve Technical and Vocational Education and Training (TVET) to meet skills and labour mismatch</a></h2>
-                      </div>
-                <div class="news-auther"><span class="time">1h ago</span></div>
-              </div>
-                  </div>
-            <div class="media"> <a href="#"> <img class="d-flex mr-3" src="https://www.thereporterethiopia.com/wp-content/uploads/2022/03/The-reporter-2.png" alt="Generic placeholder image"></a>
-                    <div class="media-body">
-                <div class="news-title">
-                        <h2 class="title-small"><a href="#">TVETs to offer post-graduate, PhD programs</a></h2>
-                      </div>
-                <div class="news-auther"><span class="time">1h ago</span></div>
-              </div>
-                  </div>
-          </div>
-                <div class="tab-pane" id="messages" role="tabpanel">
-                  <div class="media"> <a href="#"> <img class="d-flex mr-3" src="https://www.worldbank.org/content/dam/wbr/logo/logo-wb-header-en.svg" alt="Generic placeholder image"></a>
-                    <div class="media-body">
-                <div class="news-title">
-                        <h2 class="title-small"><a href="#">Improve Technical and Vocational Education and Training (TVET) to meet skills and labour mismatch</a></h2>
-                      </div>
-                <div class="news-auther"><span class="time">1h ago</span></div>
-              </div>
-                  </div>
-            <div class="media"> <a href="#"> <img class="d-flex mr-3" src="https://www.thereporterethiopia.com/wp-content/uploads/2022/03/The-reporter-2.png" alt="Generic placeholder image"></a>
-                    <div class="media-body">
-                <div class="news-title">
-                        <h2 class="title-small"><a href="#">TVETs to offer post-graduate, PhD programs</a></h2>
-                      </div>
-                <div class="news-auther"><span class="time">1h ago</span></div>
-              </div>
-                  </div>
-                  <div class="media"> <a href="#"> <img class="d-flex mr-3" src="https://addisabeba.aics.gov.it/wp-content/uploads/2019/02/LOGO_AICS_ETH_ENG_800x130.jpg" alt="Generic placeholder image"></a>
-                    <div class="media-body">
-                <div class="news-title">
-                        <h2 class="title-small"><a href="#">Improvement on skill development and job creation under TVET program in Ethiopia</a></h2>
-                      </div>
-                <div class="news-auther"><span class="time">1h ago</span></div>
-              </div>
-                  </div>
-          </div>
-              </div>
-       
-      </aside>
-          </div>
-  </div>
-      </section>
-      
+								<div role="tabpanel" class="tab-pane fade" id="register">
+								<img src="assets/img/logo.png" class="img-responsive" alt="" />
+									<form class="form-inline" method="post">
+											<div class="col-sm-12">
+												<div class="form-group">
+													<input type="text"  name="email" class="form-control" placeholder="Your Name" required="">
+													<input type="email"  name="email" class="form-control" placeholder="Your Email" required="">
+													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
+													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
+													<div class="center">
+													<button type="submit" id="subscribe" class="submit-btn"> Create Account </button>
+													</div>
+												</div>
+											</div>
+										</form>
+								</div>
+							</div>
+							</div>
+						</div>
+						</div>
+				</div>
+			</div>   
+			<!-- End Sign Up Window -->
+		
+			
+			<!-- Scripts
+			================================================== -->
+			<script type="text/javascript" src="assets/plugins/js/jquery.min.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/viewportchecker.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/bootsnav.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/select2.min.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/wysihtml5-0.3.0.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/bootstrap-wysihtml5.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/datedropper.min.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/dropzone.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/loader.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/owl.carousel.min.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/slick.min.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/gmap3.min.js"></script>
+			<script type="text/javascript" src="assets/plugins/js/jquery.easy-autocomplete.min.js"></script>
+			<!-- Custom Js -->
+			<script src="assets/js/custom.js"></script>
+			<script src="assets/js/jQuery.style.switcher.js"></script>
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$('#styleOptions').styleSwitcher();
+				});
+			</script>
+			<script>
+				function openRightMenu() {
+					document.getElementById("rightMenu").style.display = "block";
+				}
 
-  
-  <!--Feature-->
-  
-  
-  <!--/ Contact-->
-  <!--Footer-->
-  <%- include ('./partials/footer') %>
- 
-  <!--/ Footer-->
+				function closeRightMenu() {
+					document.getElementById("rightMenu").style.display = "none";
+				}
+			</script>
+		</div>
+	</body>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.easing.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/custom.js"></script>
-  <script src="contactform/contactform.js"></script>
-<script>
-    $('#myTab a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
-
-
-$(window).load(function() {
-    var boxheight = $('#myCarousel .carousel-inner').innerHeight();
-    var itemlength = $('#myCarousel .item').length;
-    var triggerheight = Math.round(boxheight/itemlength+1);
-    $('#myCarousel .list-group-item').outerHeight(triggerheight);
-});
-
-var monthNames = [ "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December" ];
-var dayNames= ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
-
-var newDate = new Date();
-newDate.setDate(newDate.getDate() + 1);    
-$('#Date').html(dayNames[newDate.getDay()] + ", " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
-</script>
-</body>
-
+<!-- blog42:00-->
 </html>
