@@ -177,6 +177,11 @@
 									</script>
 								</div>
 							</div>
+							<div class="col-sm-12">
+								<div class="ad-banner">
+									<img src="http://via.placeholder.com/728x90" class="img-responsive" alt="">
+								</div>
+							</div>
 						</div>
 						<!-- End Job Description -->
 						
@@ -189,9 +194,16 @@
 									<div class="job-alert">
 										<div class="widget-text">
 											<form action="/sendmemessagejobsnotification" method="post">
-												<input type="text" name="keyword" class="form-control" placeholder="Job Keyword">
+												<select type="text" name="profession" class="form-control">
+													<option>Profession</option>
+													<% if(subjobcat.length >0){ %>
+													<% subjobcat.forEach(function (row){%>
+														<option value="<%= row.subcatid %>"><%= row.subcatname %></option>
+													<%})%>
+													<% }else{} %>
+												</select>
 												<input type="text" name="phonenumber" class="form-control" placeholder="Phone Number">
-												<input type="text" name="location" class="form-control" placeholder="location">
+												<input type="text" name="location" class="form-control" placeholder="Location">
 												<button type="submit" class="btn btn-alrt">Add Alert</button>
 											</form>
 										</div>
@@ -350,7 +362,7 @@
 											<img src="<%= comimgaa %>" class="img-responsive" alt="">
 										</div>
 										<div class="brows-job-position">
-											<h3><a href="/viewdetail/<%= row.jobid %>"><%= row.jobtitle %></a></h3>
+											<h3><a href="/viewdetailjob/<%= row.jobid %>"><%= row.jobtitle %></a></h3>
 											<p><span><%= row.jobby %></span></p>
 										</div>
 										<div class="job-position">

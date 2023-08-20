@@ -196,9 +196,16 @@ select.appendChild(option);
 								<div class="job-alert">
 									<div class="widget-text">
 										<form action="/sendmemessagejobsnotification" method="post">
-											<input type="text" name="keyword" class="form-control" placeholder="Job Keyword">
+											<select type="text" name="profession" class="form-control">
+												<option>Profession</option>
+												<% if(subjobcat.length >0){ %>
+                                                <% subjobcat.forEach(function (row){%>
+													<option value="<%= row.subcatid %>"><%= row.subcatname %></option>
+												<%})%>
+												<% }else{} %>
+											</select>
 											<input type="text" name="phonenumber" class="form-control" placeholder="Phone Number">
-											<input type="text" name="location" class="form-control" placeholder="location">
+											<input type="text" name="location" class="form-control" placeholder="Location">
 											<button type="submit" class="btn btn-alrt">Add Alert</button>
 										</form>
 									</div>
@@ -226,7 +233,7 @@ select.appendChild(option);
 				<input type="checkbox" id="1">
 				<label for="1"></label>
 			</span>
-			<%= row.subcatname %>
+			<%= row.subcategory %>
 			<span class="pull-right"><%=row. count %></span>
 		</li>
 	<%})%>

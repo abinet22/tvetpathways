@@ -58,11 +58,11 @@
 										</div>
 									</figure>
 									<div class="blog-content">
-										<div class="post-meta">By: <span class="author"><a href="<%= row.npurl %>" target="_blank"><%= row.npurl %></a></span> | 10 Comments </div>
+										<div class="post-meta">Source: <span class="author"><a href="<%= row.npurl %>" target="_blank"><%= row.npurl %></a></span> | <%= row.npcount %>&nbsp; views </div>
 										<a href="/newsdetail/<%= row.npid %>"><h2><%= row.npheadline %></h2></a>
 										<div class="blog-text">
 											<p><%= row.npdetail %></p>
-											<div class="post-meta">Filed Under: <span class="category"><a href="#"><%= row.nptag %></a></span></div>
+											<div class="post-meta"> <span class="category"><a href="/newsdetail/<%= row.npid %>">Read More</a></span></div>
 										</div>
 									</div>
 								</div>
@@ -102,7 +102,7 @@
 													 <% comimg =''%>
 													<%}%>
 												
-													<li><a href="/newsdetail/<%= row.npid %>"> <%= row.npheadline %><span>(8)</span></a></li>
+													<li><a href="/newsdetail/<%= row.npid %>"> <%= row.npheadline %><span><%= row.npcount %> &nbsp; views</span></a></li>
 										<% })%>
 							  
 										<%}else{}%>
@@ -112,21 +112,21 @@
 								<div class="sidebar-widget">
 									<h4>New Training Program </h4>
 									
-									<% if(newsprolist.length >0 ){%>
-										<% newsprolist.forEach(function(row){%>
+									<% if(trainingads.length >0 ){%>
+										<% trainingads.forEach(function(row){%>
 											<% var  comimg %>
-											<% if(row.npimage) {%>
-												<% comimg = 	'data:image/png;base64,' + new Buffer(row.npimage, 'binary').toString('base64')
+											<% if(row.adsimage) {%>
+												<% comimg = 	'data:image/png;base64,' + new Buffer(row.adsimage, 'binary').toString('base64')
 												%>	
 											<%}else{%>
 												 <% comimg =''%>
 												<%}%>
 											
 												<div class="blog-item">
-													<div class="post-thumb"><a href="/newsdetail/<%= row.npid %>"><img src="<%= comimg %>" class="img-responsive" alt=""></a></div>
+													<div class="post-thumb"><a href="/adsdetail/<%= row.adsid %>"><img src="<%= comimg %>" class="img-responsive" alt=""></a></div>
 													<div class="blog-detail">
-														<a href="/newsdetail/<%= row.npid %>>"><h4><%= row.npheadline %></h4></a>
-														<small>Source:<a href="<%= row.npurl %>"><%= row.npurl %></a></small>
+														<a href="/adsdetail/<%= row.adsid %>"><h4><%= row.adstitle %></h4></a>
+														<small>Source:<a href="<%= row.adsurl %>" target="_parent"><%= row.adsurl %></a></small>
 														<div class="post-info"><%= new Date(row.createdAt).toLocaleDateString() %></div>
 													</div>
 												</div>

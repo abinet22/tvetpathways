@@ -75,10 +75,41 @@
 		
 			<section class="full-detail-description full-detail">
 				<div class="container">
-				
+					<div class="row row-bottom mrg-0">
+						<h2 class="detail-title">About Us</h2>
+						<p>
+							<%= directory.baboutus %>
+						
+						</p>
+						</div>
 					<div class="row row-bottom mrg-0">
 						<h2 class="detail-title">Services</h2>
-					   <%= directory.bservice %>	
+					 
+					   <p>
+						<% var profile =  directory.bservice%>
+					
+					</p>
+					<div id="id01" class="col-md-12"></div>
+					
+					<script>
+						var xmlString = '<%= profile %>';
+					  var xx=  JSON.parse(JSON.stringify(xmlString))
+						var doc = new DOMParser().parseFromString(xmlString, "text/html");
+						var x = doc.body.innerText;
+						console.log(x);
+						var root = document.getElementById('id01');
+						//root.append(x)
+						const t = document.createElement('template');
+						const d = document.createElement('div');
+						t.innerHTML = x;
+						d.append(t.content);
+						html = $.parseHTML(x);
+						
+						// Append the element in the document
+						$(root).append(html);
+						
+
+					  </script>
 					</div>
 					<% var lng = directory.lon %>;
 					<% var lat = directory.lat %>;

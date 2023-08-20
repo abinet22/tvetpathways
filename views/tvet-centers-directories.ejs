@@ -133,7 +133,7 @@ currentMarker = marker;
 						</script>
 					<% if(directory.length >0 ){%>
 						<% directory.forEach(function(row){%>
-					<a href="#" class="item-click">
+					<a href="/viewdetaildirectoryinfo/<%= row.bdid %>" class="item-click">
 						<article>
 							<div class="brows-resume">
 								<div class="row no-mrg">
@@ -156,23 +156,12 @@ currentMarker = marker;
 									<div class="col-md-2 col-sm-2">
 										<div class="browse-resume-rate">
 											<span><i class="fa fa-time"></i><%= row.bworkinghours %></span>
+											<span class="resume-exp"><%= row.bcontact %></span>
 										</div>
 									</div>
+								
 								</div>
-								<div class="row extra-mrg row-skill">
-									<div class="browse-resume-skills">
-										<div class="col-md-9 col-sm-8">
-											<div class="br-resume">
-														<span><%= row.baboutus %></span>
-											</div>
-										</div>
-										<div class="col-md-3 col-sm-4">
-											<div class="browse-resume-exp">
-												<span class="resume-exp"><%= row.bcontact %></span>
-											</div>
-										</div>
-									</div>
-								</div>
+								
 							</div>
 							<span class="tg-themetag tg-featuretag">
 								<%if(searchbykm >0 ) {%>
