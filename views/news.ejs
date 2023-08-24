@@ -77,37 +77,21 @@
 						<div class="col-md-4">
 							<div class="blog-sidebar">
 							
-								<form action="#">
+								<form action="searchnewsbynewscat" method="post">
 									<div class="search-form">
 										<div class="input-group">
-											<input type="text" class="form-control" placeholder="Search…">
+											<select  class="form-control" placeholder="Search…" name="newscat">
+												<% newscat.forEach (function(row){%>
+													<option value="<%= row.ncatid %>"><%= row.ncatname %></option>
+												<%}) %>
+												</select>
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-default">Go</button>
+												<button type="submit" class="btn btn-default">Go</button>
 											</span>
 										</div>
 									</div>
 								</form>
 								
-								<div class="sidebar-widget">
-									<h4>Popular NEWS</h4>
-									<ul class="sidebar-list">
-										
-										<% if(newsprolist.length >0 ){%>
-											<% newsprolist.forEach(function(row){%>
-												<% var  comimg %>
-												<% if(row.npimage) {%>
-													<% comimg = 	'data:image/png;base64,' + new Buffer(row.npimage, 'binary').toString('base64')
-													%>	
-												<%}else{%>
-													 <% comimg =''%>
-													<%}%>
-												
-													<li><a href="/newsdetail/<%= row.npid %>"> <%= row.npheadline %><span><%= row.npcount %> &nbsp; views</span></a></li>
-										<% })%>
-							  
-										<%}else{}%>
-									</ul>
-								</div>
 								
 								<div class="sidebar-widget">
 									<h4>New Training Program </h4>
@@ -135,7 +119,26 @@
 									<%}else{}%>
 								</div>
 								
-								
+								<div class="sidebar-widget">
+									<h4>Popular NEWS</h4>
+									<ul class="sidebar-list">
+										
+										<% if(newsprolist.length >0 ){%>
+											<% newsprolist.forEach(function(row){%>
+												<% var  comimg %>
+												<% if(row.npimage) {%>
+													<% comimg = 	'data:image/png;base64,' + new Buffer(row.npimage, 'binary').toString('base64')
+													%>	
+												<%}else{%>
+													 <% comimg =''%>
+													<%}%>
+												
+													<li><a href="/newsdetail/<%= row.npid %>"> <%= row.npheadline %><span><%= row.npcount %> &nbsp; views</span></a></li>
+										<% })%>
+							  
+										<%}else{}%>
+									</ul>
+								</div>
 								
 							</div>
 						</div>

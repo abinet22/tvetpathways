@@ -11,11 +11,46 @@
     <!-- Custom style -->
     <link href="../../../assets/css/style.css" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" id="jssDefault" href="../../../assets/css/colors/green-style.css">
-    
+
 	<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
 	<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	
 	</head>
 	<body>
+		<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+		<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+      
+		<style>
+		.geocoder {
+		position: absolute;
+		z-index: 100;
+		width: 100%;
+		left: 0%;
+		margin-left: 0px;
+		top: 0px;
+		height: 50px;
+
+		}
+		.mapboxgl-ctrl-geocoder {
+		min-width: 100%;
+		height: 50px;
+		border: 1px solid #dde6ef;
+    margin-bottom: 10px;
+    box-shadow: none;
+    border-radius: 0;
+    background: #fbfdff;
+    font-size: 15px;
+    color: #445461;
+    font-weight: 400;
+	
+		}
+		.mapboxgl-ctrl-geocoder input[type=’text’] {
+height: 50px !important;
+
+}
+		</style>
 		<div class="Loader"></div>
 		<div class="wrapper">  
 			
@@ -126,25 +161,7 @@
 								</div>
 							
 							
-								<script>
-									var xmlString = '<%= profile %>';
-								  var xx=  JSON.parse(JSON.stringify(xmlString))
-									var doc = new DOMParser().parseFromString(xmlString, "text/html");
-									var x = doc.body.innerText;
-									console.log(x);
-									var root = document.getElementById('id01');
-									//root.append(x)
-									const t = document.createElement('template');
-									const d = document.createElement('div');
-									t.innerHTML = x;
-									d.append(t.content);
-									html = $.parseHTML(x);
-									
-									// Append the element in the document
-									$(root).append(html);
-									
-		
-								  </script>
+							
 								 <% var lng = joblist.lon %>;
 								 <% var lat = joblist.lat %>;
 								<div class="row row-bottom mrg-0">
@@ -152,29 +169,7 @@
 									<div id="map" class="full-width" style="height:400px;"></div>
 									
 											
-									<script>
-										const lng = <%= lng %>;
-										const lat = <%= lat %>;
-										
-										mapboxgl.accessToken = 'pk.eyJ1IjoiYWJpbmV0MTIzIiwiYSI6ImNrbWR3d3Y5NzJwbG8ycGp4bGU1bXBtaGsifQ.LIZpH0mev90pUGXewX6lww';
-										
-										const map = new mapboxgl.Map({
-											container: 'map',
-											style: 'mapbox://styles/mapbox/streets-v12',
-											center: [lng, lat],
-											zoom: 18
-										});
-										
-										const marker = new mapboxgl.Marker()
-											.setLngLat([lng, lat])
-											.addTo(map);
-										
-										const popup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false })
-											.setHTML('JOB LOCATION')
-											.addTo(marker); // Attach the popup to the marker
-										
-										map.addControl(new mapboxgl.NavigationControl()); // Add zoom controls
-									</script>
+									
 								</div>
 							</div>
 							<div class="col-sm-12">
@@ -404,61 +399,7 @@
 			</section>
       <%- include ('./partials/footer2') %>
 			<div class="clearfix"></div>
-			<!-- Footer Section End -->
-			
-			<!-- Sign Up Window Code -->
-			<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-body">
-							<div class="tab" role="tabpanel">
-							<!-- Nav tabs -->
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Sign In</a></li>
-								<li role="presentation"><a href="#register" role="tab" data-toggle="tab">Sign Up</a></li>
-							</ul>
-							<!-- Tab panes -->
-							<div class="tab-content" id="myModalLabel2">
-								<div role="tabpanel" class="tab-pane fade in active" id="login">
-									<img src="#" class="img-responsive" alt="" />
-									<div class="subscribe wow fadeInUp">
-										<form class="form-inline" method="post">
-											<div class="col-sm-12">
-												<div class="form-group">
-													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
-													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
-													<div class="center">
-													<button type="submit" id="login-btn" class="submit-btn"> Login </button>
-													</div>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
 
-								<div role="tabpanel" class="tab-pane fade" id="register">
-								<img src="#" class="img-responsive" alt="" />
-									<form class="form-inline" method="post">
-											<div class="col-sm-12">
-												<div class="form-group">
-													<input type="text"  name="email" class="form-control" placeholder="Your Name" required="">
-													<input type="email"  name="email" class="form-control" placeholder="Your Email" required="">
-													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
-													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
-													<div class="center">
-													<button type="submit" id="subscribe" class="submit-btn"> Create Account </button>
-													</div>
-												</div>
-											</div>
-										</form>
-								</div>
-							</div>
-							</div>
-						</div>
-						</div>
-				</div>
-			</div>   
-			<!-- End Sign Up Window -->
 			
 			<!-- Apply Form Code -->
 			<div class="modal fade" id="apply-job" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
@@ -471,31 +412,60 @@
 								<p><%= jobbyis %></p>
 							</div>
 							<div class="apply-job-form">
-								<form class="form-inline" action="/appluforthejob/<%= jobidis %>" method="post">
-									<div class="col-sm-12">
-										<div class="form-group">
+							
+								<form class="form-inline" action="/applyforthejob/<%= jobidis %>" method="post" enctype="multipart/form-data">
+									<div class="col-sm-12 " style="margin-bottom: 50px;">
+										
+									<div id="geocoder" class="geocoder">
+
+									</div>
+										</div>
+									<div class="col-sm-12 py-5 mt-5" style="margin-top: 10px;">
+										
+										<div class="form-group mt-5">
+											
 											<input type="text"  name="name" class="form-control" placeholder="Your Name" required="">
-											<input type="email"  name="phonenumber" class="form-control" placeholder="Your Phone Number" required="">
-											<select class="form-control" name="skill">
-												<option>Designation</option>
-												
+											<input type="text"  name="phonenumber" class="form-control" placeholder="Your Phone Number" required="">
+											<select class="form-control js-example-basic-multiple" name="subcategory" id="subcategory">
+												<option value="0">Select Occupation</option>
+                                    
 												<% if(subjobcat.length >0){%>
 													<% subjobcat.forEach(function(row){%>
 														<option value="<%= row.subcatid %>"><%= row.subcatname %></option>
 													<%})%>
 												 <%}else{}%>
 											</select>
-											<textarea class="form-control" placeholder="About You / Paste your CV"></textarea>
+											
+											<textarea class="form-control mt-5"  style="margin-top: 10px;" placeholder="About Your" name="aboutyou"></textarea>
+											<input type="hidden" class="form-control" placeholder="Location" name="lat" id="latitude">
+											<input type="hidden" class="form-control" placeholder="Location" name="lon" id="logtiude">
+										    
 											<div class="fileUpload">
 												<span>Upload CV</span>
-												<input type="file" class="upload" />
+												<input type="file" class="upload" name="cvupload" id="cvupload" accept=".pdf, .doc, .docx"/>
+												<span id="selectedFileName" style="background-color: yellow;"></span>
 											</div>
 											<div class="center">
 											<button type="submit" id="subscribe" class="submit-btn"> Apply Now </button>
 											</div>
+
 										</div>
 									</div>
 								</form>
+								
+								<script>
+									const cvUploadInput = document.getElementById('cvupload');
+const selectedFileNameElement = document.getElementById('selectedFileName');
+
+cvUploadInput.addEventListener('change', () => {
+    const selectedFile = cvUploadInput.files[0];
+    if (selectedFile) {
+        selectedFileNameElement.textContent = selectedFile.name;
+    } else {
+        selectedFileNameElement.textContent = '';
+    }
+});
+								</script>
 							</div>
 						</div>
 					</div>
@@ -503,7 +473,58 @@
 			</div>   
 			<!-- End Apply Form -->
 			
-			
+			<script>
+				const lng = <%= lng %>;
+				const lat = <%= lat %>;
+				
+				mapboxgl.accessToken = 'pk.eyJ1IjoiYWJpbmV0MTIzIiwiYSI6ImNrbWR3d3Y5NzJwbG8ycGp4bGU1bXBtaGsifQ.LIZpH0mev90pUGXewX6lww';
+				
+				const map = new mapboxgl.Map({
+					container: 'map',
+					style: 'mapbox://styles/mapbox/streets-v12',
+					center: [lng, lat],
+					zoom: 18
+				});
+				
+				const marker = new mapboxgl.Marker()
+					.setLngLat([lng, lat])
+					.addTo(map);
+
+				
+				map.addControl(new mapboxgl.NavigationControl()); // Add zoom controls
+				
+				const geocoder = new MapboxGeocoder({
+accessToken: mapboxgl.accessToken,
+types: 'country,region,place,postcode,locality,neighborhood',
+countries: 'ET', // Restrict results to Ethiopia
+placeholder:'Enter Location Here',
+bbox: [32.95418, 3.38388, 47.98238, 14.95943] 
+});
+
+geocoder.addTo('#geocoder');
+// Get the geocoder results container.
+//const results = document.getElementById('result');
+const lati = document.getElementById('latitude');
+const longs = document.getElementById('logtiude');
+const rt = document.getElementById('result');
+
+geocoder.on('result', (e) => {
+const results = JSON.stringify(e.result, null, 2);
+const results2 = JSON.parse(results);
+
+//  rt.innerText = results2.geometry.coordinates[0];
+console.log( results)
+// coordinatesDiv.innerHTML = `Latitude: ${lat.toFixed(4)}<br>Longitude: ${lng.toFixed(4)}`;
+lati.value = results2.geometry.coordinates[1];
+longs.value  = results2.geometry.coordinates[0];
+
+});
+geocoder.on('clear', () => {
+lati.value = '';
+longs.value  = '';
+
+});
+			</script>
 			<!-- Scripts
 			================================================== -->
 			<script type="text/javascript" src="../../../assets/plugins/js/jquery.min.js"></script>
@@ -560,7 +581,7 @@
 				});
 
 			</script>
-			<script src="assets/js/jQuery.style.switcher.js"></script>
+			<script src="../../../../assets/js/jQuery.style.switcher.js"></script>
 			<script type="text/javascript">
 				$(document).ready(function() {
 					$('#styleOptions').styleSwitcher();
@@ -575,8 +596,34 @@
 					document.getElementById("rightMenu").style.display = "none";
 				}
 			</script>
+				<script>
+					$(document).ready(function() {
+				$('.js-example-basic-multiple').select2();
+			});
+				  </script>
 		</div>
+	
 	</body>
+	
+	<script>
+		var xmlString = '<%= profile %>';
+	  var xx=  JSON.parse(JSON.stringify(xmlString))
+		var doc = new DOMParser().parseFromString(xmlString, "text/html");
+		var x = doc.body.innerText;
+		console.log(x);
+		var root = document.getElementById('id01');
+		//root.append(x)
+		const t = document.createElement('template');
+		const d = document.createElement('div');
+		t.innerHTML = x;
+		d.append(t.content);
+		html = $.parseHTML(x);
+		
+		// Append the element in the document
+		$(root).append(html);
+		
 
+	  </script>
+	
 <!-- new-job-detail41:45-->
 </html>

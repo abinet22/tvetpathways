@@ -9,8 +9,44 @@
     <link rel="stylesheet" href="assets/plugins/css/plugins.css">
     <link href="assets/css/style.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" id="jssDefault" href="assets/css/colors/green-style.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 </head>
 <body>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+		<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+      
+		<style>
+		.geocoder {
+		position: absolute;
+		z-index: 100;
+		width: 100%;
+		left: 0%;
+		margin-left: 0px;
+		top: 0px;
+		height: 50px;
+
+		}
+		.mapboxgl-ctrl-geocoder {
+		min-width: 100%;
+		height: 50px;
+		border: 1px solid #dde6ef;
+    margin-bottom: 10px;
+    box-shadow: none;
+    border-radius: 0;
+    background: #fbfdff;
+    font-size: 15px;
+    color: #445461;
+    font-weight: 400;
+	
+		}
+		.mapboxgl-ctrl-geocoder input[type=’text’] {
+height: 50px !important;
+
+}
+		</style>
 <div class="Loader"></div>
 <div class="wrapper">
   <%- include ('./partials/header') %>
@@ -24,19 +60,77 @@
                     <p> </p>
 
                     <form class="bt-form" action="/searchjob" method="post">
-                        <div class="col-md-6 col-sm-6"><input type="text" class="form-control"
-                                                              placeholder="Skills, Designations,Profession" name="skill"></div>
-                       
-                        <div class="col-md-6 col-sm-6"><input type="text" class="form-control" name="location"
-                                                              placeholder="Searc By location"></div>
-                        <div class="col-md-4 col-sm-5">
-                            <button type="submit" class="btn btn-primary">Search Job</button>
+                        <div class="row">
+                            <div class="col-md-4">
+                            	
+                                <select class="form-control js-example-basic-multiple " name="subcategory" id="subcategory" >
+                                    <option value="0">Select Occupation</option>
+                                    
+                                    <% subcategory.forEach(function (row){%>
+                                        <option value="<%=row.subcatid%>"><%= row.subcatname %></option>
+                                    <%})%>
+                                    
+                                </select>
+                    </div>
+                   
+                    <div class="col-md-4 ">
+                        <div id="geocoder" class="geocoder "    type="search"   placeholder="Enter your location"></div>
+                     
+                      
+                    </div>
+                    <div class="col-md-4 ">
+                        <input type="hidden" class="form-control" placeholder="Location" name="lat" id="latitude">
+                        <input type="hidden" class="form-control" placeholder="Location" name="lon" id="logtiude">
+                    
+                        <button type="submit" class="btn btn-primary">Search Job</button>
+                    </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        // TO MAKE THE MAP APPEAR YOU MUST
+        // ADD YOUR ACCESS TOKEN FROM
+        // https://account.mapbox.com
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYWJpbmV0MTIzIiwiYSI6ImNrbWR3d3Y5NzJwbG8ycGp4bGU1bXBtaGsifQ.LIZpH0mev90pUGXewX6lww';
+
+    const geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    types: 'country,region,place,postcode,locality,neighborhood',
+    countries: 'ET', // Restrict results to Ethiopia
+    placeholder:'Enter Location Here',
+    bbox: [32.95418, 3.38388, 47.98238, 14.95943] 
+    });
+     
+    geocoder.addTo('#geocoder');
+    // Get the geocoder results container.
+    //const results = document.getElementById('result');
+    const lati = document.getElementById('latitude');
+    const longs = document.getElementById('logtiude');
+    const rt = document.getElementById('result');
+
+    geocoder.on('result', (e) => {
+    const results = JSON.stringify(e.result, null, 2);
+    const results2 = JSON.parse(results);
+
+  //  rt.innerText = results2.geometry.coordinates[0];
+    console.log( results)
+// coordinatesDiv.innerHTML = `Latitude: ${lat.toFixed(4)}<br>Longitude: ${lng.toFixed(4)}`;
+lati.value = results2.geometry.coordinates[1];
+longs.value  = results2.geometry.coordinates[0];
+
+    });
+    geocoder.on('clear', () => {
+        lati.value = '';
+    longs.value  = '';
+
+    });
+
+    // Add geocoder result to container.
+
+    </script>
     <div class="clearfix"></div>
     <section>
       <div class="container">
@@ -334,6 +428,11 @@
     function closeRightMenu() {
         document.getElementById("rightMenu").style.display = "none";
     }</script>
+    	 <script>
+            $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+          </script>
 </div>
 </body>
 <!-- index-337:50-->

@@ -4,9 +4,12 @@ const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const passport = require('passport');
 const db = require("../models");
+const fs = require('fs');
 const path = require("path");
 const Op = db.Sequelize.Op;
+const Newsphoto = require('../middleware/totphoto');
 const { v4: uuidv4 } = require('uuid');
+
 router.get('/', forwardAuthenticated, async (req, res) => {
    
     const category = await db.Category.findAll({ where: { is_active: 'Yes' } });
@@ -49,8 +52,10 @@ router.get('/viewdetailjob/(:jobid)', forwardAuthenticated, async (req, res) =>{
      const jobsForPage = simmilarjobs.slice(startIndex, endIndex);
 
      const [subcatjoblist,metascjl] = await db.sequelize.query(`
-     select subcategory,count(jobid) as count from joblists 
- group by subcategory`);
+     select subcatname,count(jobid) as count from joblists inner join
+ subcategories on joblists.subcategory = subcategories.subcatid
+ group by subcatname
+     `);
      const [regionjoblist,metregionjl] = await db.sequelize.query(`
      select region,count(jobid) as count from joblists 
      group by region`);
@@ -123,28 +128,44 @@ router.get('/government-agency-directories', forwardAuthenticated, async (req, r
             const startIndex = currentPage * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
             const dirforpage = govdirectory.slice(startIndex, endIndex);
-        
+            const subcategory = await db.Subcategory.findAll({})
             res.render('tvet-centers-directories',{tag:'TVET CENTERs Directory ',
-            directory:dirforpage,searchbykm:0,
-            currentPage: currentPage,
+            directory:dirforpage,searchbykm:0,long2:0,lati2:0,
+            currentPage: currentPage,subcategory:subcategory,
             totalPages: Math.ceil(govdirectory.length / itemsPerPage),});
             });
-            router.post('/searchtvetcenterbylocation', forwardAuthenticated, async (req, res) =>{
-                const {location,lon,lat} =req.body; 
-                const itemsPerPage = 10; // Number of items per page
-                const currentPage = req.query.page ? parseInt(req.query.page) : 0;
-                const govdirectory = await db.BusinessDirectory.findAll({where:{directorycategory:'tvet'}})
-               
-                // Calculate the slice of joblist to display for the current page
-                const startIndex = currentPage * itemsPerPage;
-                const endIndex = startIndex + itemsPerPage;
-                const dirforpage = govdirectory.slice(startIndex, endIndex);
-            
-                res.render('tvet-centers-directories',{tag:'TVET CENTERs Directory ',
-                directory:dirforpage,searchbykm:50,
-                currentPage: currentPage,
-                totalPages: Math.ceil(govdirectory.length / itemsPerPage),});
-                });
+router.post('/searchtvetcenterbylocation', forwardAuthenticated, async (req, res) =>{
+    const {topoccupations,lon,lat} =req.body; 
+    const itemsPerPage = 10; // Number of items per page
+    const currentPage = req.query.page ? parseInt(req.query.page) : 0;
+    const govdirectory = await db.sequelize.query(`
+    SELECT *
+    FROM businessdirectories
+    WHERE 
+        topoccupations IN (?) AND
+        ST_Distance_Sphere(
+            POINT(lon, lat),
+            POINT(?, ?)
+        ) <= 15000
+`, {
+    replacements: [topoccupations, lon, lat],
+    type: db.sequelize.QueryTypes.SELECT
+});
+console.log(govdirectory)
+console.log(topoccupations)
+console.log(lon)
+console.log(lat)
+    const subcategory = await db.Subcategory.findAll({})
+    // Calculate the slice of joblist to display for the current page
+    const startIndex = currentPage * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const dirforpage = govdirectory.slice(startIndex, endIndex);
+
+    res.render('tvet-centers-directories',{tag:'TVET CENTERs Directory ',
+    directory:dirforpage,searchbykm:50,subcategory:subcategory,
+    currentPage: currentPage,long2:lon,lati2:lat,
+    totalPages: Math.ceil(govdirectory.length / itemsPerPage),});
+    });
     router.get('/viewdetaildirectoryinfo/(:bdid)', forwardAuthenticated, async (req, res) =>{
         const govdirectory = await db.BusinessDirectory.findOne({where:{bdid:req.params.bdid}})
           console.log(govdirectory)
@@ -158,7 +179,7 @@ router.get('/government-agency-directories', forwardAuthenticated, async (req, r
         const categorycount = await db.Category.findAll({ where: { is_active: 'Yes' } });
         const itemsPerPage = 10; // Number of items per page
         const currentPage = req.query.page ? parseInt(req.query.page) : 0;
-        
+        const newscat = await db.NewsCategory.findAll({});
         // Calculate the slice of joblist to display for the current page
         const startIndex = currentPage * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
@@ -166,7 +187,7 @@ router.get('/government-agency-directories', forwardAuthenticated, async (req, r
     
         res.render('news', {
             category: category,categorycount:categorycount,
-            subcategory: subcategory,
+            subcategory: subcategory,newscat:newscat,
             trainingads:trainingads,
             newsprolist: newsproForPage, // Pass the sliced joblist to the view
             currentPage: currentPage,
@@ -177,7 +198,7 @@ router.get('/government-agency-directories', forwardAuthenticated, async (req, r
             const category = await db.Category.findAll({ where: { is_active: 'Yes' } });
             const currentnp = await db.NewsAndPrograms.findOne({where:{npid:req.params.npid}});
             const newsandprograms = await db.NewsAndPrograms.findAll({});
-           
+            const newscat = await db.NewsCategory.findAll({});
             const subcategory = await db.Subcategory.findAll({ where: { is_active: 'Yes' } });
             const categorycount = await db.Category.findAll({ where: { is_active: 'Yes' } });
             const itemsPerPage = 10; // Number of items per page
@@ -195,7 +216,7 @@ router.get('/government-agency-directories', forwardAuthenticated, async (req, r
         
             db.NewsAndPrograms.update({npcount:parseInt(currentnp.npcount) +1},{where:{npid:req.params.npid}}).then(ads =>{
                 res.render('newsdetail', {
-                    newtrainingprogram:newtrainingprogram,
+                    newtrainingprogram:newtrainingprogram,newscat:newscat,
                     topnewsbyview:topnewsbyview,
                     category: category,categorycount:categorycount,
                     subcategory: subcategory,currentnp:currentnp,
@@ -205,7 +226,7 @@ router.get('/government-agency-directories', forwardAuthenticated, async (req, r
                 });
             }).catch(err =>{
                 res.render('newsdetail', {
-                    newtrainingprogram:newtrainingprogram,
+                    newtrainingprogram:newtrainingprogram,newscat:newscat,
                     topnewsbyview:topnewsbyview,
                     category: category,categorycount:categorycount,
                     subcategory: subcategory,currentnp:currentnp,
@@ -302,11 +323,19 @@ router.get('/government-agency-directories', forwardAuthenticated, async (req, r
                 });
                 });
 router.get('/searchjob', forwardAuthenticated, async (req, res) =>{
-    const noofjobslastsevendaya = await db.JobList.count({});
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const noofjobslastsevendaya = await db.JobList.count({where: {
+        deadline: {
+            [Op.greaterThan]: today
+        }
+    }});
     const subjobcat = await db.Subcategory.findAll({});
     const [subcatjoblist,metascjl] = await db.sequelize.query(`
-    select subcategory,count(jobid) as count from joblists 
-group by subcategory`);
+    select subcatname,count(jobid) as count from joblists inner join
+ subcategories on joblists.subcategory = subcategories.subcatid
+ group by subcatname
+    `);
     const [regionjoblist,metregionjl] = await db.sequelize.query(`
     select region,count(jobid) as count from joblists 
     group by region`);
@@ -326,7 +355,7 @@ group by jobtime`);
     const endIndex = startIndex + itemsPerPage;
     const jobsForPage = joblist.slice(startIndex, endIndex);
 
-res.render('searchjob',{joblist:joblist,noofjobslastsevendaya:noofjobslastsevendaya,subjobcat:subjobcat,
+res.render('searchjob',{joblist:jobsForPage,noofjobslastsevendaya:noofjobslastsevendaya,subjobcat:subjobcat,
 jobtimejoblist:jobtimejoblist,jobtypejoblist:jobtypejoblist,regionjoblist:regionjoblist,subcatjoblist:subcatjoblist,
 currentPage: currentPage,
 totalPages: Math.ceil(joblist.length / itemsPerPage),
@@ -335,12 +364,20 @@ totalPages: Math.ceil(joblist.length / itemsPerPage),
 });
 
 router.post('/searchjob', forwardAuthenticated, async (req, res) =>{
-    const{skill,location} =req.body;
-    const noofjobslastsevendaya = await db.JobList.count({});
+    
+    const{subcategory,lat,lon} =req.body;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const noofjobslastsevendaya = await db.JobList.count({where: {
+        deadline: {
+            [Op.greaterThan]: today
+        }
+    }});
     const subjobcat = await db.Subcategory.findAll({});
     const [subcatjoblist,metascjl] = await db.sequelize.query(`
-    select subcategory,count(jobid) as count from joblists 
-group by subcategory`);
+    select subcatname,count(jobid) as count from joblists inner join
+    subcategories on joblists.subcategory = subcategories.subcatid
+    group by subcatname`);
     const [regionjoblist,metregionjl] = await db.sequelize.query(`
     select region,count(jobid) as count from joblists 
     group by region`);
@@ -352,20 +389,80 @@ group by jobtype`
     const [jobtimejoblist,joblistmetajt] = await db.sequelize.query(`
     select jobtime,count(jobid) as count from joblists 
 group by jobtime`);
-  
-    const [joblist,joblistmeta] = await db.sequelize.query('Select * from joblists');
-    const itemsPerPage = 10; // Number of items per page
+
+
+
+    
+if(!subcategory ||!lon || !lat){
+    const [joblist, joblistmeta] = await db.sequelize.query(`
+    SELECT *
+    FROM joblists
+   
+   `);
+    // Continue with your code
+    console.log(lon); // Check if joblist has data
+    console.log(lat);
+    console.log(joblistmeta);
+    const itemsPerPage = 10;
     const currentPage = req.query.page ? parseInt(req.query.page) : 0;
+    
+    let jobsForPage;
+    let totalPages;
+    const jobsArray = Array.isArray(joblist) ? joblist : [joblist];
     const startIndex = currentPage * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const jobsForPage = joblist.slice(startIndex, endIndex);
+    jobsForPage = jobsArray.slice(startIndex, endIndex);
+    totalPages = Math.ceil(jobsArray.length / itemsPerPage);
+    console.log(jobsArray.length);
 
-res.render('searchjob',{joblist:joblist,noofjobslastsevendaya:noofjobslastsevendaya,subjobcat:subjobcat,
-jobtimejoblist:jobtimejoblist,jobtypejoblist:jobtypejoblist,regionjoblist:regionjoblist,subcatjoblist:subcatjoblist,
-currentPage: currentPage,
-totalPages: Math.ceil(joblist.length / itemsPerPage),
+    res.render('searchjob',{ error_msg:'Please all required fields to search',joblist:jobsForPage,noofjobslastsevendaya:noofjobslastsevendaya,subjobcat:subjobcat,
+        jobtimejoblist:jobtimejoblist,jobtypejoblist:jobtypejoblist,regionjoblist:regionjoblist,subcatjoblist:subcatjoblist,
+        currentPage: currentPage,
+        totalPages: Math.ceil(jobsArray.length / itemsPerPage),
+        
+        });
+}else{
+    const long = parseFloat(lon);
+    const lati = parseFloat(lat);
+    
+    const [joblist, joblistmeta] = await db.sequelize.query(`
+    SELECT *
+    FROM joblists
+    WHERE 
+        subcategory = :subcategory AND
+        ST_Distance_Sphere(
+            POINT(lat, lon),
+            POINT(:lati, :long)
+        ) <= 50000
+    `, {
+    replacements: { subcategory, long, lati }
+    });
+    // Continue with your code
+    console.log(lon); // Check if joblist has data
+    console.log(lat);
+    console.log(joblistmeta);
+    const itemsPerPage = 10;
+    const currentPage = req.query.page ? parseInt(req.query.page) : 0;
+    
+    let jobsForPage;
+    let totalPages;
+    const jobsArray = Array.isArray(joblist) ? joblist : [joblist];
+    const startIndex = currentPage * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    jobsForPage = jobsArray.slice(startIndex, endIndex);
+    totalPages = Math.ceil(jobsArray.length / itemsPerPage);
+    console.log(jobsArray.length);
 
-});
+    res.render('searchjob',{joblist:jobsForPage,noofjobslastsevendaya:noofjobslastsevendaya,subjobcat:subjobcat,
+        jobtimejoblist:jobtimejoblist,jobtypejoblist:jobtypejoblist,regionjoblist:regionjoblist,subcatjoblist:subcatjoblist,
+        currentPage: currentPage,
+        totalPages: Math.ceil(jobsArray.length / itemsPerPage),
+        
+        });
+}
+
+
+
 });
 
 router.get('/searchjobbycategory/(:catid)', forwardAuthenticated, async (req, res) =>{
@@ -491,7 +588,7 @@ router.post('/sendcontactmsg', forwardAuthenticated, async (req, res) => {
         fullname:fullname,
         email:email
      }
-     db.ContactUs.create(contatus).then(cus =>{
+     if(!message || !phonenumber || !fullname){
         res.render('index', {
             category: category,categorycount:categorycount,
             subcategory: subcategory,
@@ -499,15 +596,134 @@ router.post('/sendcontactmsg', forwardAuthenticated, async (req, res) => {
             currentPage: currentPage,
             totalPages: Math.ceil(joblist.length / itemsPerPage)
         });
-     }).catch(err =>{
-        res.render('index', {
-            category: category,categorycount:categorycount,
-            subcategory: subcategory,
-            joblist: jobsForPage, // Pass the sliced joblist to the view
-            currentPage: currentPage,
-            totalPages: Math.ceil(joblist.length / itemsPerPage)
-        });
-     })
+     }else{
+        db.ContactUs.create(contatus).then(cus =>{
+            res.render('index', {
+                category: category,categorycount:categorycount,
+                subcategory: subcategory,
+                joblist: jobsForPage, // Pass the sliced joblist to the view
+                currentPage: currentPage,
+                totalPages: Math.ceil(joblist.length / itemsPerPage)
+            });
+         }).catch(err =>{
+            res.render('index', {
+                category: category,categorycount:categorycount,
+                subcategory: subcategory,
+                joblist: jobsForPage, // Pass the sliced joblist to the view
+                currentPage: currentPage,
+                totalPages: Math.ceil(joblist.length / itemsPerPage)
+            });
+         })
+     }
+
   
 });
-module.exports = router;
+router.post('/applyforthejob/(:jobid)',Newsphoto.single('cvupload'),async function(req,res){
+
+    const {lat,lon,aboutyou,subcategory,name,phonenumber} = req.body
+    
+    const itemsPerPage = 10; // Number of items per page
+    const currentPage = req.query.page ? parseInt(req.query.page) : 0;
+    const startIndex = currentPage * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+   
+    const joblist = await db.JobList.findOne({where:{jobid:req.params.jobid}});
+     const subjobcat = await db.Subcategory.findAll({});
+     const simmilarjobs = await db.JobList.findAll({where:{subcategory:joblist.subcategory}})
+     const jobsForPage = simmilarjobs.slice(startIndex, endIndex);
+
+     const [subcatjoblist,metascjl] = await db.sequelize.query(`
+     select subcatname,count(jobid) as count from joblists inner join
+ subcategories on joblists.subcategory = subcategories.subcatid
+ group by subcatname
+     `);
+     const [regionjoblist,metregionjl] = await db.sequelize.query(`
+     select region,count(jobid) as count from joblists 
+     group by region`);
+     const [jobtypejoblist,joblistmetajtype] = await db.sequelize.query(
+         `
+         select jobtype,count(jobid) as count from joblists 
+ group by jobtype`
+     );
+     const [jobtimejoblist,joblistmetajt] = await db.sequelize.query(`
+     select jobtime,count(jobid) as count from joblists 
+ group by jobtime`);
+  let errors =[];
+
+  if(!req.file){
+    errors.push({msg:'Please add your CV file '}) 
+  }
+  if(!lon || !lat || !phonenumber || !name || !subcategory || !aboutyou){
+    errors.push({msg:'Please enter all required fields '}) 
+  }
+  if(errors.length >0){
+    console.log(errors);
+    res.render('viewdetailjob',{joblist:joblist,
+        subjobcat:subjobcat,
+        simillarjobs: jobsForPage, // Pass the sliced joblist to the view
+        currentPage: currentPage,
+        totalPages: Math.ceil(simmilarjobs.length / itemsPerPage),
+        jobtimejoblist:jobtimejoblist,jobtypejoblist:jobtypejoblist,regionjoblist:regionjoblist,subcatjoblist:subcatjoblist});
+
+  }else{
+    db.JobList.findOne({where:{jobid:req.params.jobid}}).then(job =>{
+        if(job){
+            const application ={
+                appid:uuidv4(),
+                lat:lat,
+                lon:lon,
+                aboutyou:aboutyou,
+                subcategory:subcategory,
+                name:name,
+                phonenumber:phonenumber,
+                jobapplyied:job.jobtitle,
+                jobid:req.params.jobid,
+                applicantcv: fs.readFileSync(
+                    path.join(__dirname,'../public/uploads/') + req.file.filename
+                  ),
+            }
+            console.log(application);
+            db.JobApplications.create(application).then(appn =>{
+                res.render('viewdetailjob',{joblist:joblist,
+               
+                    subjobcat:subjobcat,
+                    simillarjobs: jobsForPage, // Pass the sliced joblist to the view
+                    currentPage: currentPage,
+                    totalPages: Math.ceil(simmilarjobs.length / itemsPerPage),
+                    jobtimejoblist:jobtimejoblist,jobtypejoblist:jobtypejoblist,regionjoblist:regionjoblist,subcatjoblist:subcatjoblist});
+       
+            }).catch(err =>{
+                res.render('viewdetailjob',{joblist:joblist,
+               
+                    subjobcat:subjobcat,
+                    simillarjobs: jobsForPage, // Pass the sliced joblist to the view
+                    currentPage: currentPage,
+                    totalPages: Math.ceil(simmilarjobs.length / itemsPerPage),
+                    jobtimejoblist:jobtimejoblist,jobtypejoblist:jobtypejoblist,regionjoblist:regionjoblist,subcatjoblist:subcatjoblist});
+       
+            })
+                       
+        }else{
+            res.render('viewdetailjob',{joblist:joblist,
+               
+                subjobcat:subjobcat,
+                simillarjobs: jobsForPage, // Pass the sliced joblist to the view
+                currentPage: currentPage,
+                totalPages: Math.ceil(simmilarjobs.length / itemsPerPage),
+                jobtimejoblist:jobtimejoblist,jobtypejoblist:jobtypejoblist,regionjoblist:regionjoblist,subcatjoblist:subcatjoblist});
+                
+        }
+        }).catch(err =>{
+            res.render('viewdetailjob',{joblist:joblist,
+               
+                subjobcat:subjobcat,
+                simillarjobs: jobsForPage, // Pass the sliced joblist to the view
+                currentPage: currentPage,
+                totalPages: Math.ceil(simmilarjobs.length / itemsPerPage),
+                jobtimejoblist:jobtimejoblist,jobtypejoblist:jobtypejoblist,regionjoblist:regionjoblist,subcatjoblist:subcatjoblist});
+                
+        })
+  }
+
+});
+module.exports = router; 

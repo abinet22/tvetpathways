@@ -1,4 +1,3 @@
-
 <html lang="en">
 
 <!-- search-new41:42-->
@@ -13,9 +12,38 @@
     <!-- Custom style -->
     <link href="../../../../assets/css/style.css" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" id="jssDefault" href="../../../../assets/css/colors/green-style.css">
-    
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 	</head>
 	<body>
+		<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+		<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+		<style>
+			.geocoder {
+			position: absolute;
+			z-index: 100;
+			width: 100%;
+			left: 0%;
+			margin-left: 0px;
+			top: 0px;
+			height: 50px;
+	
+			}
+			.mapboxgl-ctrl-geocoder {
+			min-width: 100%;
+			height: 50px;
+			background: #42525f;
+    border-radius: 2px;
+    height: 52px;
+    margin-bottom: 10px;
+    border: 1px solid #4f616f;
+    width: 100%;
+    color: #ffffff;
+
+		
+			}
+			
+			</style>
 		<div class="Loader"></div>
 		<div class="wrapper">  
 			<%- include ('./partials/header') %>
@@ -37,46 +65,21 @@
 			<!-- bottom form section start -->
 			<section class="bottom-search-form">
 				<div class="container">
+				
 					<form class="bt-form" action="/searchjob" method="post">
 						<div class="col-md-3 col-sm-6">
-							<input type="text" class="form-control" placeholder="Skills, Designations, Keyword" name="skill">
+							<div id="geocoder" class="geocoder "   >
+
+							</div>
+							
 						</div>
 						<div class="col-md-3 col-sm-6">
-							<select class="form-control" placeholder="Searc By location" name="region" id="region">
-								<option>Search By Location</option>
-							</select>
+							<input type="text" class="form-control" placeholder="With In KM" name="Area">
 						</div>
-						<script>
-							// List of Ethiopian regions
-const ethiopianRegions = [
-'Addis Ababa',
-'Afar',
-'Amhara',
-'Benishangul-Gumuz',
-'Dire Dawa',
-'Gambela',
-'Harari',
-'Oromia',
-'Sidama',
-'SNNPR',
-'Somali',
-'Tigray'
-];
-
-// Get the select element by its ID
-const select = document.getElementById('region');
-
-// Populate the select element with options
-ethiopianRegions.forEach(region => {
-const option = document.createElement('option');
-option.value = region;
-option.textContent = region;
-select.appendChild(option);
-});
-
-						</script>
+					
+					
 						<div class="col-md-3 col-sm-6">
-							<select class="form-control" name="category">
+							<select class="form-control" name="subcategory">
 							  <option>By Category</option>
 							 <% if(subjobcat.length >0){%>
 								<% subjobcat.forEach(function(row){%>
@@ -86,11 +89,56 @@ select.appendChild(option);
 							</select>
 						</div>
 						<div class="col-md-3 col-sm-6">
+							<input type="hidden" class="form-control" placeholder="Location" name="lat" id="latitude">
+							<input type="hidden" class="form-control" placeholder="Location" name="lon" id="logtiude">
+						
 							<button type="submit" class="btn btn-primary">Search Job</button>
 						</div>
+						<script>
+							// TO MAKE THE MAP APPEAR YOU MUST
+							// ADD YOUR ACCESS TOKEN FROM
+							// https://account.mapbox.com
+							mapboxgl.accessToken = 'pk.eyJ1IjoiYWJpbmV0MTIzIiwiYSI6ImNrbWR3d3Y5NzJwbG8ycGp4bGU1bXBtaGsifQ.LIZpH0mev90pUGXewX6lww';
+				
+						const geocoder = new MapboxGeocoder({
+						accessToken: mapboxgl.accessToken,
+						types: 'country,region,place,postcode,locality,neighborhood',
+						countries: 'ET', // Restrict results to Ethiopia
+                        bbox: [32.95418, 3.38388, 47.98238, 14.95943] 
+						});
+						 
+						geocoder.addTo('#geocoder');
+						 
+						// Get the geocoder results container.
+						//const results = document.getElementById('result');
+						const lati = document.getElementById('latitude');
+                        const longs = document.getElementById('logtiude');
+						const rt = document.getElementById('result');
+ 
+						geocoder.on('result', (e) => {
+						const results = JSON.stringify(e.result, null, 2);
+						const results2 = JSON.parse(results);
+					
+					  //  rt.innerText = results2.geometry.coordinates[0];
+						console.log( results)
+// coordinatesDiv.innerHTML = `Latitude: ${lat.toFixed(4)}<br>Longitude: ${lng.toFixed(4)}`;
+					lati.value = results2.geometry.coordinates[1];
+					longs.value  = results2.geometry.coordinates[0];
+
+						});
+						geocoder.on('clear', () => {
+							lati.value = '';
+						longs.value  = '';
+
+                        });
+					
+						// Add geocoder result to container.
+					
+						</script>
 					</form>
 				</div>
 			</section>
+			
 			<!-- Bottom Search Form Section End -->
 			
 			<!-- ========== Begin: Brows job Category ===============  -->
@@ -99,50 +147,30 @@ select.appendChild(option);
 					<div class="col-md-9 col-sm-12">
 						<div class="full-card">
 						
-							<div class="card-header">
-								<div class="row mrg-0">
-									<div class="col-md-4 col-sm-4">
-										<select class="selectpicker form-control" multiple title="Job Type" name="jobtype">
-										  <option>Full Time</option>
-										  <option>Part Time</option>
-										  <option>Freelancer</option>
-										  <option>Internship</option>
-										</select>
-									</div>
-									<div class="col-md-4 col-sm-4 small-padd">
-										<select class="selectpicker form-control" multiple title="All Categories" name="jobcategory">
-										  <option>Teacher Jobs</option>
-										  <option>Consultant Jobs</option>
-										  <option>IT Jobs</option>
-										  <option>Sales Jobs</option>
-										  <option>Graphic Designer Jobs</option>
-										</select>
-									</div>
-									<div class="col-md-4 col-sm-4">
-										<ol class="breadcrumb pull-right">
-											<li><a href="#"><i class="fa fa-home"></i></a></li>
-											<li><a href="#">Full Time</a></li>
-											<li class="active">IT Jobs</li>
-										</ol>
-									</div>
-								</div>
-							</div>
+							
 							
 							<div class="card-body">
 							
-								<% if(joblist.length >0 ){%>
+								<% if(joblist.length > 0 ){%>
+
 									<% joblist.forEach(function(row){%>
 										<article>
 											<div class="brows-job-list">
-												<% var  comimg = 	'data:image/png;base64,' + new Buffer(row.companylogo, 'binary').toString('base64')
-												%>
+												<% var comimg %>
+												<% if(!row.companylogo){ %>
+													<%   comimg ='' %>
+												<%}else{%>
+													<%   comimg = 	'data:image/png;base64,' + new Buffer(row.companylogo, 'binary').toString('base64')
+													%>
+												<%}%>
+												
 												<div class="col-md-1 col-sm-2 small-padding">
 													<div class="brows-job-company-img"><a href="/viewdetailjob/<%= row.jobid %>"><img src="<%= comimg %>" class="img-responsive" alt=""></a></div>
 												</div>
 												<div class="col-md-6 col-sm-5">
 													<div class="brows-job-position">
 														<a href="/viewdetailjob/<%= row.jobid %>">
-															<h3><%= row.jobtitle %></h3>
+															<h3> <%= row.jobtitle %></h3>
 														</a>
 					
 														<p><span><%= row.jobdetail %><br><%= row.experience %></span><span class="brows-job-sallery"><i class="fa fa-money"></i><%= row.salary %></span><span class="job-type cl-success bg-trans-success"><%= row.jobtime %>/<%= row.jobtype %></span></p>
@@ -155,7 +183,7 @@ select.appendChild(option);
 													</div>
 												</div>
 												<div class="col-md-2 col-sm-2">
-													<div class="brows-job-link"><a href="/viewdetailjob/<%= row.jobid %>" class="btn btn-default">Apply
+													<div class="brows-job-link"><a href="/viewdetailjob/<%= row.jobid %>" class="btn btn-alrt">Apply
 														Job</a></div>
 													   Deadline <span style="color: red;"><%= new Date(row.deadline).toLocaleDateString() %></span>
 												</div>
@@ -204,6 +232,7 @@ select.appendChild(option);
 												<%})%>
 												<% }else{} %>
 											</select>
+										
 											<input type="text" name="phonenumber" class="form-control" placeholder="Phone Number">
 											<input type="text" name="location" class="form-control" placeholder="Location">
 											<button type="submit" class="btn btn-alrt">Add Alert</button>
@@ -325,7 +354,41 @@ select.appendChild(option);
 				</div>
 			</section>
 			<!-- ========== Begin: Brows job Category End ===============  -->
-			
+			<script>
+				// TO MAKE THE MAP APPEAR YOU MUST
+				// ADD YOUR ACCESS TOKEN FROM
+				// https://account.mapbox.com
+				mapboxgl.accessToken = 'pk.eyJ1IjoiYWJpbmV0MTIzIiwiYSI6ImNrbWR3d3Y5NzJwbG8ycGp4bGU1bXBtaGsifQ.LIZpH0mev90pUGXewX6lww';
+	
+			const geocoder2 = new MapboxGeocoder({
+			accessToken: mapboxgl.accessToken,
+			types: 'country,region,place,postcode,locality,neighborhood',
+			countries: 'ET', // Restrict results to Ethiopia
+			bbox: [32.95418, 3.38388, 47.98238, 14.95943] 
+			});
+			 
+			geocoder.addTo('#geocoder2');
+			 
+			// Get the geocoder results container.
+			//const results = document.getElementById('result');
+		
+			geocoder2.on('result', (e) => {
+			const results = JSON.stringify(e.result, null, 2);
+			const results2 = JSON.parse(results);
+		
+		  //  rt.innerText = results2.geometry.coordinates[0];
+			console.log( results)
+
+			});
+			geocoder.on('clear', () => {
+				lati.value = '';
+			longs.value  = '';
+
+			});
+		
+			// Add geocoder result to container.
+		
+			</script>			
 			<!-- Footer Section Start -->
 		
       <%- include ('./partials/footer2') %>

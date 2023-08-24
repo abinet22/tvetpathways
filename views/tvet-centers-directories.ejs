@@ -13,7 +13,8 @@
 	<link type="text/css" rel="stylesheet" id="jssDefault" href="../../../assets/css/colors/green-style.css">
 	<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 	</head>
 	<body>
@@ -23,18 +24,31 @@
 		<style>
 		.geocoder {
 		position: absolute;
-		z-index: 1;
-		width: 50%;
-		left: 50%;
+		z-index: 100;
+		width: 100%;
+		left: 0%;
 		margin-left: 0px;
-		top: 10px;
+		top: 0px;
+		height: 50px;
+
 		}
 		.mapboxgl-ctrl-geocoder {
 		min-width: 100%;
+		height: 50px;
+		border: 1px solid #dde6ef;
+    margin-bottom: 10px;
+    box-shadow: none;
+    border-radius: 0;
+    background: #fbfdff;
+    font-size: 15px;
+    color: #445461;
+    font-weight: 400;
+	
 		}
-		#map {
-		margin-top: 75px;
-		}
+		.mapboxgl-ctrl-geocoder input[type=’text’] {
+height: 50px !important;
+
+}
 		</style>
 		<div class="Loader"></div>
 		<div class="wrapper">  
@@ -58,79 +72,86 @@
 					<!-- Company Searrch Filter Start -->
 											
 					<div class="row extra-mrg">
-						<div id="map"  style="width: 100%; height: 200px;"></div>
-										
+						<form action="/searchtvetcenterbylocation" method="post">
+								
 						<div class="wrap-search-filter">
+									<div class="col-md-4 ">
+									
+									<select class="form-control js-example-basic-multiple " name="topoccupations" id="topoccupations" >
+										<option value="0">Select Occupation</option>
+										
+										<% subcategory.forEach(function (row){%>
+											<option value="<%= row.subcatname %>"><%= row.subcatname %></option>
+										<%})%>
+										
+									</select>
+								</div>
 								
-							<form action="/searchtvetcenterbylocation" method="post">
-								<div class="col-md-8 col-sm-8">
-									<div id="geocoder" class="geocoder">
+								<div class="col-sm-4">
+									
+									<div id="geocoder" class="geocoder "    type="search"   placeholder="Enter your location"></div>
+								
+									
+								</div>
+										
+										<input type="hidden" class="form-control" placeholder="Location" name="lat" id="latitude">
+										<input type="hidden" class="form-control" placeholder="Location" name="lon" id="logtiude">
+										<div class="col-md-4" >
+											<button type="submit" class="btn btn-success btn-sm full-width">Search</button>
 										</div>
-								
-								</div>
-								
-								<input type="hidden" class="form-control" placeholder="Location" name="lat" id="latitude">
-								<input type="hidden" class="form-control" placeholder="Location" name="lon" id="logtiude">
-								<div class="col-md-4 col-sm-4">
-									<button type="submit" class="btn btn-success btn-sm full-width">Filter By Location</button>
-								</div>
-							</form>
 						</div>
+						
+				
+			           </form>	
 					</div>
+					
+	  
 					<!-- Company Searrch Filter End -->
 					
 	 
-					<script>
-					
-						mapboxgl.accessToken = 'pk.eyJ1IjoiYWJpbmV0MTIzIiwiYSI6ImNrbWR3d3Y5NzJwbG8ycGp4bGU1bXBtaGsifQ.LIZpH0mev90pUGXewX6lww';
-						const map = new mapboxgl.Map({
-							container: 'map',
-							style: 'mapbox://styles/mapbox/streets-v12',
-							center: [38.7436, 9.0132], // Default center
-							zoom: 15
+						<script>
+							// TO MAKE THE MAP APPEAR YOU MUST
+							// ADD YOUR ACCESS TOKEN FROM
+							// https://account.mapbox.com
+							mapboxgl.accessToken = 'pk.eyJ1IjoiYWJpbmV0MTIzIiwiYSI6ImNrbWR3d3Y5NzJwbG8ycGp4bGU1bXBtaGsifQ.LIZpH0mev90pUGXewX6lww';
+				
+						const geocoder = new MapboxGeocoder({
+						accessToken: mapboxgl.accessToken,
+						types: 'country,region,place,postcode,locality,neighborhood',
+						countries: 'ET', // Restrict results to Ethiopia
+						placeholder:'Enter Location Here',
+                        bbox: [32.95418, 3.38388, 47.98238, 14.95943] 
 						});
-						// Add the control to the map.
-const geocoder = new MapboxGeocoder({
-accessToken: mapboxgl.accessToken,
-mapboxgl: mapboxgl,
-countries: 'ET', // Restrict results to Ethiopia
-bbox: [32.95418, 3.38388, 47.98238, 14.95943] 
-});
-
-document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-let currentMarker = null; // Variable to keep track of the current marker
-
-map.on('click', (e) => {
-const { lng, lat } = e.lngLat;
-const lati = document.getElementById('latitude');
-const longs = document.getElementById('logtiude');
+						 
+						geocoder.addTo('#geocoder');
+						 
+						// Get the geocoder results container.
+						//const results = document.getElementById('result');
+						const lati = document.getElementById('latitude');
+                        const longs = document.getElementById('logtiude');
+						const rt = document.getElementById('result');
+ 
+						geocoder.on('result', (e) => {
+						const results = JSON.stringify(e.result, null, 2);
+						const results2 = JSON.parse(results);
+					
+					  //  rt.innerText = results2.geometry.coordinates[0];
+						console.log( results)
 // coordinatesDiv.innerHTML = `Latitude: ${lat.toFixed(4)}<br>Longitude: ${lng.toFixed(4)}`;
-lati.value = lat;
-longs.value = lng;
-if (currentMarker) {
-currentMarker.remove();
-}
-const marker = new mapboxgl.Marker()
-.setLngLat([lng, lat])
-.addTo(map);
-const popup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false })
-.setHTML('TVET CENTER')
-.addTo(map);
+					lati.value = results2.geometry.coordinates[1];
+					longs.value  = results2.geometry.coordinates[0];
 
-// Attach the popup to the marker
-marker.setPopup(popup);
-currentMarker = marker;
+						});
+						geocoder.on('clear', () => {
+							lati.value = '';
+						longs.value  = '';
 
-});
-						if ("geolocation" in navigator) {
-							navigator.geolocation.getCurrentPosition(position => {
-								const userLocation = [position.coords.longitude, position.coords.latitude];
-								map.setCenter(userLocation);
-							});
-						} else {
-							console.log("Geolocation is not available in this browser.");
-						}
+                        });
+					
+						// Add geocoder result to container.
+					
 						</script>
+						 
 					<% if(directory.length >0 ){%>
 						<% directory.forEach(function(row){%>
 					<a href="/viewdetaildirectoryinfo/<%= row.bdid %>" class="item-click">
@@ -139,15 +160,27 @@ currentMarker = marker;
 								<div class="row no-mrg">
 									<div class="col-md-2 col-sm-2">
 										<div class="brows-resume-pic">
-											<img src="../../../assets/img/can-3.png" class="img-responsive" alt="" />
+											<img src="../../../assets/img/tvet.jpg" class="img-responsive" alt="" />
 										</div>
 									</div>
 									<div class="col-md-4 col-sm-4">
 										<div class="brows-resume-name">
 											<h4><%= row.bname %></h4>
-											<span class="brows-resume-designation"><%= row.boverview %></span>
+											<% 
+											var text = row.boverview;
+											var txt;
+											if(text.length > 100){
+												 txt = text.replace(text.substring(100),'...')+" "+"ReadMore"
+											}else{
+												 txt = row.boverview+" "+"ReadMore";
+											}
+											
+											var overview = txt
+											%>
+											<div class="reviewtekst"><p><%= overview %></p></div>
 										</div>
 									</div>
+									
 									<div class="col-md-4 col-sm-4">
 										<div class="brows-resume-location">
 											<p><i class="fa fa-map-marker"></i> <%= row.bplace %></p>
@@ -164,10 +197,45 @@ currentMarker = marker;
 								
 							</div>
 							<span class="tg-themetag tg-featuretag">
-								<%if(searchbykm >0 ) {%>
-									Estimated  <%= 100 %> KM Away
+								
+								 <% if(long2 ===0){%>
+									Estimated __KM Away
+								 <%} else{%>
+									Estimated  <span id="distance"></span> KM Away
+								
 									<%}%>
+									
+									<% var lng = row.lon %>
+									<% var lat = row.lat %>
+									<% var lng2 = long2 %>
+									<% var lat2 = lati2 %>
 							</span>
+							<script>
+                             
+								function calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius of the Earth in kilometers
+
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLon = (lon2 - lon1) * (Math.PI / 180);
+
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    const distance = R * c; // Distance in kilometers
+    return distance;
+}
+
+const [lon1, lat1] = [<%= lng %>, <%= lat %>]; // Replace with your coordinates
+const [lon2, lat2] = [<%= lng2 %>, <%= lat2 %>]; // Replace with your coordinates
+
+const distance = calculateDistance(lat1, lon1, lat2, lon2);
+document.getElementById('distance').innerHTML =distance.toFixed(2);
+ console.log(distance);
+							</script>
 						</article>
 					</a>
 					<% })%>
@@ -194,57 +262,7 @@ currentMarker = marker;
 			<!-- Footer Section End -->
 			
 			<!-- Sign Up Window Code -->
-			<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-body">
-							<div class="tab" role="tabpanel">
-							<!-- Nav tabs -->
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Sign In</a></li>
-								<li role="presentation"><a href="#register" role="tab" data-toggle="tab">Sign Up</a></li>
-							</ul>
-							<!-- Tab panes -->
-							<div class="tab-content" id="myModalLabel2">
-								<div role="tabpanel" class="tab-pane fade in active" id="login">
-									<img src="assets/img/logo.png" class="img-responsive" alt="" />
-									<div class="subscribe wow fadeInUp">
-										<form class="form-inline" method="post">
-											<div class="col-sm-12">
-												<div class="form-group">
-													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
-													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
-													<div class="center">
-													<button type="submit" id="login-btn" class="submit-btn"> Login </button>
-													</div>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-
-								<div role="tabpanel" class="tab-pane fade" id="register">
-								<img src="assets/img/logo.png" class="img-responsive" alt="" />
-									<form class="form-inline" method="post">
-											<div class="col-sm-12">
-												<div class="form-group">
-													<input type="text"  name="email" class="form-control" placeholder="Your Name" required="">
-													<input type="email"  name="email" class="form-control" placeholder="Your Email" required="">
-													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
-													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
-													<div class="center">
-													<button type="submit" id="subscribe" class="submit-btn"> Create Account </button>
-													</div>
-												</div>
-											</div>
-										</form>
-								</div>
-							</div>
-							</div>
-						</div>
-						</div>
-				</div>
-			</div>   
+	
 			<!-- End Sign Up Window -->
 		
 			
@@ -281,6 +299,12 @@ currentMarker = marker;
 					document.getElementById("rightMenu").style.display = "none";
 				}
 			</script>
+			 <script>
+				$(document).ready(function() {
+			$('.js-example-basic-multiple').select2();
+		});
+			  </script>
+		  
 		</div>
 	</body>
 

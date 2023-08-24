@@ -62,7 +62,7 @@
 								<ul>
 									<li><i class="fa fa-map-marker"></i><span><%= directory.bplace %></span></li>
 									<li><i class="fa fa-phone"></i><span><%= directory.bcontact %></span></li>
-									<li><i class="fa fa-globe"></i><span><%= directory.bwewurl %></span></li>
+									<li><i class="fa fa-globe"></i><a href="<%= directory.bwewurl %>" target="_blank"><%= directory.bname %></a></li>
 									
 								</ul>
 							</div>
@@ -86,30 +86,14 @@
 						<h2 class="detail-title">Services</h2>
 					 
 					   <p>
-						<% var profile =  directory.bservice%>
+						<% var profile =  directory.bservice %>
 					
 					</p>
-					<div id="id01" class="col-md-12"></div>
+					<div id="id01" class="col-md-12 card">
 					
-					<script>
-						var xmlString = '<%= profile %>';
-					  var xx=  JSON.parse(JSON.stringify(xmlString))
-						var doc = new DOMParser().parseFromString(xmlString, "text/html");
-						var x = doc.body.innerText;
-						console.log(x);
-						var root = document.getElementById('id01');
-						//root.append(x)
-						const t = document.createElement('template');
-						const d = document.createElement('div');
-						t.innerHTML = x;
-						d.append(t.content);
-						html = $.parseHTML(x);
-						
-						// Append the element in the document
-						$(root).append(html);
-						
-
-					  </script>
+					</div>
+					
+			
 					</div>
 					<% var lng = directory.lon %>;
 					<% var lat = directory.lat %>;
@@ -151,57 +135,7 @@
 			<!-- Footer Section End -->
 			
 			<!-- Sign Up Window Code -->
-			<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-body">
-							<div class="tab" role="tabpanel">
-							<!-- Nav tabs -->
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Sign In</a></li>
-								<li role="presentation"><a href="#register" role="tab" data-toggle="tab">Sign Up</a></li>
-							</ul>
-							<!-- Tab panes -->
-							<div class="tab-content" id="myModalLabel2">
-								<div role="tabpanel" class="tab-pane fade in active" id="login">
-									<img src="assets/img/logo.png" class="img-responsive" alt="" />
-									<div class="subscribe wow fadeInUp">
-										<form class="form-inline" method="post">
-											<div class="col-sm-12">
-												<div class="form-group">
-													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
-													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
-													<div class="center">
-													<button type="submit" id="login-btn" class="submit-btn"> Login </button>
-													</div>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-
-								<div role="tabpanel" class="tab-pane fade" id="register">
-								<img src="assets/img/logo.png" class="img-responsive" alt="" />
-									<form class="form-inline" method="post">
-											<div class="col-sm-12">
-												<div class="form-group">
-													<input type="text"  name="email" class="form-control" placeholder="Your Name" required="">
-													<input type="email"  name="email" class="form-control" placeholder="Your Email" required="">
-													<input type="email"  name="email" class="form-control" placeholder="Username" required="">
-													<input type="password" name="password" class="form-control"  placeholder="Password" required="">
-													<div class="center">
-													<button type="submit" id="subscribe" class="submit-btn"> Create Account </button>
-													</div>
-												</div>
-											</div>
-										</form>
-								</div>
-							</div>
-							</div>
-						</div>
-						</div>
-				</div>
-			</div>   
+		 
 			<!-- End Sign Up Window -->
 			
 			
@@ -241,6 +175,23 @@
 			</script>
 		</div>
 	</body>
+		<script>
+					         var xmlString = '<%= profile %>';
+        var xx=  JSON.parse(JSON.stringify(xmlString))
+var doc = new DOMParser().parseFromString(xmlString, "text/html");
+var x = doc.body.innerText;
+console.log(x);
+var root = document.getElementById('id01');
+//root.append(x)
+const t = document.createElement('template');
+const d = document.createElement('div');
+t.innerHTML = x;
+d.append(t.content);
+html = $.parseHTML(x);
 
+// Append the element in the document
+$(root).append(html);
+
+					  </script>
 <!-- resume-detail41:26-->
 </html>

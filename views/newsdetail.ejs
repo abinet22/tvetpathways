@@ -62,6 +62,18 @@
 												</p>
 												<div class="post-meta"><span class="category"><a href="#"><%= currentnp.nptag %> <%= currentnp.npcategory %></a></span></div>
 											</div>
+											<div class="row row-bottom mrg-0">
+									
+												<p>
+												 <% var profile =  currentnp.readmore %>
+											 
+											 </p>
+											 <div id="id01" class="col-md-12 card">
+											 
+											 </div>
+											 
+									 
+											 </div>
 											<div class="row no-mrg">
 												<div class="blog-footer-social">
 													<span>Share <i class="fa fa-share-alt"></i></span>
@@ -77,6 +89,7 @@
 										
 									</div>
 								</article>
+							
 								<!-- <div class="row no-mrg">
 									<div class="comments">      
 										<div class="section-title2">
@@ -166,16 +179,48 @@
 						<div class="col-md-4">
 							<div class="blog-sidebar">
 							
-								<form action="searchnewsbynewstag" method="post">
+								<form action="/searchnewsbynewscat" method="post">
 									<div class="search-form">
 										<div class="input-group">
-											<input type="text" class="form-control" placeholder="Search…" name="newstag">
+											<select  class="form-control" placeholder="Search…" name="newscat">
+												<% newscat.forEach (function(row){%>
+													<option value="<%= row.ncatid %>"><%= row.ncatname %></option>
+												<%}) %>
+												</select>
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-default">Go</button>
+												<button type="submit" class="btn btn-default">Go</button>
 											</span>
 										</div>
 									</div>
 								</form>
+								<div class="sidebar-widget">
+									<h4>New Training Program </h4>
+									
+									<% if(newtrainingprogram.length >0 ){%>
+										<% newtrainingprogram.forEach(function(row){%>
+											<% var  comimg %>
+											<% if(row.adsimage) {%>
+												<% comimg = 	'data:image/png;base64,' + new Buffer(row.adsimage, 'binary').toString('base64')
+												%>	
+											<%}else{%>
+												 <% comimg =''%>
+												<%}%>
+											
+												<div class="blog-item">
+													<div class="post-thumb"><a href="/adsdetail/<%= row.adsid %>"><img src="<%= comimg %>" class="img-responsive" alt=""></a></div>
+													<div class="blog-detail">
+														<a href="/adsdetail/<%= row.adsid %>"><h4><%= row.adstitle %></h4></a>
+														<small>Source:<a href="<%= row.adsurl %>"><%= row.adsurl %></a></small>
+														<div class="post-info"><%= new Date(row.createdAt).toLocaleDateString() %></div>
+													</div>
+													
+										
+										
+												</div>
+									<% })%>
+						  
+									<%}else{}%>
+								</div>
 								
 								<div class="sidebar-widget">
 									<h4>Popular NEWS</h4>
@@ -198,32 +243,7 @@
 									</ul>
 								</div>
 								
-								<div class="sidebar-widget">
-									<h4>New Training Program </h4>
-									
-									<% if(newtrainingprogram.length >0 ){%>
-										<% newtrainingprogram.forEach(function(row){%>
-											<% var  comimg %>
-											<% if(row.adsimage) {%>
-												<% comimg = 	'data:image/png;base64,' + new Buffer(row.adsimage, 'binary').toString('base64')
-												%>	
-											<%}else{%>
-												 <% comimg =''%>
-												<%}%>
-											
-												<div class="blog-item">
-													<div class="post-thumb"><a href="/adsdetail/<%= row.adsid %>"><img src="<%= comimg %>" class="img-responsive" alt=""></a></div>
-													<div class="blog-detail">
-														<a href="/adsdetail/<%= row.adsid %>>"><h4><%= row.adstitle %></h4></a>
-														<small>Source:<a href="<%= row.adsurl %>"><%= row.adsurl %></a></small>
-														<div class="post-info"><%= new Date(row.createdAt).toLocaleDateString() %></div>
-													</div>
-												</div>
-									<% })%>
-						  
-									<%}else{}%>
-								</div>
-								
+							
 								
 								
 							</div>
@@ -387,6 +407,23 @@
 			</script>
 		</div>
 	</body>
+	<script>
+		var xmlString = '<%= profile %>';
+var xx=  JSON.parse(JSON.stringify(xmlString))
+var doc = new DOMParser().parseFromString(xmlString, "text/html");
+var x = doc.body.innerText;
+console.log(x);
+var root = document.getElementById('id01');
+//root.append(x)
+const t = document.createElement('template');
+const d = document.createElement('div');
+t.innerHTML = x;
+d.append(t.content);
+html = $.parseHTML(x);
 
+// Append the element in the document
+$(root).append(html);
+
+ </script>
 <!-- blog-detail42:00-->
 </html>

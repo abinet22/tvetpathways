@@ -69,25 +69,7 @@
 												<div id="id01" class="col-md-12"></div>
 											</div>
 											
-											<script>
-												var xmlString = '<%= profile %>';
-											  var xx=  JSON.parse(JSON.stringify(xmlString))
-												var doc = new DOMParser().parseFromString(xmlString, "text/html");
-												var x = doc.body.innerText;
-												console.log(x);
-												var root = document.getElementById('id01');
-												//root.append(x)
-												const t = document.createElement('template');
-												const d = document.createElement('div');
-												t.innerHTML = x;
-												d.append(t.content);
-												html = $.parseHTML(x);
-												
-												// Append the element in the document
-												$(root).append(html);
-												
-					
-											  </script>
+									
 											<div class="row no-mrg">
 												<div class="blog-footer-social">
 													<span>Share <i class="fa fa-share-alt"></i></span>
@@ -192,7 +174,7 @@
 						<div class="col-md-4">
 							<div class="blog-sidebar">
 							
-								<form action="searchnewsbynewstag" method="post">
+								<form action="/searchnewsbynewstag" method="post">
 									<div class="search-form">
 										<div class="input-group">
 											<input type="text" class="form-control" placeholder="Search…" name="newstag">
@@ -413,6 +395,24 @@
 			</script>
 		</div>
 	</body>
+	<script>
+		var xmlString = '<%= profile %>';
+	  var xx=  JSON.parse(JSON.stringify(xmlString))
+		var doc = new DOMParser().parseFromString(xmlString, "text/html");
+		var x = doc.body.innerText;
+		console.log(x);
+		var root = document.getElementById('id01');
+		//root.append(x)
+		const t = document.createElement('template');
+		const d = document.createElement('div');
+		t.innerHTML = x;
+		d.append(t.content);
+		html = $.parseHTML(x);
+		
+		// Append the element in the document
+		$(root).append(html);
+		
 
+	  </script>
 <!-- blog-detail42:00-->
 </html>
