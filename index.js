@@ -1,7 +1,7 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const passport = require('passport');
-
+const favicon = require('serve-favicon');
 const flash = require('connect-flash');
 const session = require('express-session');
 const ejs = require("ejs");
@@ -58,6 +58,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(express.static(path.join(__dirname,'./public')));
+app.use(favicon(path.join(__dirname,'./public/logo.ico')));
 
 
 // Routes

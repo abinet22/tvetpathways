@@ -92,7 +92,7 @@ router.get('/signup', forwardAuthenticated, async (req, res) =>{
 router.get('/government-agency-directories', forwardAuthenticated, async (req, res) =>{
     const itemsPerPage = 10; // Number of items per page
     const currentPage = req.query.page ? parseInt(req.query.page) : 0;
-    const govdirectory = await db.BusinessDirectory.findAll({where:{directorycategory:'govt'}})
+    const govdirectory = await db.BusinessDirectory.findAll({})
    
     // Calculate the slice of joblist to display for the current page
     const startIndex = currentPage * itemsPerPage;
@@ -107,7 +107,7 @@ router.get('/government-agency-directories', forwardAuthenticated, async (req, r
     router.get('/ngo-agency-directories', forwardAuthenticated, async (req, res) =>{
         const itemsPerPage = 10; // Number of items per page
         const currentPage = req.query.page ? parseInt(req.query.page) : 0;
-        const govdirectory = await db.BusinessDirectory.findAll({where:{directorycategory:'nongovt'}})
+        const govdirectory = await db.BusinessDirectory.findAll({})
        
         // Calculate the slice of joblist to display for the current page
         const startIndex = currentPage * itemsPerPage;
@@ -122,7 +122,7 @@ router.get('/government-agency-directories', forwardAuthenticated, async (req, r
         router.get('/tvet-center-directories', forwardAuthenticated, async (req, res) =>{
             const itemsPerPage = 10; // Number of items per page
             const currentPage = req.query.page ? parseInt(req.query.page) : 0;
-            const govdirectory = await db.BusinessDirectory.findAll({where:{directorycategory:'tvet'}})
+            const govdirectory = await db.BusinessDirectory.findAll({})
            
             // Calculate the slice of joblist to display for the current page
             const startIndex = currentPage * itemsPerPage;

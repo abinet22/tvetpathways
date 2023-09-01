@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- CSS==================================================-->
+    <link rel="icon" type="image/x-icon" href="../../../../assets/img/logo.ico">
     <link rel="stylesheet" href="assets/plugins/css/plugins.css">
     <link href="assets/css/style.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" id="jssDefault" href="assets/css/colors/green-style.css">
@@ -59,12 +60,12 @@ height: 50px !important;
 
                     <p> </p>
 
-                    <form class="bt-form" action="/searchjob" method="post">
-                        <div class="row">
-                            <div class="col-md-4">
+                    <form class="" action="/searchjob" method="post">
+                        
+                            <div class="col-md-4" style=" margin-top: 60px; ">
                             	
                                 <select class="form-control js-example-basic-multiple " name="subcategory" id="subcategory" >
-                                    <option value="0">Select Occupation</option>
+                                    <option value="0">Select Profession Category</option>
                                     
                                     <% subcategory.forEach(function (row){%>
                                         <option value="<%=row.subcatid%>"><%= row.subcatname %></option>
@@ -73,20 +74,21 @@ height: 50px !important;
                                 </select>
                     </div>
                    
-                    <div class="col-md-4 ">
+                    <div class="col-md-4 " style="margin-bottom: 20px; margin-top: 60px;">
                         <div id="geocoder" class="geocoder "    type="search"   placeholder="Enter your location"></div>
                      
                       
                     </div>
-                    <div class="col-md-4 ">
+                    <div class="col-md-4 " style=" margin-top: 60px;">
                         <input type="hidden" class="form-control" placeholder="Location" name="lat" id="latitude">
                         <input type="hidden" class="form-control" placeholder="Location" name="lon" id="logtiude">
                     
                         <button type="submit" class="btn btn-primary">Search Job</button>
                     </div>
-                        </div>
+                        
                     </form>
                 </div>
+             
             </div>
         </div>
     </div>

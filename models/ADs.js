@@ -26,6 +26,18 @@ module.exports = (sequelize, DataTypes) => {
         },
         isactive: {
             type: DataTypes.STRING,
+        },
+        providercontact:{
+            type: DataTypes.STRING,
+        },
+        providername:{
+            type: DataTypes.STRING,
+        },
+        datefrom:{
+            type: DataTypes.DATE,
+        },
+        dateto:{
+            type: DataTypes.DATE,
         }
        
     });
