@@ -10,6 +10,9 @@ const Op = db.Sequelize.Op;
 const Newsphoto = require('../middleware/totphoto');
 const { v4: uuidv4 } = require('uuid');
 
+router.get('/contactus', forwardAuthenticated, async (req, res) => {
+    res.render('contactus',{})
+})
 router.get('/', forwardAuthenticated, async (req, res) => {
    
     const category = await db.Category.findAll({ where: { is_active: 'Yes' } });
@@ -89,51 +92,99 @@ router.get('/signup', forwardAuthenticated, async (req, res) =>{
     const subjobcat = await db.Subcategory.findAll({})
     res.render('signup',{subjobcat:subjobcat});
     });
-router.get('/government-agency-directories', forwardAuthenticated, async (req, res) =>{
-    const itemsPerPage = 10; // Number of items per page
-    const currentPage = req.query.page ? parseInt(req.query.page) : 0;
-    const govdirectory = await db.BusinessDirectory.findAll({})
-   
-    // Calculate the slice of joblist to display for the current page
-    const startIndex = currentPage * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const dirforpage = govdirectory.slice(startIndex, endIndex);
+router.get('/governmental-tvetcenter-directories', forwardAuthenticated, async (req, res) =>{
+const itemsPerPage = 10; // Number of items per page
+const currentPage = req.query.page ? parseInt(req.query.page) : 0;
+const govdirectory = await db.BusinessDirectory.findAll({where:{directorycategory:'Public_TVET_College'}})
 
-    res.render('government-agency-directories',{tag:'Govt Offices Directory',
-    directory:dirforpage,
-    currentPage: currentPage,
-    totalPages: Math.ceil(govdirectory.length / itemsPerPage),});
-    });
-    router.get('/ngo-agency-directories', forwardAuthenticated, async (req, res) =>{
-        const itemsPerPage = 10; // Number of items per page
-        const currentPage = req.query.page ? parseInt(req.query.page) : 0;
-        const govdirectory = await db.BusinessDirectory.findAll({})
-       
-        // Calculate the slice of joblist to display for the current page
-        const startIndex = currentPage * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-        const dirforpage = govdirectory.slice(startIndex, endIndex);
-    
-        res.render('government-agency-directories',{tag:'NOGs Offices Directory',
-        directory:dirforpage,
-        currentPage: currentPage,
-        totalPages: Math.ceil(govdirectory.length / itemsPerPage),});
-        });
-        router.get('/tvet-center-directories', forwardAuthenticated, async (req, res) =>{
-            const itemsPerPage = 10; // Number of items per page
-            const currentPage = req.query.page ? parseInt(req.query.page) : 0;
-            const govdirectory = await db.BusinessDirectory.findAll({})
-           
-            // Calculate the slice of joblist to display for the current page
-            const startIndex = currentPage * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const dirforpage = govdirectory.slice(startIndex, endIndex);
-            const subcategory = await db.Subcategory.findAll({})
-            res.render('tvet-centers-directories',{tag:'TVET CENTERs Directory ',
-            directory:dirforpage,searchbykm:0,long2:0,lati2:0,
-            currentPage: currentPage,subcategory:subcategory,
-            totalPages: Math.ceil(govdirectory.length / itemsPerPage),});
-            });
+// Calculate the slice of joblist to display for the current page
+const startIndex = currentPage * itemsPerPage;
+const endIndex = startIndex + itemsPerPage;
+const dirforpage = govdirectory.slice(startIndex, endIndex);
+
+res.render('government-agency-directories',{tag:'Govt Offices Directory',
+directory:dirforpage,
+currentPage: currentPage,
+totalPages: Math.ceil(govdirectory.length / itemsPerPage),});
+});
+router.get('/private-tvetcenter-directories', forwardAuthenticated, async (req, res) =>{
+const itemsPerPage = 10; // Number of items per page
+const currentPage = req.query.page ? parseInt(req.query.page) : 0;
+const govdirectory = await db.BusinessDirectory.findAll({where:{directorycategory:'Private_TVET_College'}})
+
+// Calculate the slice of joblist to display for the current page
+const startIndex = currentPage * itemsPerPage;
+const endIndex = startIndex + itemsPerPage;
+const dirforpage = govdirectory.slice(startIndex, endIndex);
+
+res.render('government-agency-directories',{tag:'NOGs Offices Directory',
+directory:dirforpage,
+currentPage: currentPage,
+totalPages: Math.ceil(govdirectory.length / itemsPerPage),});
+});
+router.get('/formal-tvetcenter-directories', forwardAuthenticated, async (req, res) =>{
+const itemsPerPage = 10; // Number of items per page
+const currentPage = req.query.page ? parseInt(req.query.page) : 0;
+const govdirectory = await db.BusinessDirectory.findAll({where:{directorycategory:'Formal_TVET_College'}})
+
+// Calculate the slice of joblist to display for the current page
+const startIndex = currentPage * itemsPerPage;
+const endIndex = startIndex + itemsPerPage;
+const dirforpage = govdirectory.slice(startIndex, endIndex);
+const subcategory = await db.Subcategory.findAll({})
+res.render('tvet-centers-directories',{tag:'TVET CENTERs Directory ',
+directory:dirforpage,searchbykm:0,long2:0,lati2:0,
+currentPage: currentPage,subcategory:subcategory,
+totalPages: Math.ceil(govdirectory.length / itemsPerPage),});
+});
+router.get('/nonformal-tvetcenter-directories', forwardAuthenticated, async (req, res) =>{
+const itemsPerPage = 10; // Number of items per page
+const currentPage = req.query.page ? parseInt(req.query.page) : 0;
+const govdirectory = await db.BusinessDirectory.findAll({where:{directorycategory:'InFormal_TVET_College'}})
+
+// Calculate the slice of joblist to display for the current page
+const startIndex = currentPage * itemsPerPage;
+const endIndex = startIndex + itemsPerPage;
+const dirforpage = govdirectory.slice(startIndex, endIndex);
+const subcategory = await db.Subcategory.findAll({})
+res.render('tvet-centers-directories',{tag:'TVET CENTERs Directory ',
+directory:dirforpage,searchbykm:0,long2:0,lati2:0,
+currentPage: currentPage,subcategory:subcategory,
+totalPages: Math.ceil(govdirectory.length / itemsPerPage),});
+});
+router.get('/shortterm-tvetcenter-directories', forwardAuthenticated, async (req, res) =>{
+const itemsPerPage = 10; // Number of items per page
+const currentPage = req.query.page ? parseInt(req.query.page) : 0;
+const govdirectory = await db.BusinessDirectory.findAll({where:{directorycategory:'ShortTerm_TVET_College'}})
+
+
+// Calculate the slice of joblist to display for the current page
+const startIndex = currentPage * itemsPerPage;
+const endIndex = startIndex + itemsPerPage;
+const dirforpage = govdirectory.slice(startIndex, endIndex);
+const subcategory = await db.Subcategory.findAll({})
+res.render('tvet-centers-directories',{tag:'TVET CENTERs Directory ',
+directory:dirforpage,searchbykm:0,long2:0,lati2:0,
+currentPage: currentPage,subcategory:subcategory,
+totalPages: Math.ceil(govdirectory.length / itemsPerPage),});
+});
+router.get('/ngos-tvetcenter-directories', forwardAuthenticated, async (req, res) =>{
+const itemsPerPage = 10; // Number of items per page
+const currentPage = req.query.page ? parseInt(req.query.page) : 0;
+const govdirectory = await db.BusinessDirectory.findAll({where:{directorycategory:'NGO_TVET_College'}})
+
+// Calculate the slice of joblist to display for the current page
+const startIndex = currentPage * itemsPerPage;
+const endIndex = startIndex + itemsPerPage;
+const dirforpage = govdirectory.slice(startIndex, endIndex);
+const subcategory = await db.Subcategory.findAll({})
+res.render('tvet-centers-directories',{tag:'TVET CENTERs Directory ',
+directory:dirforpage,searchbykm:0,long2:0,lati2:0,
+currentPage: currentPage,subcategory:subcategory,
+totalPages: Math.ceil(govdirectory.length / itemsPerPage),});
+});
+
+
 router.post('/searchtvetcenterbylocation', forwardAuthenticated, async (req, res) =>{
     const {topoccupations,lon,lat} =req.body; 
     const itemsPerPage = 10; // Number of items per page
